@@ -26,6 +26,7 @@ while True:
     if "next_page_token" not in response or response["next_page_token"] == "":
         break
     # add next page token to url and redo request
+    # using https://developers.google.com/maps/documentation/places/web-service/details to get the phone number, for some reason not in the textsearch result
     url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query=medical%20clinics%20in%20Toronto&key={API_KEY}&pagetoken={response['next_page_token']}"
     response = requests.request("GET", url, headers=headers, data=payload)
     response = response.json()
