@@ -1,55 +1,36 @@
 import requests
 import json
-# import googlemaps
 
 # https://developers.google.com/maps/documentation/places/web-service/search-text
 API_KEY = "AIzaSyCEmymvPFdpECO6upecX6puqXgAH4wds-0"
 fields = "name,types,formatted_phone_number"
-# url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=doctor&fields=name,formatted_address,formatted_phone_number&location=43.645534,-79.380857&radius=32187&key={API_KEY}"
 url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query=medical%20clinics%20in%20Toronto&key={API_KEY}"
-# google_maps = googlemaps.Client(API_KEY)
-
 payload={}
 headers = {}
-
 response = requests.request("GET", url, headers=headers, data=payload)
 response = response.json()
-print("RESPONSE", response, "\n\n")
 
-# create a local .json file named "clinics.json", overwrite if exists
-count = 0
 clinics = {}
 
 while True:
     for place in response["results"]:
-        print(place)
         place_id = place["place_id"]
         place_details_url = f"https://maps.googleapis.com/maps/api/place/details/json?place_id={place_id}&fields=name%2Crating%2Cformatted_phone_number&key={API_KEY}"
         place_details_response = requests.request("GET", place_details_url, headers=headers, data=payload)
         place_details_response = place_details_response.json()
         details = place_details_response["result"]
-        print(details)
         # check if every clinic has a phone number and if so, add to clinics dict
         if "formatted_phone_number" in details:
-            print("GOOD ONE\n")
             details['formatted_address'] = place['formatted_address']
-            print(f"PLACE\n {details['name']}\n {details['formatted_phone_number']}\n {details['formatted_address']} \n\n")
             clinics[details["name"]] = details
-            count += 1
-            print("Count: ", count, f", lenght of dict: {len(clinics)}" "\n\n")
     if "next_page_token" not in response or response["next_page_token"] == "":
         break
     # add next page token to url and redo request
     url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query=medical%20clinics%20in%20Toronto&key={API_KEY}&pagetoken={response['next_page_token']}"
     response = requests.request("GET", url, headers=headers, data=payload)
     response = response.json()
-    print("RESPONSE", response, "\n\n")
-    print("NEXT PAGE")
 
 # write the clinics dict to the json file
-# Open a .json file in write mode
 with open("clinics.json", "w") as outfile:
     # Write the contents of the dictionary as a JSON string to the file
     json.dump(clinics, outfile)
-
-# print("ALL CLINCS", clinics, "\n\n")
