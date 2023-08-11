@@ -1,9 +1,9 @@
 # sabih's twilio code
 
 # Download the helper library from https://www.twilio.com/docs/python/install
-import os
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse, Play
+import requests
 
 # Set environment variables for your credentials
 # Read more at http://twil.io/secure
@@ -13,18 +13,24 @@ auth_token = "c60276d30d75c8407890e5da9a7b8c7d"
 client = Client(account_sid, auth_token)
 
 response = VoiceResponse()
-ngrok_url = "https://aa85-34-138-153-128.ngrok-free.app"
-
-# response.say("hello whats up my nigga")
+ngrok_url = "https://1a41-35-245-16-87.ngrok-free.app/"
 
 gather = Gather(
                 input='speech',
-                action=f'{ngrok_url}/detectNavMenu',
-                partial_result_callback=f'{ngrok_url}/detectNavMenuRealtimeTranscription',
-                timeout=3)
+                # below is transcription after every person stops talking for at least 5 seconds
+                action=f'{ngrok_url}detect_nav_menu',
+                # below is realtime transcription after every word said
+                partial_result_callback=f'{ngrok_url}detect_nav_menu_realtime_transcription',
+                timeout=5)
 gather.say("give me all of your money")
 # gather.append(Play('https://handler.twilio.com/twiml/EHfbb431b89ccc9f7c0bb61cedc51208c8'))
 response.append(gather)
+
+# response = requests.get(f'{ngrok_url}/nav_menu_result')
+# data = response.json()
+
+# print(data['is_human'], data['press_key'])
+
 # response.record(transcribe=True, 
 # transcribe_callback=f'{ngrok_url}/detectNavMenu')
 
