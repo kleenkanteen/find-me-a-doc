@@ -17,7 +17,7 @@
 			2. If yes, for every doctor ask their name and gender.
 		2. A website to show this data in a intuitive manner. Users just input their address and preferred doctor gender and it gives nearest available doctor. They can also see all available doctors in the map.
 	4. Nice to have:
-		1. Incorporate a way to see reviews for doctors, post reviews for doctors, zand recommend based on reviews
+		1. Incorporate a way to see reviews for doctors, post reviews for doctors, and recommend based on reviews
 2.  Website Tech Stack
 	1. Frontend: React
 	2. Backend: May not be needed if we don't save any user data, frontend can directly query supabase

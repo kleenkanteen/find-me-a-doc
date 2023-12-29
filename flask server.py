@@ -74,8 +74,8 @@ def play_intro_message(response):
   response.append(gather)
   return
 
-@app.route("/handle_intro_response", methods=['GET', 'POST'])
-def handleRecordingOriginal():
+# @app.route("/handle_intro_response", methods=['GET', 'POST'])
+# def handleRecordingOriginal():
 
 def handle_robot(response, key):
   print("handle robot")

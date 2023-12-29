@@ -1,4 +1,5 @@
-# sabih's twilio code
+# start call
+# sabih's twilio code, this initiates the call. This has to be copied on a local ide then ran, because while the flask server above is running, no other code block can run on google collab.
 
 # Download the helper library from https://www.twilio.com/docs/python/install
 from twilio.rest import Client
@@ -8,12 +9,12 @@ import requests
 # Set environment variables for your credentials
 # Read more at http://twil.io/secure
 
-account_sid = "ACea117aecf23c9f2b46b7b8f49c651e19"
-auth_token = "c60276d30d75c8407890e5da9a7b8c7d"
+account_sid = "AC1c15242fb4cfe00697240b7a8e80c744"
+auth_token = "02d136a864e454d03766cbed688265be"
 client = Client(account_sid, auth_token)
 
 response = VoiceResponse()
-ngrok_url = "https://1a41-35-245-16-87.ngrok-free.app/"
+ngrok_url = "https://79cf-34-106-215-244.ngrok-free.app/"
 
 gather = Gather(
                 input='speech',
@@ -31,12 +32,12 @@ response.append(gather)
 
 # print(data['is_human'], data['press_key'])
 
-# response.record(transcribe=True, 
+# response.record(transcribe=True,
 # transcribe_callback=f'{ngrok_url}/detectNavMenu')
 
 call = client.calls.create(
   to="+12894007562",
-  from_="+16474944892",
+  from_="+19513632853",
   timeout=30,
   twiml=str(response)
 )
