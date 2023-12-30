@@ -9,8 +9,8 @@ import requests
 # Set environment variables for your credentials
 # Read more at http://twil.io/secure
 
-account_sid = "AC1c15242fb4cfe00697240b7a8e80c744"
-auth_token = "02d136a864e454d03766cbed688265be"
+account_sid = "ACea117aecf23c9f2b46b7b8f49c651e19"
+auth_token = "c60276d30d75c8407890e5da9a7b8c7d"
 client = Client(account_sid, auth_token)
 
 response = VoiceResponse()
@@ -36,8 +36,8 @@ response.append(gather)
 # transcribe_callback=f'{ngrok_url}/detectNavMenu')
 
 call = client.calls.create(
-  to="+16478924001",
-  from_="+19513632853",
+  to="+12894007562",
+  from_="+16137045634",
   timeout=30,
   twiml=str(response)
 )
