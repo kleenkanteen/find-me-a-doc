@@ -13,31 +13,30 @@
 	2. Audience: Anyone looking for a family doctor.
 	3. MVP Solution:
 		1. Create an updated list of family doctors in Toronto as well as their gender. Do this by calling all clinics monthly, asking 2 questions:
-			1. If there are any family doctors accepting patients.
-			2. If yes, for every doctor ask their name and gender.
+			1. Are any family doctors accepting patients?
+			2. If yes, number of male and female doctors accepting patients?
 		2. A website to show this data in a intuitive manner. Users just input their address and preferred doctor gender and it gives nearest available doctor. They can also see all available doctors in the map.
 	4. Nice to have:
-		1. Incorporate a way to see reviews for doctors, post reviews for doctors, and recommend based on reviews
+		1. Incorporate a way to see reviews for doctors, post reviews for doctors, zand recommend based on reviews
 2.  Website Tech Stack
 	1. Frontend: React
-	2. Backend: May not be needed if we don't save any user data, frontend can directly query supabase
+	2. Backend: Python flask server to make the calls, save the data in supabase
 	3. Database: Supabase, easy to use serverless postgres
 3. Data Collection Tools:
 	1. Twilio to make calls
-	2. Possibly chatgpt to direct conversation
-	3. Speech to text: OpenAI Whisper for
-	4. Text to speech: google cloud or wellsaidlabs with Cameron S. name
+	2. Speech to text: Twilio
 	5. Can run these python script(s) locally
-	6. Can store recordings in google drive
+	6. Can store prerecorded voices in google drive
 4. Tools:
-	1. Excalidraw to show conversation flow
-5.  Discuss following meeting regulations and schedule
+	1. Trello
+	2. Excalidraw to show conversation flow
 
 Info we collect from about clinic using google maps API:
 - location
 - name
 - phone number
-- opening times
+- rating
+- called (keep track of which clinics we called and talked to someone)
 
 How we make phone calls to those clinics:
 - twilio for making phone calls and also transcribing recepetion replies to speech
@@ -76,6 +75,14 @@ Run the first 4 blocks of code under this block, in order. The first block insta
 # Call diagram:
 <div>
 <img src="https://i.ibb.co/pnVBgGS/call.png"/>
-
- Trello board: https://trello.com/invite/b/LgyhcITv/ATTIfc39cd1d677aaab4507de7ea2b7e840d3CD96E77/find-me-a-doc
 </div>
+
+Call script:
+1. Introduction: 
+
+Python dependencies:
+- flask
+- pyngrok 
+- twilio
+- supabase
+- python-dotenv

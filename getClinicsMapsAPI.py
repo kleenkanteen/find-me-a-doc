@@ -1,8 +1,15 @@
-import requests
-import json
+import requests, json, os
+from supabase import create_client, Client
+from dotenv import load_dotenv
+
+load_dotenv()
+
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
 
 # https://developers.google.com/maps/documentation/places/web-service/search-text
-API_KEY = "AIzaSyCEmymvPFdpECO6upecX6puqXgAH4wds-0"
+API_KEY = os.environ.get("MAPS_KEY")
 fields = "name,types,formatted_phone_number"
 url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query=medical%20clinics%20in%20Toronto&key={API_KEY}"
 payload={}
@@ -32,17 +39,21 @@ while True:
     response = requests.request("GET", url, headers=headers, data=payload)
     response = response.json()
 
-# write the clinics dict to the json file
+# write the clinics dict to the json file and supabase
 with open("clinics.json", "w") as outfile:
+    for key, value in clinics.items():
+            try:
+                data, count = supabase.table("clinics").insert({"name": key, "location": value["formatted_address"], "phone": value["formatted_phone_number"], "called": False, "rating": float(value["rating"])}).execute()
+            except Exception as e:
+                print("Failed to insert into supabase", e)
     # Write the contents of the dictionary as a JSON string to the file
     json.dump(clinics, outfile)
-
-import json
 
 # Open the JSON file in read mode
 with open("clinics.json", "r") as json_file:
     # Load the JSON data into a dictionary
     clinics = json.load(json_file)
+
 
 # Iterate over the clinics and add a new "called" field to each one
 for clinic in clinics:

@@ -9,6 +9,11 @@ import requests
 # Set environment variables for your credentials
 # Read more at http://twil.io/secure
 
+# for sabihs twilio account, can only call his number
+#account_sid = "ACea117aecf23c9f2b46b7b8f49c651e19"
+#auth_token = "c60276d30d75c8407890e5da9a7b8c7d"
+
+# for raghavs twilio account, can only call his number
 account_sid = "ACea117aecf23c9f2b46b7b8f49c651e19"
 auth_token = "c60276d30d75c8407890e5da9a7b8c7d"
 client = Client(account_sid, auth_token)
@@ -22,8 +27,8 @@ gather = Gather(
                 action=f'{ngrok_url}detect_nav_menu',
                 # below is realtime transcription after every word said
                 partial_result_callback=f'{ngrok_url}detect_nav_menu_realtime_transcription',
-                timeout=5)
-gather.say("give me all of your money")
+                timeout=3)
+gather.say("Hello my dear")
 # gather.append(Play('https://handler.twilio.com/twiml/EHfbb431b89ccc9f7c0bb61cedc51208c8'))
 response.append(gather)
 
@@ -36,6 +41,7 @@ response.append(gather)
 # transcribe_callback=f'{ngrok_url}/detectNavMenu')
 
 call = client.calls.create(
+  # sabihs number, change to raghavs number if using raghavs twilio account
   to="+12894007562",
   from_="+16137045634",
   timeout=30,
