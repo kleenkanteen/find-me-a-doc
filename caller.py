@@ -14,7 +14,7 @@ auth_token = "02d136a864e454d03766cbed688265be"
 client = Client(account_sid, auth_token)
 
 response = VoiceResponse()
-ngrok_url = "https://79cf-34-106-215-244.ngrok-free.app/"
+ngrok_url = "https://069c-72-141-93-40.ngrok-free.app/"
 
 gather = Gather(
                 input='speech',
@@ -36,7 +36,7 @@ response.append(gather)
 # transcribe_callback=f'{ngrok_url}/detectNavMenu')
 
 call = client.calls.create(
-  to="+12894007562",
+  to="+16478924001",
   from_="+19513632853",
   timeout=30,
   twiml=str(response)

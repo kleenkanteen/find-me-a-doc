@@ -1,9 +1,10 @@
+# handle call
 # Flask server code to receive twilio post requests that contain the transcripted user speech when they respond. Twilio sends us the speech to text transcriptions.
 
 from flask import Flask
 from pyngrok import ngrok
 from flask import request
-from twilio.twiml.voice_response import VoiceResponse
+from twilio.twiml.voice_response import VoiceResponse, Gather
 import time, re
 import threading
 
@@ -11,6 +12,7 @@ port_no = 5000
 app = Flask(__name__)
 ngrok.set_auth_token("2QNcZlJxo2W7BBC0lOxTONHpPy5_7eZrvDxtjyt6RMUJztGw7")
 public_url =  ngrok.connect(port_no).public_url
+print(f"ngrok link: {public_url}")
 response = VoiceResponse()
 listening = False
 isHuman = True
@@ -60,33 +62,38 @@ def check_elapsed_time():
 def nav_menu_press_button():
   print("hello")
 
-def play_intro_message(response):
+def play_intro_message():
+  response = VoiceResponse()
   print("Intro Message")
-  response.say("Intro Message")
   gather = Gather(
                 input='speech',
                 # below is transcription after every person stops talking for at least 5 seconds
                 action=f'{public_url}/handle_intro_response',
                 # below is realtime transcription after every word said
-                partial_result_callback=f'{ngrok_url}detect_nav_menu_realtime_transcription',
+                partial_result_callback=f'{public_url}detect_nav_menu_realtime_transcription',
                 timeout=5)
-  gather.say("give me all of your money")
+  gather.say("You are a very nice person")
   response.append(gather)
-  return
+  return str(response)
 
-# @app.route("/handle_intro_response", methods=['GET', 'POST'])
-# def handleRecordingOriginal():
+@app.route("/handle_intro_response", methods=['GET', 'POST'])
+def handle_intro_response():
+  response = VoiceResponse()
+  response.say(f"Thank you for giving me your money")
+  return str(response)
 
-def handle_robot(response, key):
+@app.route("/handle_robot", methods=['GET', 'POST'])
+def handle_robot():
+  response = VoiceResponse()
+  global key
   print("handle robot")
   print(f"You are a robot and you said to press {key}")
   response.say(f"You are a robot and you said to press {key}")
-  return
+  return str(response)
 
 @app.route("/detect_nav_menu", methods=['GET', 'POST'])
 def handleRecordingOriginal():
     global response
-    response = VoiceResponse()
     global listening
     global isHuman
     global key
@@ -98,11 +105,11 @@ def handleRecordingOriginal():
     if isHuman:
       #Human Detected
       print("human detected")
-      play_intro_message(response)
+      return play_intro_message()
     else:
       # Robot Detected
       print("robot detected")
-      handle_robot(response, key)
+      return handle_robot()
     temp_isHuman = isHuman
     temp_key = -1
     if key != "":
@@ -127,7 +134,5 @@ def handleRecording():
     processResponse()
     print("isHuman", isHuman)
     return "", 200
-
-print(f"ngrok link: {public_url}")
 
 app.run(port=port_no)
