@@ -1,6 +1,3 @@
-# handle call
-# Flask server code to receive twilio post requests that contain the transcripted user speech when they respond. Twilio sends us the speech to text transcriptions.
-
 from flask import Flask
 from pyngrok import ngrok
 from flask import request
@@ -11,7 +8,6 @@ from supabase import create_client, Client
 from dotenv import load_dotenv
 
 load_dotenv()
-
 url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
@@ -20,6 +16,7 @@ port_no = 5000
 app = Flask(__name__)
 ngrok.set_auth_token("2QNcZlJxo2W7BBC0lOxTONHpPy5_7eZrvDxtjyt6RMUJztGw7")
 public_url =  ngrok.connect(port_no).public_url
+os.environ["NGROK_URL"] = public_url
 print(f"ngrok link: {public_url}")
 response = VoiceResponse()
 listening = False

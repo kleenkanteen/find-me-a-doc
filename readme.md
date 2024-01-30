@@ -1,10 +1,10 @@
-#Project overview:
+# Project overview:
 
 1. Problem:
 
 	1. There is a lack of updated public information when it comes knowing which family doctors are accepting patients. Last December, I got a family doctor at a nearbly clinic and he wasn't on the peel region site that lists free family doctors. This is Ontario. Other provinces may or many not have their own system. Alberta has a more centralized site. Ontario has none.
   
-  The websites that do try to display this info usually have bad UI/UX. They also lack reviews for each doctor. My mom got a serious kidney infection due to her family doctor dismissing her concern of frequent urination as just getting older.
+  The websites that do try to display this info usually have bad UI/UX. They also lack reviews for each doctor. My mom got a UTI turned serious kidney infection due to her family doctor dismissing her concern of frequent urination as just getting older.
 
 		1. Reddit posts of people complaining of waiting years to find one:
 		2. https://www.reddit.com/r/ontario/comments/o5vrrx/finding_a_family_doctor_shouldnt_be_this_hard/
@@ -18,17 +18,18 @@
 		2. A website to show this data in a intuitive manner. Users just input their address and preferred doctor gender and it gives nearest available doctor. They can also see all available doctors in the map.
 	4. Nice to have:
 		1. Incorporate a way to see reviews for doctors, post reviews for doctors, zand recommend based on reviews
-2.  Website Tech Stack
+2.  Website tech stack
 	1. Frontend: React
-	2. Backend: Python flask server to make the calls, save the data in supabase
-	3. Database: Supabase, easy to use serverless postgres
-3. Data Collection Tools:
-	1. Twilio to make calls
+	2. Backend: Python flask server to expose endpoints for twilio to send data to.
+	3. Database: Supabase, easy to use serverless postgres.
+3. Other tech tools:
+	1. Robot caller: flask server mentioned above + Twilio api to make calls
 	2. Speech to text: Twilio
 	5. Can run these python script(s) locally
-	6. Can store prerecorded voices in google drive
-4. Tools:
-	1. Trello
+	6. Can store prerecorded voices in google drive and played for the script
+	7. Google maps api to get clinic info
+4. Project management + diagramming:
+	1. Trello for task management
 	2. Excalidraw to show conversation flow
 
 Info we collect from about clinic using google maps API:
@@ -36,7 +37,7 @@ Info we collect from about clinic using google maps API:
 - name
 - phone number
 - rating
-- called (keep track of which clinics we called and talked to someone)
+- called boolean to keep track of which clinics we finished having a convo with
 
 How we make phone calls to those clinics:
 - twilio for making phone calls and also transcribing recepetion replies to speech
@@ -77,12 +78,25 @@ Run the first 4 blocks of code under this block, in order. The first block insta
 <img src="https://i.ibb.co/pnVBgGS/call.png"/>
 </div>
 
-Call script:
-1. Introduction: 
+Call script (in progress):
+1. Introduction: "Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Please reply with yes or no."
 
-Python dependencies:
-- flask
-- pyngrok 
-- twilio
-- supabase
-- python-dotenv
+# Development Guide
+## Relevant Files
+caller.py - This initiates the call to the clinic using twilio api
+
+flask server.py - The flask server that twilio sends it's speech to text transcriptions to. And the server responds to twilio with what to say next.
+
+get_clinics_in_toronto.py - The script that uses the google maps api to get all clinics in toronto.
+
+## Setting up Twilio account and environment variables
+1. Go to [https://www.twilio.com/login](https://www.twilio.com/login) and create a twilio account. Add and verify your phone number. You will get $15 in free credits. Then get a virtual number that is somewhere in Ontario. Then add your number to be a verified number. Your twilio number can only call verified numbers.
+2. Copy `.env.example` and rename the new file to `.env`. Notice this is in `.gitignore` so it won't be pushed to github. Fill in the first 4 variable with your twilio account info. You can find your account sid and auth token in the twilio console. You can find your twilio number in the twilio console as well.
+3. For the SUPABASE_URL and SUPABASE_KEY .env variables, ask me for them since they are in my supabase account. I can send securely over discord.
+
+## Setting up flask server and initiating a call
+1. Run `python3 -m venv venv` to create a virtual environment
+2. Run `source venv/bin/activate` to activate the virtual environment or if on windows, run `venv\Scripts\activate.bat`
+3. Run `pip install -r requirements.txt` to install all dependencies
+4. Run `flask server.py`. You can use vscode code runner extension or type `python "flask server.py"` to start the flask server.
+5. Run `caller.py`. Hear the magic happen. Talk a bit.

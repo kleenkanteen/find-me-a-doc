@@ -1,0 +1,6 @@
+supabase
+dotenv
+flask
+pyngrok
+flask
+twilio
