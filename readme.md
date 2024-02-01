@@ -1,34 +1,44 @@
 # Project overview:
 
 1. Problem:
-
-	1. There is a lack of updated public information when it comes knowing which family doctors are accepting patients. Last December, I got a family doctor at a nearbly clinic and he wasn't on the peel region site that lists free family doctors. This is Ontario. Other provinces may or many not have their own system. Alberta has a more centralized site. Ontario has none.
+	There is a lack of updated public information when it comes knowing which family doctors are accepting patients. Last December, I got a family doctor at a nearbly clinic and he wasn't on the peel region site that lists free family doctors. This is Ontario. Other provinces may or many not have their own system. Alberta has a more centralized site. Ontario has none.
   
-  The websites that do try to display this info usually have bad UI/UX. They also lack reviews for each doctor. My mom got a UTI turned serious kidney infection due to her family doctor dismissing her concern of frequent urination as just getting older.
+	The websites that do try to display this info usually have bad UI/UX. They also lack reviews for each doctor. My mom got a UTI turned serious kidney infection due to her family doctor dismissing her concern of frequent urination as just getting older.
 
-		1. Reddit posts of people complaining of waiting years to find one:
-		2. https://www.reddit.com/r/ontario/comments/o5vrrx/finding_a_family_doctor_shouldnt_be_this_hard/
-		3. https://www.reddit.com/r/ontario/comments/11sx2he/how_do_i_find_a_family_doctor/
-		4. https://www.reddit.com/r/askTO/comments/v4ltuh/family_doctors_accepting_new_patients_in_the/
-	2. Audience: Anyone looking for a family doctor.
-	3. MVP Solution:
-		1. Create an updated list of family doctors in Toronto as well as their gender. Do this by calling all clinics monthly, asking 2 questions:
-			1. Are any family doctors accepting patients?
-			2. If yes, number of male and female doctors accepting patients?
-		2. A website to show this data in a intuitive manner. Users just input their address and preferred doctor gender and it gives nearest available doctor. They can also see all available doctors in the map.
-	4. Nice to have:
-		1. Incorporate a way to see reviews for doctors, post reviews for doctors, zand recommend based on reviews
-2.  Website tech stack
+	Reddit posts of people complaining of waiting years to find one: 
+
+		- https://www.reddit.com/r/ontario/comments/o5vrrx/finding_a_family_doctor_shouldnt_be_this_hard/
+
+		- https://www.reddit.com/r/ontario/comments/11sx2he/how_do_i_find_a_family_doctor/
+
+		- https://www.reddit.com/r/askTO/comments/v4ltuh/family_doctors_accepting_new_patients_in_the/
+		
+	‘Sounding the alarm’: 1 in 4 Ontarians could be without family doctor by 2026, groups say: https://globalnews.ca/news/10257253/ontarians-family-doctors-2026/
+
+2. Audience: Anyone looking for a family doctor.
+
+3. MVP Solution:
+	1. Create an updated list of family doctors in Toronto as well as their gender. Do this by calling all clinics monthly, asking 2 questions:
+		1. Are any family doctors accepting patients?
+		2. If yes, number of male and female doctors accepting patients?
+	2. A website to show this data in a intuitive manner. Users just input their address and preferred doctor gender and it gives nearest available doctor. They can also see all available doctors in the map.
+
+4. Nice to have:
+	1. Incorporate a way to see reviews for doctors, post reviews for doctors, zand recommend based on reviews
+
+5.  Website tech stack
 	1. Frontend: React
 	2. Backend: Python flask server to expose endpoints for twilio to send data to.
 	3. Database: Supabase, easy to use serverless postgres.
-3. Other tech tools:
+
+6. Other tech tools:
 	1. Robot caller: flask server mentioned above + Twilio api to make calls
 	2. Speech to text: Twilio
 	5. Can run these python script(s) locally
 	6. Can store prerecorded voices in google drive and played for the script
 	7. Google maps api to get clinic info
-4. Project management + diagramming:
+	
+7. Project management + diagramming:
 	1. Trello for task management
 	2. Excalidraw to show conversation flow
 
@@ -43,7 +53,7 @@ How we make phone calls to those clinics:
 - twilio for making phone calls and also transcribing recepetion replies to speech
 - use basic if statements and regex to get through menu and conversate
 
-#Current ways to find a doctor:
+# Current ways to find a doctor:
 
 The College of Physicians and Surgeons of Ontario website has
 a directory of all licensed physicians in Ontario. For some reason this does not include information about physicians accepting new patients. Site: [](https://www.cpso.on.ca/)[https://www.cpso.on.ca/](https://www.cpso.on.ca/)
