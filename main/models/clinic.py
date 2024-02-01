@@ -1,0 +1,1 @@
+#After collecting the data, it will be verified & sanitized to then be encapsulated within a class and stored in the database.

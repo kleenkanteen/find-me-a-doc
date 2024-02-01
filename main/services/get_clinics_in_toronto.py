@@ -12,7 +12,7 @@ supabase: Client = create_client(url, key)
 # https://developers.google.com/maps/documentation/places/web-service/search-text
 API_KEY = os.environ.get("MAPS_KEY")
 fields = "name,types,formatted_phone_number"
-url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query=medical%20clinics%20in%20Toronto&key={API_KEY}"
+url = f"https://-/json?query=medical%20clinics%20in%20Toronto&key={API_KEY}"
 payload={}
 headers = {}
 response = requests.request("GET", url, headers=headers, data=payload)
@@ -44,7 +44,14 @@ while True:
 with open("clinics.json", "w") as outfile:
     for key, value in clinics.items():
             try:
-                data, count = supabase.table("clinics").insert({"name": key, "location": value["formatted_address"], "phone": value["formatted_phone_number"], "called": False, "rating": float(value["rating"])}).execute()
+                data, count = supabase.table("clinics").insert({
+                                                                "name": key,
+                                                                "location": value["formatted_address"],
+                                                                "phone": value["formatted_phone_number"],
+                                                                "called": False,
+                                                                "rating": float(value["rating"])
+                }).execute()
+                
             except Exception as e:
                 print("Failed to insert into supabase", e)
     # Write the contents of the dictionary as a JSON string to the file

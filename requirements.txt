@@ -1,6 +1,6 @@
 supabase
-dotenv
 flask
 pyngrok
 flask
 twilio
+python-dotenv
