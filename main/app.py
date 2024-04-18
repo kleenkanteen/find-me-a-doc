@@ -3,9 +3,12 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
+port = os.environ.get("PORT")
 
 if __name__ == "__main__":
-  app.run()
+  app.run(
+    port=port
+  )
 
 print("port ran")
   

@@ -4,17 +4,13 @@ from twilio.twiml.voice_response import VoiceResponse, Gather
 import time, re, os
 from dotenv import load_dotenv
 
-import main.services.active_call_methods as call
+import main.services.active_call_methods as call_methods
 import main.config.active_call_values as call_values
 
 load_dotenv()
 public_url = os.environ.get("NGROK_URL")
 
 api = Blueprint("api", __name__, url_prefix="/")
-
-# @api.get("/test")
-# def test():
-#    return os.environ.get("NGROK_URL")
 
 @api.route("/detect_nav_menu", methods=['GET', 'POST'])
 def handleRecordingOriginal():
@@ -25,7 +21,7 @@ def handleRecordingOriginal():
     if call_values.isHuman:
       #Human Detected
       print("human detected")
-      return call.play_intro_message()
+      return call_methods.play_intro_message()
     else:
       # Robot Detected
       print("robot detected")
@@ -36,7 +32,7 @@ def handle_intro_response():
   print("HANDLE INTRO RESPONSE FORM: ", request.form);
   full_response = request.form.get('SpeechResult', '').lower()
   if 'no' in full_response:
-    return call.outro_message()
+    return call_methods.outro_message()
   elif 'yes' in full_response:
     response = VoiceResponse()
     gather = Gather(
@@ -51,7 +47,7 @@ def handle_intro_response():
     return str(response)
   else:
      message = "I'm sorry, I didn't get that. Could you say that again? Please reply with a yes or no"
-     return call.handle_unrecognizable_speech_response("/handle_intro_response", message)
+     return call_methods.handle_unrecognizable_speech_response("/handle_intro_response", message)
 
 
 @api.route("/handle_number_male_doctors_response", methods=['GET', 'POST'])
@@ -64,7 +60,6 @@ def handle_number_male_doctors_response():
   )
 
   full_response = request.form.get('SpeechResult', '').lower()
-
   
   response = VoiceResponse()
 
@@ -85,12 +80,11 @@ def handle_number_male_doctors_response():
          call_values.num_male_docs = number_dict[full_response]
       except KeyError:
         message = "I'm sorry, I didn't get that. Could you say that again? If there are more than 10 available male doctors say many"
-        return call.handle_unrecognizable_speech_response("/handle_number_male_doctors_response", message)
+        return call_methods.handle_unrecognizable_speech_response("/handle_number_male_doctors_response", message)
   
   gather.say(f"I see. And how many are female? Please answer with just a number")
   response.append(gather)
   return str(response)
-  
 
 @api.route("/handle_number_female_doctors_response", methods=['GET', 'POST'])
 def handle_number_female_doctors_response():
@@ -112,9 +106,9 @@ def handle_number_female_doctors_response():
 
       except KeyError:
           message = "I'm sorry, I didn't get that. Could you say that again? If there are more than 10 available female doctors say many"
-          return call.handle_unrecognizable_speech_response("/handle_number_female_doctors_response", message)
+          return call_methods.handle_unrecognizable_speech_response("/handle_number_female_doctors_response", message)
 
-  return call.on_call_success()
+  return call_methods.on_call_success()
   
 @api.route("/handle_robot", methods=['GET', 'POST'])
 def handle_robot():
@@ -133,7 +127,7 @@ def handleRecording():
 
     text = request.form.get('UnstableSpeechResult', '').lower()
     print(text)
-    call.processResponse()
+    call_methods.processResponse()
     print("isHuman", call_values.isHuman)
     return "", 200
 

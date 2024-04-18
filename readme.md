@@ -110,3 +110,23 @@ get_clinics_in_toronto.py - The script that uses the google maps api to get all 
 3. Run `pip install -r requirements.txt` to install all dependencies
 4. Run `flask server.py`. You can use vscode code runner extension or type `python "flask server.py"` to start the flask server.
 5. Run `caller.py`. Hear the magic happen. Talk a bit.
+
+# Folder structure
+```
+.
+├── LICENSE
+├── clinics.json
+├── main
+│   ├── __init__.py
+│   ├── app.py				//Contains core server logic & initialization
+│   ├── app_setup.py	//Manages server configuration
+│   ├── config 			  //Configuration classes and values used during calls
+│   ├── controller	  //REST API controllers	
+│   ├── models				//Entity classes and schemas
+│   └── services			//Business logic layer & business-related active-call functions 
+├── readme.md
+├── requirements.txt
+└── resources
+    ├── custom_audios	//Custom audios 
+    └── dev_guides		//Resources for developers
+```
