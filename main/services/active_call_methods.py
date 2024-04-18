@@ -29,7 +29,7 @@ def play_intro_message():
 
 def outro_message():
   response = VoiceResponse()
-  response.say(f"I see, thank you for your time. Goodbye.")
+  response.say(f"Thank you for your time. Feel free to explore our mission at find me a doc dot c a. Goodbye!")
   return str(response)
 
 def handle_unrecognizable_speech_response(destination_path: str, message: str):
@@ -81,4 +81,6 @@ def check_elapsed_time():
 def on_call_success():
    import main.config.active_call_values as call_values
    print(f"CALL WAS A SUCCESS, male docs: {call_values.num_male_docs}, female docs: {call_values.num_female_docs}")
+   gather = Gather()
+   gather.say("That is all, thank you for your time. Feel free to explore our mission at find me a doc dot c a. Goodbye!")
    return outro_message()

@@ -42,11 +42,11 @@ def handle_intro_response():
                 # below is realtime transcription after every word said
                 partial_result_callback=f'{public_url}/detect_nav_menu_realtime_transcription',
                 timeout=call_values.timeout)
-    gather.say(f"I see. How many of these available doctors are male? Please answer with just a number")
+    gather.say(f"I see. How many of the available doctors are male? Please reply with just a number")
     response.append(gather)
     return str(response)
   else:
-     message = "I'm sorry, I didn't get that. Could you say that again? Please reply with a yes or no"
+     message = "I'm sorry, I didn't get that. Could you please reply yes or no?"
      return call_methods.handle_unrecognizable_speech_response("/handle_intro_response", message)
 
 
@@ -82,7 +82,7 @@ def handle_number_male_doctors_response():
         message = "I'm sorry, I didn't get that. Could you say that again? If there are more than 10 available male doctors say many"
         return call_methods.handle_unrecognizable_speech_response("/handle_number_male_doctors_response", message)
   
-  gather.say(f"I see. And how many are female? Please answer with just a number")
+  gather.say(f"And how many are female? Please answer with just a number")
   response.append(gather)
   return str(response)
 
