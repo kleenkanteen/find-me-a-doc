@@ -1,10 +1,9 @@
 from twilio.rest import Client
-from twilio.twiml.voice_response import Gather, VoiceResponse, Play, Redirect
+from twilio.twiml.voice_response import Gather, VoiceResponse
 import os
-import requests
-from dotenv import load_dotenv
+from dotenv import load_dotenv;
 
-load_dotenv()
+load_dotenv(override=True)
 TWILIO_ACCOUNT_SID: str = os.environ.get("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
 TWILIO_NUMBER = os.environ.get("TWILIO_NUMBER")

@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
 port = os.environ.get("PORT")
 ngrok_auth_token: str = os.environ.get("NGROK_AUTH_TOKEN")
 

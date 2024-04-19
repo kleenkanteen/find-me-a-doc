@@ -1,5 +1,5 @@
 
-from twilio.twiml.voice_response import VoiceResponse, Gather
+from twilio.twiml.voice_response import VoiceResponse
 import time
 
 response = VoiceResponse()
