@@ -17,7 +17,7 @@ public_url = ngrok.connect(port).public_url
 os.environ["NGROK_URL"] = public_url
 print(f"ngrok link: {public_url}")
 
-from main.controller.api import api
-app.register_blueprint(api)
+from main.controller.call_flow_handler import call_flow_manager
+app.register_blueprint(call_flow_manager)
 
 

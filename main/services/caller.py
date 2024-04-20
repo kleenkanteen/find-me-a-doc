@@ -1,6 +1,6 @@
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
-import os
+import os, json
 from dotenv import load_dotenv;
 
 load_dotenv(override=True)
@@ -18,13 +18,13 @@ gather = Gather(
                 # below is transcription after every person stops talking for at least 5 seconds
                 # action=f'{ngrok_url}/test',
                 # below is realtime transcription after every word said
-                partial_result_callback=f'{ngrok_url}/detect_nav_menu_realtime_transcription',
+                partial_result_callback=f'{ngrok_url}/call/detect_nav_menu_realtime_transcription',
                 timeout=10
               )
 # we can play audio files if we upload them to the twilio console and pass the url of the file
 # gather.append(Play('https://handler.twilio.com/twiml/EHfbb431b89ccc9f7c0bb61cedc51208c8'))
 response.append(gather)
-response.redirect(f"{ngrok_url}/detect_nav_menu")
+response.redirect(f"{ngrok_url}/call/detect_nav_menu")
 # response = requests.get(f'{ngrok_url}/nav_menu_result')
 # data = response.json()
 

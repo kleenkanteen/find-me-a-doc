@@ -15,7 +15,7 @@ def play_intro_message():
   gather = Gather(
                 input='speech',
                 # below is transcription after every person stops talking for at least 5 seconds
-                action=f'{public_url}/handle_intro_response',
+                action=f'{public_url}/call/handle_intro_response',
                 # below is realtime transcription after every word said
                 timeout=3)
   gather.say("Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Please reply with yes or no.")
