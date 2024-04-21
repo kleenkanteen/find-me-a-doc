@@ -100,6 +100,29 @@ https://app.eraser.io/workspace/1yvzNivbO1RsB2ufyMGl
 
 The [https://github.com/kleenkanteen/find-me-a-doc/blob/logger-implementation/system_design.md](System Design Doc) is found in the root folder as `system_design.dm`.
 
+## Logger
+
+Right now our logger works very simply: 
+- If a log is of level `debug` or above, it will print the file where it's called, line number and function name.
+  
+import it into a file like this:
+```python
+from main.util.logger import logger
+```
+1. INFORMATIONAL logs: ```print()``` for informational logs
+2. DEBUG logs: ```logger.debug("foo")```
+3. WARNING logs: ```logger.warning("foo")```
+4. ERROR logs: ```logger.error("foo")```
+5. CRITICAL logs: ```logger.critical("foo")```
+
+### Ideal logger: 
+Ideally, after all calls are made this logger should create a document with detailed information about each call such as: 
+1. Was it a success or a failure?
+2. Time duration
+3. Chronological responses from the user
+4. How many times a a response was unrecognized
+5. If failed call, when did it fail? Did the user hang up? Was an error presented?
+
 ## Relevant Files
 
 main/services/caller.py - This initiates the call to the clinic using twilio api
