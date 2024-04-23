@@ -1,4 +1,4 @@
-from .util import get_filename, get_linenumber, get_function_name
+from .source_context import get_filename, get_linenumber, get_function_name
 
 Color = {
 
