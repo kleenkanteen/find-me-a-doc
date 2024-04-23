@@ -1,9 +1,9 @@
 from main.app_setup import app
-from main.call_all_clinics import call_all_clinics
+from main.services.calls.call_all_clinics import call_all_clinics
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(override=True)
 port = os.environ.get("PORT")
 
 if __name__ == "__main__":

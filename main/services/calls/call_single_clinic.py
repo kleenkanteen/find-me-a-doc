@@ -1,7 +1,8 @@
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
-import os, json
+import os
 from dotenv import load_dotenv;
+from main.util.logger import logger
 
 load_dotenv()
 TWILIO_ACCOUNT_SID: str = os.environ.get("TWILIO_ACCOUNT_SID")
@@ -12,8 +13,16 @@ ngrok_url = os.environ.get("NGROK_URL")
 
 def make_call(phone_number: str, clinic_id: int):
 
-  client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+  #For development purposes only, check if phone number == personal number from env file
 
+  print("received phone number: ", phone_number)
+  print("received clinic id: ", clinic_id)
+
+  if(phone_number != PERSONAL_NUMBER):
+    logger.critical("PERSONAL_NUMBER does not equal given phone_number from args")
+    raise ValueError("PERSONAL_NUMBER does not equal given phone_number from args")
+
+  client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
   response = VoiceResponse()
   print("NGROK URL: ", ngrok_url)
@@ -24,7 +33,6 @@ def make_call(phone_number: str, clinic_id: int):
   response.redirect(f"{ngrok_url}/call/detect_nav_menu/{clinic_id}")
 
   call = client.calls.create(
-    # sabihs number, change to raghavs number if using raghavs twilio account
     to=f"+1{PERSONAL_NUMBER}",
     from_=f"+{TWILIO_NUMBER}",
     timeout=30,

@@ -3,7 +3,7 @@ from pyngrok import ngrok
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 port = os.environ.get("PORT")
 ngrok_auth_token: str = os.environ.get("NGROK_AUTH_TOKEN")

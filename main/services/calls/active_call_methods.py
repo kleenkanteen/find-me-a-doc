@@ -7,7 +7,7 @@ from main.config.active_call_values import timeout
 
 import main.config.active_call_values as call_values
 
-load_dotenv()
+load_dotenv(override=True)
 
 public_url = os.environ.get("NGROK_URL")
 
