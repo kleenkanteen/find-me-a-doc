@@ -2,22 +2,24 @@ import re, os, time
 from twilio.twiml.voice_response import VoiceResponse, Gather
 from dotenv import load_dotenv
 from main.util.logger import logger
+from main.services.db.database_manager import update_db_on_successful_call, update_db_on_failed_call
+from main.config.active_call_values import timeout
 
 import main.config.active_call_values as call_values
 
-load_dotenv()
+load_dotenv(override=True)
 
 public_url = os.environ.get("NGROK_URL")
 
-def play_intro_message():
+def play_intro_message(client_id: int):
   response = VoiceResponse()
   print("Intro Message")
   gather = Gather(
                 input='speech',
                 # below is transcription after every person stops talking for at least 5 seconds
-                action=f'{public_url}/call/handle_intro_response',
+                action=f'{public_url}/call/handle_intro_response/{client_id}',
                 # below is realtime transcription after every word said
-                timeout=3)
+                timeout=timeout)
   gather.say("Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Please reply with yes or no.")
   response.append(gather)
   return str(response)
@@ -34,7 +36,7 @@ def handle_unrecognizable_speech_response(destination_path: str, message: str):
   gather = Gather(
      input='speech',
      action=f'{public_url}/{destination_path}',
-     timeout=5
+     timeout=timeout
   )
 
   gather.say(message)
@@ -72,9 +74,24 @@ def check_elapsed_time():
           print("break detected in speech, processing")
           processResponse()
 
-def on_call_success():
+def handle_successful_call(clinic_id):
    import main.config.active_call_values as call_values
+
+   available_female_docs = call_values.num_female_docs
+   available_male_docs = call_values.num_male_docs
+
    logger.debug(f"call was a success, male docs: {call_values.num_male_docs}, female docs: {call_values.num_female_docs}")
-   gather = Gather()
-   gather.say("That is all, thank you for your time. Feel free to explore our mission at: find me a doc dot c a. Goodbye!")
+
+   response = update_db_on_successful_call(clinic_id, available_male_docs, available_female_docs)
+
+   logger.debug(f"Response: {response}")
+
+   print(f"FINAL CLINIC ID: {clinic_id}")
+
    return outro_message()
+
+def handle_failed_call(clinic_id: int):
+
+  response = update_db_on_failed_call(clinic_id)
+
+  logger.debug(f"Response: {response}")

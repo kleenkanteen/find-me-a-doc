@@ -90,7 +90,17 @@ Ontario System. Unattached patients can call or go online to [ontario.ca/health
 
 Run the first 4 blocks of code under this block, in order. The first block installs flask, then ngrok for python, then twilio. The 4th block creates a flask server and exposes it to the internet through ngrok. This has endpoints called by twilio after a person finishes saying their answer for a question. Twilio sends the transcribed speech of theirs to our flask endpoint so we can read it.
 
-# Call flow diagram:
+# Diagrams
+
+## Call diagram:
+
+<div>
+<img src="https://i.ibb.co/pnVBgGS/call.png"/>
+</div>
+Call script (in progress):
+1. Introduction: "Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Please reply with yes or no."
+
+## Server data flow diagram:
 
 https://app.eraser.io/workspace/1yvzNivbO1RsB2ufyMGl
 
@@ -98,30 +108,7 @@ https://app.eraser.io/workspace/1yvzNivbO1RsB2ufyMGl
 
 ## System Design
 
-The [https://github.com/kleenkanteen/find-me-a-doc/blob/logger-implementation/system_design.md](System Design Doc) is found in the root folder as `system_design.dm`.
-
-## Logger
-
-Right now our logger works very simply: 
-- If a log is of level `debug` or above, it will print the file where it's called, line number and function name.
-  
-import it into a file like this:
-```python
-from main.util.logger import logger
-```
-1. INFORMATIONAL logs: ```print()``` for informational logs
-2. DEBUG logs: ```logger.debug("foo")```
-3. WARNING logs: ```logger.warning("foo")```
-4. ERROR logs: ```logger.error("foo")```
-5. CRITICAL logs: ```logger.critical("foo")```
-
-### Ideal logger: 
-Ideally, after all calls are made this logger should create a document with detailed information about each call such as: 
-1. Was it a success or a failure?
-2. Time duration
-3. Chronological responses from the user
-4. How many times a a response was unrecognized
-5. If failed call, when did it fail? Did the user hang up? Was an error presented?
+The system design doc is found in the root folder as 'system_design.dm'.
 
 ## Relevant Files
 

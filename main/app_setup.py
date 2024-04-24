@@ -3,7 +3,7 @@ from pyngrok import ngrok
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 port = os.environ.get("PORT")
 ngrok_auth_token: str = os.environ.get("NGROK_AUTH_TOKEN")
@@ -18,6 +18,8 @@ os.environ["NGROK_URL"] = public_url
 print(f"ngrok link: {public_url}")
 
 from main.controller.call_flow_manager import call_flow_manager
+
 app.register_blueprint(call_flow_manager)
+
 
 

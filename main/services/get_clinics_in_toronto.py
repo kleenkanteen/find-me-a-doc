@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 # This script gets the details of all the medical clinics in Toronto using Google Maps API and stores it in supabase.
 
-load_dotenv()
+load_dotenv(override=True)
 url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
