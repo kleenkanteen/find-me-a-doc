@@ -41,4 +41,3 @@ def make_call(phone_number: str, clinic_id: int):
 
   print(f"call went through, call sid: {call.sid}")
 
-

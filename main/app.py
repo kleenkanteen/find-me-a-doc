@@ -14,11 +14,3 @@ if __name__ == "__main__":
 call_all_clinics()
 
 print("CALLED ALL CLINICS DONE")
-
-
-
-
-
-
-  
-
