@@ -19,5 +19,5 @@ def call_all_clinics():
   for clinic in clinics:
     if(clinic['id'] == MOCK_CLINIC_ID):
       make_call(clinic['phone_number'], clinic['id'])
-    else:
-      logger.critical("Your MOCK CLINIC ID is not valid")
+    elif(clinic['id'] == clinics[-1]['id']):
+      logger.critical(f"Your MOCK CLINIC ID is not valid. current clinic Id: {clinic['id']}. Yours: {MOCK_CLINIC_ID}")
