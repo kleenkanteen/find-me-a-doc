@@ -13,7 +13,6 @@ public_url = os.environ.get("NGROK_URL")
 @call_flow_manager.route("/detect_nav_menu/<int:clinic_id>", methods=['GET', 'POST'])
 def handleRecordingOriginal(clinic_id: int):
     
-
     call_values.listening = False
     print("detectNavMenu")
     full_response = request.form.get('SpeechResult', '').lower()
