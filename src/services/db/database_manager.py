@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from supabase import create_client, Client
-from main.util.date import current_time
+from util.date import current_time
 import os
 
 load_dotenv(override=True)

@@ -2,7 +2,7 @@ from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
 import os
 from dotenv import load_dotenv;
-from main.util.logger import logger
+from util.logger import logger
 
 load_dotenv()
 TWILIO_ACCOUNT_SID: str = os.environ.get("TWILIO_ACCOUNT_SID")

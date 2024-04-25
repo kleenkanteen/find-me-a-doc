@@ -1,8 +1,8 @@
-from main.services.calls.call_single_clinic import make_call
-from main.services.db.database_manager import update_call_final_status
+from services.calls.call_single_clinic import make_call
+from services.db.database_manager import update_call_final_status
 from dotenv import load_dotenv
 from twilio.rest import Client
-from main.util.logger import logger
+from util.logger import logger
 from simple_term_menu import TerminalMenu
 import os, threading, time, queue, sys
 
@@ -38,16 +38,16 @@ def call_all_clinics():
   #    otherwise, the code will not run.
 
   clinics = [{
-      "id": XX,
-      "phone_number": "(XXX) XXX-XXXX"
+      "id": 54,
+      "phone_number": "(314) 940-2059"
   },
   {
-      "id": XX,
-      "phone_number": "(XXX) XXX-XXXX"
+      "id": 55,
+      "phone_number": "(314) 940-2059"
   },
   {
-      "id": XX,
-      "phone_number": "(XXX) XXX-XXXX"
+      "id": 56,
+      "phone_number": "(314) 940-2059"
   }]
 
   for clinic in clinics:

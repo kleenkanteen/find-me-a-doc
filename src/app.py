@@ -1,7 +1,7 @@
-from main.app_setup import app
-from main.services.calls.call_all_clinics import call_all_clinics
+from app_setup import app
+from services.calls.call_all_clinics import call_all_clinics
 from dotenv import load_dotenv
-from main.util.logger import logger
+from util.logger import logger
 import os, threading, sys, traceback, signal, time, multiprocessing
 from flask import request
 
