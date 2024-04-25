@@ -10,6 +10,10 @@ call_flow_manager = Blueprint("call_flow_manager", __name__, url_prefix="/call")
 
 public_url = os.environ.get("NGROK_URL")
 
+@call_flow_manager.get("/test")
+def test():
+   return {"server_status": "running"}
+
 @call_flow_manager.route("/detect_nav_menu/<int:clinic_id>", methods=['GET', 'POST'])
 def handleRecordingOriginal(clinic_id: int):
     

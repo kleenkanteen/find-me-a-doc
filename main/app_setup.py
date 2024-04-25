@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from pyngrok import ngrok
 import os
 from dotenv import load_dotenv
@@ -20,6 +20,5 @@ print(f"ngrok link: {public_url}")
 from main.controller.call_flow_manager import call_flow_manager
 
 app.register_blueprint(call_flow_manager)
-
 
 

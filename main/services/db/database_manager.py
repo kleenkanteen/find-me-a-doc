@@ -26,6 +26,15 @@ def update_db_on_successful_call(clinic_id: int, available_male_docs: int, avail
   
   return data
 
+def update_call_final_status(clinic_id: int, call_status: str):
+
+  is_call_status_true = (call_status == "completed")
+
+  data, count = supabase.table('clinics').update({'last_call_success': is_call_status_true }).eq("id", clinic_id).execute()
+
+  return data
+
+
 
 
 

@@ -15,8 +15,7 @@ def make_call(phone_number: str, clinic_id: int):
 
   #For development purposes only, check if phone number == personal number from env file
 
-  print("received phone number: ", phone_number)
-  print("received clinic id: ", clinic_id)
+  logger.debug(f"received phone number: {phone_number} \n received clinic id: {clinic_id}")
 
   if(phone_number != PERSONAL_NUMBER):
     logger.critical("PERSONAL_NUMBER does not equal given phone_number from args")
@@ -39,5 +38,5 @@ def make_call(phone_number: str, clinic_id: int):
     twiml=str(response)
   )
 
-  print(f"call went through, call sid: {call.sid}")
+  return call.sid
 
