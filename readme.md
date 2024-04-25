@@ -129,8 +129,7 @@ main/services/get_clinics_in_toronto.py - The script that uses the google maps a
 1. Run `python3 -m venv venv` to create a virtual environment
 2. Run `source venv/bin/activate` to activate the virtual environment or if on windows, run `venv\Scripts\activate.bat`
 3. Run `pip install -r requirements.txt` to install all dependencies
-4. Run `main/app.py`. You can use vscode code runner extension or type `python "main/app.py"` to start the flask server.
-5. Run `main/services/caller.py`. Hear the magic happen. Talk a bit.
+4. Run `python3 src/app.py` to start the Flask server and trigger the calls
 
 # Folder structure
 
