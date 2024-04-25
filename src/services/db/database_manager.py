@@ -9,9 +9,9 @@ supabase_db_key: str = os.environ.get("SUPABASE_KEY")
 
 supabase: Client = create_client(supabase_db_url, supabase_db_key)
 
-def get_clinics_ids_and_phone_numbers():
+def get_clinics_info():
 
-  data, count = supabase.table('clinics').select('id, phone_number').execute()
+  data, count = supabase.table('clinics').select('id, phone_number, last_call_date, last_call_success').execute()
   return data
 
 #If call fails, only update last_call_date to (current date) and last_call_success to (false)

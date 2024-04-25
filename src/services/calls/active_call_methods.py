@@ -84,9 +84,7 @@ def handle_successful_call(clinic_id):
 
    response = update_db_on_successful_call(clinic_id, available_male_docs, available_female_docs)
 
-   logger.debug(f"Response: {response}")
-
-   print(f"FINAL CLINIC ID: {clinic_id}")
+   logger.debug(f"new clinic data in db: {response}")
 
    return outro_message()
 

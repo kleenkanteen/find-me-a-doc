@@ -157,7 +157,9 @@ main/services/get_clinics_in_toronto.py - The script that uses the google maps a
 1. Run `python3 -m venv venv` to create a virtual environment
 2. Run `source venv/bin/activate` to activate the virtual environment or if on windows, run `venv\Scripts\activate.bat`
 3. Run `pip install -r requirements.txt` to install all dependencies
-4. Run `python3 src/app.py` to start the Flask server and trigger the calls
+4. Go to `src/services/calls/call_all_clinics.py` and uncomment commented-out comments accordingly (read the instructions there)
+5. Go to `src/services/calls/call_single_clinic.py` and uncomment commented-out comments accordingly (read the instructions there)
+6. Run `python3 src/app.py` to start the Flask server and trigger the calls
 
 # Folder structure
 
@@ -165,15 +167,17 @@ main/services/get_clinics_in_toronto.py - The script that uses the google maps a
 .
 ├── LICENSE
 ├── clinics.json
-├── main
+├── src
 │   ├── __init__.py
 │   ├── app.py				//Contains core server logic & initialization
-│   ├── app_setup.py	//Manages server configuration
-│   ├── config 			  //Configuration classes and values used during calls
-│   ├── controller	  //REST API controllers
+│   ├── app_setup.py	    //Manages server configuration
+│   ├── config 			    //Configuration classes and values used during calls
+│   ├── controller	        //REST API controllers
 │   ├── models				//Entity classes and schemas
+│   ├── util				//Utility and helper functions
 │   └── services			//Business logic layer & business-related active-call functions
 ├── readme.md
+├── system_design.md    //System design doc for both backend and frontend
 ├── requirements.txt
 └── resources
     ├── custom_audios	//Custom audios
