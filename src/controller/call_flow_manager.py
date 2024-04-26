@@ -2,9 +2,9 @@ from flask import request, Blueprint
 from twilio.twiml.voice_response import VoiceResponse, Gather, Parameter
 import time, os
 from dotenv import load_dotenv
-from main.util.logger import logger
-import main.services.calls.active_call_methods as call_methods
-import main.config.active_call_values as call_values
+from util.logger import logger
+import services.calls.active_call_methods as call_methods
+import config.active_call_values as call_values
 
 call_flow_manager = Blueprint("call_flow_manager", __name__, url_prefix="/call")
 

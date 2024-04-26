@@ -110,6 +110,34 @@ https://app.eraser.io/workspace/1yvzNivbO1RsB2ufyMGl
 
 The system design doc is found in the root folder as 'system_design.dm'.
 
+## Logger
+
+Right now our logger works very simply:
+
+- If a log is of level `debug` or above, it will print the file where it's called, line number and function name.
+
+import it into a file like this:
+
+```python
+from main.util.logger import logger
+```
+
+1. INFORMATIONAL logs: `print()` for informational logs
+2. DEBUG logs: `logger.debug("foo")`
+3. WARNING logs: `logger.warning("foo")`
+4. ERROR logs: `logger.error("foo")`
+5. CRITICAL logs: `logger.critical("foo")`
+
+### Ideal logger:
+
+Ideally, after all calls are made this logger should create a document with detailed information about each call such as:
+
+1. Was it a success or a failure?
+2. Time duration
+3. Chronological responses from the user
+4. How many times a a response was unrecognized
+5. If failed call, when did it fail? Did the user hang up? Was an error presented?
+
 ## Relevant Files
 
 main/services/caller.py - This initiates the call to the clinic using twilio api
@@ -129,8 +157,9 @@ main/services/get_clinics_in_toronto.py - The script that uses the google maps a
 1. Run `python3 -m venv venv` to create a virtual environment
 2. Run `source venv/bin/activate` to activate the virtual environment or if on windows, run `venv\Scripts\activate.bat`
 3. Run `pip install -r requirements.txt` to install all dependencies
-4. Run `main/app.py`. You can use vscode code runner extension or type `python "main/app.py"` to start the flask server.
-5. Run `main/services/caller.py`. Hear the magic happen. Talk a bit.
+4. Go to `src/services/calls/call_all_clinics.py` and uncomment commented-out comments accordingly (read the instructions there)
+5. Go to `src/services/calls/call_single_clinic.py` and uncomment commented-out comments accordingly (read the instructions there)
+6. Run `python3 src/app.py` to start the Flask server and trigger the calls
 
 # Folder structure
 
@@ -138,15 +167,17 @@ main/services/get_clinics_in_toronto.py - The script that uses the google maps a
 .
 ├── LICENSE
 ├── clinics.json
-├── main
+├── src
 │   ├── __init__.py
 │   ├── app.py				//Contains core server logic & initialization
-│   ├── app_setup.py	//Manages server configuration
-│   ├── config 			  //Configuration classes and values used during calls
-│   ├── controller	  //REST API controllers
+│   ├── app_setup.py	    //Manages server configuration
+│   ├── config 			    //Configuration classes and values used during calls
+│   ├── controller	        //REST API controllers
 │   ├── models				//Entity classes and schemas
+│   ├── util				//Utility and helper functions
 │   └── services			//Business logic layer & business-related active-call functions
 ├── readme.md
+├── system_design.md    //System design doc for both backend and frontend
 ├── requirements.txt
 └── resources
     ├── custom_audios	//Custom audios

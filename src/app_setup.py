@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from pyngrok import ngrok
 import os
 from dotenv import load_dotenv
@@ -17,7 +17,7 @@ public_url = ngrok.connect(port).public_url
 os.environ["NGROK_URL"] = public_url
 print(f"ngrok link: {public_url}")
 
-from main.controller.call_flow_manager import call_flow_manager
+from controller.call_flow_manager import call_flow_manager
 
 app.register_blueprint(call_flow_manager)
 
