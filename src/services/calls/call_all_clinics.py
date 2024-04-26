@@ -39,29 +39,29 @@ def check_call_status(queue, call_sid):
 
 def call_all_clinics():
 
-    # for PRODUCTION: uncomment next two lines of code down below
-    #   data = get_clinics_info()
-    #   raw_clinics = data[1]
-    #   due_clinics = filter(is_due_for_call, raw_clinics)
+    mode:str = os.environ.get("MODE")
 
-    # for TESTING:
-    # 1. Uncomment clinics array of dicts down below
-    # 2. Replace the Xs for real ids and phone number in your database.
-    #    Ids MUST belong to the same instance of your phone number in the db
-    #    otherwise, the code will not run.
+    if(mode == "PROD"):
+      data = get_clinics_info()
+      raw_clinics = data[1]
+      due_clinics = filter(is_due_for_call, raw_clinics)
 
-    #   due_clinics = [{
-    #       "id": "XX",
-    #       "phone_number": "(XXX) XXX-XXXX"
-    #   },
-    #   {
-    #       "id": "XX",
-    #       "phone_number": "(XXX) XXX-XXXX"
-    #   },
-    #   {
-    #       "id": "XX",
-    #       "phone_number": "(XXX) XXX-XXXX"
-    #   }
+    #   Substitute Xs for mock ids and phone numbers.
+    #   If Id doesn't belong to your twilio-registered phone number (or vice versa), 
+    #   calls won't be processed
+    if(mode == "DEV"):
+      due_clinics = [{
+          "id": "XX",
+          "phone_number": "(XXX) XXX-XXXX"
+      },
+      {
+          "id": "XX",
+          "phone_number": "(XXX) XXX-XXXX"
+      },
+      {
+          "id": "XX",
+          "phone_number": "(XXX) XXX-XXXX"
+      }]
 
     for clinic in due_clinics:
 
@@ -81,7 +81,7 @@ def call_all_clinics():
 
         update_call_final_status(clinic["id"], call_status)
 
-        if clinic["id"] == clinics[-1]["id"]:
+        if clinic["id"] == due_clinics[-1]["id"]:
             logger.debug("Round of calls done")
             exit()
 
