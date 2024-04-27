@@ -1,0 +1,347 @@
+2024-04-27 17:33:24,156 
+INFO 
+DEBUG: received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:33:24,157 
+INFO 
+DEBUG: Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:33:24,572 
+INFO 
+DEBUG: Call started...sid: CA1ae7bbebe569ce090dc72780898308ec 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:34:48,255 
+INFO 
+DEBUG: female doctors: 4 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\controller\call_flow_manager.py", line 91, in handle_number_female_doctors_response
+
+2024-04-27 17:34:56,215 
+INFO 
+DEBUG: final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:34:56,483 
+INFO 
+DEBUG: Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 17:38:13,007 
+INFO 
+DEBUG: received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:38:13,008 
+INFO 
+DEBUG: Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:38:13,446 
+INFO 
+DEBUG: Call started...sid: CAf8c6201f35ebe78048a7491432096c5e 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:38:39,015 
+INFO 
+DEBUG: final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:38:39,329 
+INFO 
+DEBUG: Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 17:38:51,077 
+INFO 
+DEBUG: received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:38:51,079 
+INFO 
+DEBUG: Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:38:51,455 
+INFO 
+DEBUG: Call started...sid: CA1993cfa89b20fd74aa4c1780db9bd178 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:39:17,046 
+INFO 
+DEBUG: final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:39:18,176 
+INFO 
+DEBUG: Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 17:41:02,226 
+INFO 
+DEBUG: received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:41:02,228 
+INFO 
+DEBUG: Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:41:02,737 
+INFO 
+DEBUG: Call started...sid: CAf52e9c6cb5b3b64395b34d2b27eed09d 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:41:28,311 
+INFO 
+DEBUG: final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:41:28,672 
+INFO 
+DEBUG: Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 17:42:16,094 
+INFO 
+DEBUG: received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:42:16,096 
+INFO 
+DEBUG: Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:42:16,515 
+INFO 
+DEBUG: Call started...sid: CA965cac3f313695b87fd8e0c1fd8e1e69 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:43:27,927 
+INFO 
+DEBUG: final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:43:28,228 
+INFO 
+DEBUG: Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 17:44:39,732 
+INFO 
+DEBUG: received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:44:39,733 
+INFO 
+DEBUG: Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:44:40,129 
+INFO 
+DEBUG: Call started...sid: CA4416c99bdcb128751d467be20efb7f41 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:46:05,648 
+INFO 
+DEBUG: female doctors: 7 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\controller\call_flow_manager.py", line 91, in handle_number_female_doctors_response
+
+2024-04-27 17:46:05,665 
+INFO 
+DEBUG: call was a success, male docs: 5, female docs: 7 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\active_call_methods.py", line 83, in handle_successful_call
+
+2024-04-27 17:46:06,000 
+INFO 
+DEBUG: new clinic data in db: ('data', []) 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\active_call_methods.py", line 87, in handle_successful_call
+
+2024-04-27 17:46:16,897 
+INFO 
+DEBUG: final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:46:17,045 
+INFO 
+DEBUG: Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 17:48:33,883 
+INFO 
+received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:48:33,884 
+INFO 
+Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:48:34,336 
+INFO 
+Call started...sid: CAc5d631e74c893f08474ab849dd4b99c9 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:49:20,708 
+INFO 
+Unrecognizable speech at intro response 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\controller\call_flow_manager.py", line 49, in handle_intro_response
+
+2024-04-27 17:49:20,725 
+INFO 
+response not understood 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\active_call_methods.py", line 34, in handle_unrecognizable_speech_response
+
+2024-04-27 17:49:35,478 
+INFO 
+final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:49:35,925 
+INFO 
+Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 17:50:48,130 
+INFO 
+received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:50:48,131 
+INFO 
+Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:50:48,606 
+INFO 
+Call started...sid: CA7b15e0fbd27fdb574cc00577c5d76b85 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:51:39,787 
+INFO 
+final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:51:40,138 
+INFO 
+Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 17:53:05,219 
+INFO 
+received phone number: 2894007562 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 17:53:05,220 
+INFO 
+Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 17:53:05,626 
+INFO 
+Call started...sid: CA805310e6376c3213f0f749defae62e45 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 17:54:39,696 
+INFO 
+response not understood 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\active_call_methods.py", line 34, in handle_unrecognizable_speech_response
+
+2024-04-27 17:54:57,742 
+INFO 
+final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 17:54:58,049 
+INFO 
+Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+
+2024-04-27 18:00:11,233 
+INFO 
+received phone number: +12894007567 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 18:00:11,233 
+INFO 
+Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 18:00:11,704 
+INFO 
+Call started...sid: CA8a16e3df5dd0514574dfed009d931a63 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 18:01:11,752 
+INFO 
+received phone number: +12894007567 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 18:01:11,753 
+INFO 
+Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 18:02:17,239 
+INFO 
+received phone number: 2894007567 
+ received clinic id: 0 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_single_clinic.py", line 17, in make_call
+
+2024-04-27 18:02:17,241 
+INFO 
+Starting flask server... 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\app.py", line 12, in start_server
+
+2024-04-27 18:02:17,615 
+INFO 
+Call started...sid: CA60be727f5aefdb020baadb5d15bd175e 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 65, in call_all_clinics
+
+2024-04-27 18:03:43,925 
+INFO 
+unsuccessful response for num male docs: trying to double digit. 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\controller\call_flow_manager.py", line 68, in handle_number_male_doctors_response
+
+2024-04-27 18:03:43,947 
+INFO 
+response not understood 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\active_call_methods.py", line 34, in handle_unrecognizable_speech_response
+
+2024-04-27 18:04:17,730 
+INFO 
+response not understood 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\active_call_methods.py", line 34, in handle_unrecognizable_speech_response
+
+2024-04-27 18:04:34,822 
+INFO 
+response not understood 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\active_call_methods.py", line 34, in handle_unrecognizable_speech_response
+
+2024-04-27 18:04:53,526 
+INFO 
+response not understood 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\active_call_methods.py", line 34, in handle_unrecognizable_speech_response
+
+2024-04-27 18:05:00,527 
+INFO 
+final call status is: 'completed' 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 39, in check_call_status
+
+2024-04-27 18:05:00,860 
+INFO 
+Round of calls done 
+ 	from File "C:\Users\Sabih\Documents\coding\find-a-doc\src\services\calls\call_all_clinics.py", line 80, in call_all_clinics
+

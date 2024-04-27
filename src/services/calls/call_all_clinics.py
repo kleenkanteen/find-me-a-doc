@@ -1,11 +1,15 @@
+from dotenv import load_dotenv
+import os, threading, time, queue, sys
+
+from twilio.rest import Client
 from services.calls.call_single_clinic import make_call
 from services.db.database_manager import update_call_final_status, get_clinics_info
-from dotenv import load_dotenv
-from twilio.rest import Client
+
 from util.logger import logger
 from util.date import has_passed_30_days_since
-from simple_term_menu import TerminalMenu
-import os, threading, time, queue, sys
+
+import inquirer
+from inquirer.themes import GreenPassion
 
 load_dotenv(override=True)
 NGROK_URL = os.environ.get("NGROK_URL")
@@ -39,28 +43,19 @@ def check_call_status(queue, call_sid):
 
 def call_all_clinics():
 
-    mode:str = os.environ.get("MODE")
+    mode: str = os.environ.get("MODE")
+    PERSONAL_NUMBER = os.environ.get("PERSONAL_NUMBER")
 
-    if(mode == "PROD"):
+    if mode == "PROD":
       data = get_clinics_info()
       raw_clinics = data[1]
       due_clinics = filter(is_due_for_call, raw_clinics)
 
-    #   Substitute Xs for mock ids and phone numbers.
-    #   If Id doesn't belong to your twilio-registered phone number (or vice versa), 
-    #   calls won't be processed
-    if(mode == "DEV"):
+    # mock list of clinics you can call for testing, i.e. yourself
+    if mode == "DEV":
       due_clinics = [{
-          "id": "XX",
-          "phone_number": "(XXX) XXX-XXXX"
-      },
-      {
-          "id": "XX",
-          "phone_number": "(XXX) XXX-XXXX"
-      },
-      {
-          "id": "XX",
-          "phone_number": "(XXX) XXX-XXXX"
+          "id": "0",
+          "phone_number": PERSONAL_NUMBER
       }]
 
     for clinic in due_clinics:
@@ -85,18 +80,15 @@ def call_all_clinics():
             logger.debug("Round of calls done")
             exit()
 
-        options = ["call next clinic", "stop for now"]
+        questions = [
+            inquirer.List('next_clinic',
+                message="Call next clinic?",
+                choices=['Yes', 'No'],
+            ),
+        ]
+        
+        answer = inquirer.prompt(questions, theme=GreenPassion())
 
-        terminal_menu = TerminalMenu(
-            options,
-            title="Next step",
-            menu_cursor_style=("fg_green", "bold"),
-            menu_highlight_style=("underline", "fg_green"),
-        )
-        menu_terminal_index = terminal_menu.show()
-
-        menu_terminal_choice = options[menu_terminal_index]
-
-        if menu_terminal_choice == options[1]:
+        if answer["next_clinic"] == "No":
             logger.debug(f"You chose to stop the program. Exiting program now.")
             sys.exit()

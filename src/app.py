@@ -1,9 +1,10 @@
+import os, threading, sys
+from util.logger import logger
+from dotenv import load_dotenv
+
 from app_setup import app
 from services.calls.call_all_clinics import call_all_clinics
-from dotenv import load_dotenv
-from util.logger import logger
-import os, threading, sys, traceback, signal, time, multiprocessing
-from flask import request
+
 
 load_dotenv(override=True)
 port = os.environ.get("PORT")
