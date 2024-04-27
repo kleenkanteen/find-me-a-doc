@@ -1,10 +1,11 @@
 import re, os, time
-from twilio.twiml.voice_response import VoiceResponse, Gather
 from dotenv import load_dotenv
 from util.logger import logger
-from services.db.database_manager import update_db_on_successful_call, update_db_on_failed_call
-from config.active_call_values import timeout
 
+from twilio.twiml.voice_response import VoiceResponse, Gather
+from services.db.database_manager import update_db_on_successful_call, update_db_on_failed_call
+
+from config.active_call_values import timeout
 import config.active_call_values as call_values
 
 load_dotenv(override=True)
@@ -75,7 +76,7 @@ def check_elapsed_time():
           processResponse()
 
 def handle_successful_call(clinic_id):
-   import src.config.active_call_values as call_values
+   import config.active_call_values as call_values
 
    available_female_docs = call_values.num_female_docs
    available_male_docs = call_values.num_male_docs

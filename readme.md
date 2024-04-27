@@ -157,9 +157,10 @@ main/services/get_clinics_in_toronto.py - The script that uses the google maps a
 1. Run `python3 -m venv venv` to create a virtual environment
 2. Run `source venv/bin/activate` to activate the virtual environment or if on windows, run `venv\Scripts\activate.bat`
 3. Run `pip install -r requirements.txt` to install all dependencies
-4. Go to `src/services/calls/call_all_clinics.py` and uncomment commented-out comments accordingly (read the instructions there)
-5. Go to `src/services/calls/call_single_clinic.py` and uncomment commented-out comments accordingly (read the instructions there)
-6. Run `python3 src/app.py` to start the Flask server and trigger the calls
+4. Run `python3 src/app.py` to start the Flask server and trigger the calls
+
+## Dev Tips
+- Whenever you add a new library, make sure to add it to the requirements.txt file so others can install all required libraries quickly.
 
 # Folder structure
 
