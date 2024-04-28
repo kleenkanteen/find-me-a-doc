@@ -1,5 +1,6 @@
 import re, os, time
 from dotenv import load_dotenv
+from urllib.parse import urlparse, urlencode, parse_qs
 from util.logger import logger
 
 from twilio.twiml.voice_response import VoiceResponse, Gather
@@ -7,43 +8,33 @@ from services.db.database_manager import update_db_on_successful_call, update_db
 
 from config.active_call_values import timeout
 import config.active_call_values as call_values
+import services.calls.active_call_methods as call_methods
 
 load_dotenv(override=True)
 
 public_url = os.environ.get("NGROK_URL")
-
-def play_intro_message(client_id: int):
-  response = VoiceResponse()
-  print("Intro Message")
-  gather = Gather(
-                input='speech',
-                # below is transcription after every person stops talking for at least 5 seconds
-                action=f'{public_url}/call/handle_intro_response/{client_id}',
-                # below is realtime transcription after every word said
-                timeout=timeout)
-  gather.say("Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Please reply with yes or no.")
-  response.append(gather)
-  return str(response)
 
 def outro_message():
   response = VoiceResponse()
   response.say(f"Thank you for your time. Feel free to explore our mission at find me a doc dot c a. Goodbye!")
   return str(response)
 
-def handle_unrecognizable_speech_response(destination_path: str, message: str):
+def handle_unrecognizable_response(path: str, message: str, num_digits: int):
   response = VoiceResponse()
-  logger.warning("response not understood")
 
-  gather = Gather(
-     input='speech',
-     action=f'{public_url}/{destination_path}',
-     timeout=timeout
+  logger.warning(f"\nresponse not understood on path: {path}\n")
+
+  gather = Gather(    
+     action=f"{public_url}/{path}",
+     timeout=timeout,
+     num_digits=num_digits
   )
 
   gather.say(message)
   response.append(gather)
 
   return str(response)
+
 
 def processResponse():
   if 'press' in call_values.text:
@@ -75,8 +66,19 @@ def check_elapsed_time():
           print("break detected in speech, processing")
           processResponse()
 
+def handle_endpoint_limits(clinic_id: int):
+   response = VoiceResponse()
+   response.say("The maximum amount of retries has been reached. Feel free to explore our mission at find me a doc dot c a. Goodbye!")
+   response.hangup()
+
+   handle_failed_call(clinic_id)
+
+   return str(response)
+
 def handle_successful_call(clinic_id):
    import config.active_call_values as call_values
+
+   call_values.intro_message_iterations = 0
 
    available_female_docs = call_values.num_female_docs
    available_male_docs = call_values.num_male_docs
@@ -85,12 +87,19 @@ def handle_successful_call(clinic_id):
 
    response = update_db_on_successful_call(clinic_id, available_male_docs, available_female_docs)
 
-   logger.debug(f"new clinic data in db: {response}")
+   logger.debug(f"clinic id: {clinic_id}. new clinic data in db: {response}")
+
+   call_values.reset_call_values()
 
    return outro_message()
 
 def handle_failed_call(clinic_id: int):
 
-  response = update_db_on_failed_call(clinic_id)
+  male_doctors_available = call_values.num_male_docs
+  female_doctors_available = call_values.num_female_docs
 
-  logger.debug(f"Response: {response}")
+  response = update_db_on_failed_call(clinic_id, male_doctors_available, female_doctors_available)
+
+  call_values.reset_call_values()
+
+  logger.debug(f"partial db update: {response}")   

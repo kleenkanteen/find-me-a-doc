@@ -1,6 +1,8 @@
-from dotenv import load_dotenv
 from supabase import create_client, Client
+
+from dotenv import load_dotenv
 from util.date import current_time
+from util.logger import logger
 import os
 
 load_dotenv(override=True)
@@ -15,9 +17,21 @@ def get_clinics_info():
   return data
 
 #If call fails, only update last_call_date to (current date) and last_call_success to (false)
-def update_db_on_failed_call(clinic_id: int):
+def update_db_on_failed_call(clinic_id: int, available_male_docs: int = 0, available_female_docs: int = 0):
+
+  update_data = {'last_call_date': current_time(), 'last_call_success': False}
+
+  if available_male_docs > 0:
+    male_docs = available_male_docs
+    update_data['available_male_docs'] = male_docs
+    logger.debug("Only male docs can be updated")
   
-  data, count = supabase.table('clinics').update({'last_call_date': current_time(), 'last_call_success': False}).eq('id', clinic_id).execute()
+  if available_female_docs > 0:
+    female_docs = available_female_docs
+    update_data['available_female_docs'] = female_docs
+    logger.debug("Only female docs can be updated")
+  
+  data, count = supabase.table('clinics').update(update_data).eq('id', clinic_id).execute()
   return data
 
 def update_db_on_successful_call(clinic_id: int, available_male_docs: int, available_female_docs: int):

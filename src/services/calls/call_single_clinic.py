@@ -15,7 +15,7 @@ ngrok_url = os.environ.get("NGROK_URL")
 
 def make_call(phone_number: str, clinic_id: int):
 
-  logger.debug(f"received phone number: {phone_number} \n received clinic id: {clinic_id}")
+  logger.debug(f"Received phone number: {phone_number}. Received clinic id: {clinic_id}")
 
   if MODE == "DEV": 
     if(phone_number != PERSONAL_NUMBER):
@@ -26,11 +26,7 @@ def make_call(phone_number: str, clinic_id: int):
 
   response = VoiceResponse()
   print("NGROK URL: ", ngrok_url)
-  gather = Gather(
-                  timeout=10
-                )
-  response.append(gather)
-  response.redirect(f"{ngrok_url}/call/detect_nav_menu/{clinic_id}")
+  response.redirect(f"{ngrok_url}/call/intro_message/{clinic_id}", method="GET")
 
   if MODE == "DEV": 
     number_called = PERSONAL_NUMBER

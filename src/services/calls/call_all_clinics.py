@@ -18,7 +18,6 @@ TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
 
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
-
 def is_due_for_call(clinic):
     # Checks if a clinic is due for a call based on last call success or elapsed days.
     last_call_success = clinic["last_call_success"]
@@ -53,10 +52,12 @@ def call_all_clinics():
 
     # mock list of clinics you can call for testing, i.e. yourself
     if mode == "DEV":
-      due_clinics = [{
-          "id": "0",
+      due_clinics = [
+        {
+          "id": 0,
           "phone_number": PERSONAL_NUMBER
-      }]
+        }
+      ]
 
     for clinic in due_clinics:
 
