@@ -1,6 +1,6 @@
 
 from twilio.twiml.voice_response import VoiceResponse
-import time, threading
+import time
 
 response = VoiceResponse()
 key = ""

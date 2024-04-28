@@ -156,8 +156,7 @@ def handle_number_male_doctors_response(clinic_id: int):
 
 @call_flow_manager.get("ask_female_doctors_number/<int:clinic_id>")
 def ask_female_doctors_number(clinic_id: int):
-
-
+  
   timeouts_count = int(request.args.get('timeouts_count', 0))
 
   logger.info(f'timeouts_count when asking female doctors number: {timeouts_count}')
