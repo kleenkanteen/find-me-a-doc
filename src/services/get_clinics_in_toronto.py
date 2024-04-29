@@ -66,17 +66,11 @@ with open("clinics.json", "w") as outfile:
     # Write the contents of the dictionary as a JSON string to the file
     json.dump(clinics, outfile)
 
-# Open the JSON file in read mode
 with open("clinics.json", "r") as json_file:
-    # Load the JSON data into a dictionary
     clinics = json.load(json_file)
 
-
-# Iterate over the clinics and add a new "called" field to each one
 for clinic in clinics:
     clinics[clinic]["called"] = False
 
-# Open the JSON file in write mode
 with open("ClinicsCalledData.json", "w") as json_file:
-    # Write the updated clinics data back to the file
     json.dump(clinics, json_file)

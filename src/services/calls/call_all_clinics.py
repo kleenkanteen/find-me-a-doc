@@ -87,7 +87,8 @@ def call_all_clinics():
 
         update_call_final_status(clinic["id"], call_status)
 
-        # If user hangs up, call status is marked as completed. Hence the check for local male and female docs
+        # If user hangs up, call status is marked as completed without any http response.
+        # Hence the check for None in either value
         if call_status == "completed" and (
             call_values.male_docs_number is None
             or call_values.female_docs_number is None
