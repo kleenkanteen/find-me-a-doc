@@ -15,13 +15,13 @@ public_url = os.environ.get("NGROK_URL")
 def intro_message(clinic_id: int):
 
   prompt_retry_count = int(request.args.get('prompt_retry_count', 0))
-  #For some reason invalid_value_count is 1 behind, so it's set to 1 instead o 0
+  #Invalid_value_count is always 1 behind when attaching it to a Gather action, so it's set to 1 instead of 0
   invalid_input_count = int(request.args.get('invalid_value_count', 1))
   timeouts_count = int(request.args.get('timeouts_count', 0))
 
-  logger.info(f"prompt retrys count: {prompt_retry_count}")
-  logger.info(f"invalid key count: {invalid_input_count}")
-  logger.info(f"timeouts count: {timeouts_count}")
+  logger.info(f"intro message retrys count: {prompt_retry_count}")
+  logger.info(f"intro message invalid key count: {invalid_input_count}")
+  logger.info(f"intro message timeouts count: {timeouts_count}")
 
   max_count = max(prompt_retry_count, timeouts_count, invalid_input_count)
   if max_count > call_values.ENDPOINT_HIT_LIMIT:
@@ -29,7 +29,7 @@ def intro_message(clinic_id: int):
    
   print("Intro Message")
 
-  action_url = f'{public_url}/call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&timeouts_count={timeouts_count}&invalid_input_count={invalid_input_count}'
+  action_url = f'{public_url}/call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&invalid_input_count={invalid_input_count}'
 
   gather = Gather(
                  action=action_url,
@@ -55,15 +55,13 @@ def intro_message(clinic_id: int):
 @call_flow_manager.route("/handle_intro_message_response/<int:clinic_id>", methods=['POST', 'GET'])
 def handle_intro_message_response(clinic_id: int):
 
-  prompt_retry_count = int(request.args.get('prompt_retry_count', 0))
   invalid_input_count = int(request.args.get('invalid_value_count', 1))
-  timeouts_count = int(request.args.get('timeouts_count', 1))
+  prompt_retry_count = int(request.args.get('prompt_retry_count', 0))
 
   response = VoiceResponse()
 
-  logger.info(f"timeouts count: {timeouts_count}")
-  logger.info(f"invalid key count: {invalid_input_count}")
-  logger.info(f"prompt retrys count: {prompt_retry_count}")
+  logger.info(f"invalid key count on intro message: {invalid_input_count}")
+  logger.info(f"prompt retrys count on intro message: {prompt_retry_count}")
 
   if 'Digits' in request.values:
       choice = request.values['Digits']
@@ -78,7 +76,7 @@ def handle_intro_message_response(clinic_id: int):
       
       if choice == '3':
         new_prompt_retry_count = prompt_retry_count + 1
-        url = f'{public_url}/call/intro_message/{clinic_id}?prompt_retry_count={new_prompt_retry_count}&timeouts_count={timeouts_count}&invalid_input_count={invalid_input_count}'
+        url = f'{public_url}/call/intro_message/{clinic_id}?prompt_retry_count={new_prompt_retry_count}&invalid_input_count={invalid_input_count}'
         response.redirect(url, method="POST")
         return str(response)
       
@@ -90,7 +88,7 @@ def handle_intro_message_response(clinic_id: int):
          else:
           message = "You can only enter 1 for yes, 2 for no, or 3 to listen to the introduction again"
 
-         return call_methods.handle_unrecognizable_response(f"call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&timeouts_count={timeouts_count}&invalid_input_count={new_invalid_input_count}", message, num_digits=1)
+         return call_methods.handle_unrecognizable_response(f"call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&invalid_input_count={new_invalid_input_count}", message, num_digits=1)
       
 @call_flow_manager.get("/ask_male_doctors_number/<int:clinic_id>")
 def ask_male_doctors_number(clinic_id: int):
@@ -135,8 +133,8 @@ def handle_number_male_doctors_response(clinic_id: int):
     response = VoiceResponse()
 
     try:
-      call_values.num_male_docs = int(request.values['Digits'])
-      logger.info(f"male doctors: {call_values.num_male_docs}")
+      call_values.male_docs_number = int(request.values['Digits'])
+      logger.info(f"male doctors: {call_values.male_docs_number}")
 
       response.redirect(f'{public_url}/call/ask_female_doctors_number/{clinic_id}', method='GET')
       return str(response)
@@ -156,10 +154,10 @@ def handle_number_male_doctors_response(clinic_id: int):
 
 @call_flow_manager.get("ask_female_doctors_number/<int:clinic_id>")
 def ask_female_doctors_number(clinic_id: int):
-  
+
   timeouts_count = int(request.args.get('timeouts_count', 0))
 
-  logger.info(f'timeouts_count when asking female doctors number: {timeouts_count}')
+  logger.info(f'timeouts_count when asking for female doctors number: {timeouts_count}')
 
   if timeouts_count > call_values.ENDPOINT_HIT_LIMIT:
     return call_methods.handle_endpoint_limits(clinic_id)
@@ -196,8 +194,8 @@ def handle_number_female_doctors_response(clinic_id: int):
   if 'Digits' in request.values:
      
      try:
-      call_values.num_female_docs = int(request.values['Digits'])
-      logger.info(f"female doctors: {call_values.num_female_docs}")
+      call_values.female_docs_number = int(request.values['Digits'])
+      logger.info(f"female doctors: {call_values.female_docs_number}")
 
      except (ValueError, TypeError) as e:
       new_invalid_input_count = invalid_input_count + 1

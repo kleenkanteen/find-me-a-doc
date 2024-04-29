@@ -2,11 +2,15 @@ from dotenv import load_dotenv
 import os, threading, time, queue, sys
 
 from twilio.rest import Client
+from twilio.base.exceptions import TwilioRestException
 from services.calls.call_single_clinic import make_call
 from services.db.database_manager import update_call_final_status, get_clinics_info
+from .active_call_methods import get_call_data
 
 from util.logger import logger
 from util.date import has_passed_30_days_since
+import config.active_call_values as call_values
+from .active_call_methods import handle_failed_call
 
 import inquirer
 from inquirer.themes import GreenPassion
@@ -31,14 +35,16 @@ def check_call_status(queue, call_sid):
 
     while True:
 
-        call = client.calls(call_sid).fetch()
-        # Possible values: queued, ringing, in-progress, busy, completed, failed, no-answer, canceled
-        if call.status in ["completed", "failed", "no-answer", "canceled", "busy"]:
-            queue.put(call.status)
-            logger.debug(f"final call status is: '{call.status}'")
-            break
         time.sleep(5)
 
+        call_data = get_call_data(call_sid)
+        call_status = call_data['status']
+
+        # Possible values: queued, ringing, in-progress, busy, completed, failed, no-answer, canceled
+        if call_status in ["completed", "failed", "no-answer", "canceled", "busy"]:
+            queue.put({"call_status": call_status, "call_data": call_data})
+            logger.debug(f"final call status is: '{call_status}'")
+            break
 
 def call_all_clinics():
 
@@ -61,7 +67,12 @@ def call_all_clinics():
 
     for clinic in due_clinics:
 
-        clinic_sid = make_call(clinic["phone_number"], clinic["id"])
+        clinic_id = clinic['id']
+
+        try:
+            clinic_sid = make_call(clinic["phone_number"], clinic_id)
+        except TwilioRestException as e:
+            logger.error(f"Twilio error, message: {e}")
 
         logger.debug(f"Call started...sid: {clinic_sid}")
 
@@ -73,9 +84,18 @@ def call_all_clinics():
         call_status_poller.start()
         call_status_poller.join()
 
-        call_status = q.get()
+        result = q.get()
+
+        call_status = result['call_status']
 
         update_call_final_status(clinic["id"], call_status)
+
+        #If user hangs up, call status is marked as completed. Hence the check for local male and female docs
+        if call_status == 'completed' and (call_values.male_docs_number is None or call_values.female_docs_number is None):
+            handle_failed_call(clinic_id)
+
+        #Reset all call values after each call
+        call_values.reset_call_values()
 
         if clinic["id"] == due_clinics[-1]["id"]:
             logger.debug("Round of calls done")

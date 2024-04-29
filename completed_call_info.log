@@ -1,0 +1,135 @@
+clinic_name: yohance 123
+clinic_id: 54
+male_docs_number: 2
+female_docs_number: 6
+success: true
+sid: CA50ebc1849ba4fbc4e40db4631d6bc218
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:38
+end_time: None
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 0
+price: None
+price_unit: USD
+
+clinic_name: yohance's clinic 2
+clinic_id: 55
+male_docs_number: 5
+female_docs_number: None
+success: true
+sid: CA8723d3ee7c83d61acd2ada4c7a8e4548
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:39
+end_time: Monday, April 29 2024, 00:39
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 16
+price: -0.01400
+price_unit: USD
+
+clinic_name: yohance's clinic 3
+clinic_id: 56
+male_docs_number: None
+female_docs_number: None
+success: true
+sid: CA1df3fc9ae9fd45fc2b76477bc60cdf15
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:40
+end_time: None
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 0
+price: None
+price_unit: USD
+
+clinic_name: yohance's clinic 3
+clinic_id: 56
+male_docs_number: None
+female_docs_number: None
+success: true
+sid: CA1df3fc9ae9fd45fc2b76477bc60cdf15
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:40
+end_time: Monday, April 29 2024, 00:42
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 92
+price: None
+price_unit: USD
+
+clinic_name: yohance 123
+clinic_id: 54
+male_docs_number: 1
+female_docs_number: None
+success: true
+sid: CAa053df932faf9b32d6662f7f75663b38
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:42
+end_time: None
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 0
+price: None
+price_unit: USD
+
+clinic_name: yohance 123
+clinic_id: 54
+male_docs_number: 1
+female_docs_number: None
+success: true
+sid: CAa053df932faf9b32d6662f7f75663b38
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:42
+end_time: Monday, April 29 2024, 00:43
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 62
+price: None
+price_unit: USD
+
+clinic_name: yohance's clinic 2
+clinic_id: 55
+male_docs_number: None
+female_docs_number: None
+success: true
+sid: CA203333d3ba9223b97d15320f9d7aef35
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:43
+end_time: None
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 0
+price: None
+price_unit: USD
+
+clinic_name: yohance's clinic 2
+clinic_id: 55
+male_docs_number: None
+female_docs_number: None
+success: true
+sid: CA203333d3ba9223b97d15320f9d7aef35
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:43
+end_time: Monday, April 29 2024, 00:44
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 53
+price: -0.01400
+price_unit: USD
+
+clinic_name: yohance's clinic 3
+clinic_id: 56
+male_docs_number: None
+female_docs_number: None
+success: true
+sid: CA45c0bc61582fb0f22fe4b775c8628491
+to_formatted: (314) 690-8960
+from_formatted: (888) 997-4384
+start_time: Monday, April 29 2024, 00:45
+end_time: Monday, April 29 2024, 00:45
+account_sid: ACf926bd20c3b79ccedfb9683ac2b49ec9
+duration: 34
+price: None
+price_unit: USD
+

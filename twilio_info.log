@@ -4342,3 +4342,922 @@ INFO
 You chose to stop the program. Exiting program now. 
  	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 102, in call_all_clinics
 
+2024-04-28 17:53:29,986 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 17:53:29,987 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 17:53:30,772 
+INFO 
+Call started...sid: CAa7e56932090df838bab99515b6831044 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 17:54:15,516 
+INFO 
+call was a success, male docs: 3, female docs: 2 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 83, in handle_successful_call
+
+2024-04-28 17:55:38,242 
+INFO 
+Forced shutdown requested. Exiting the program now... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 31, in <module>
+
+2024-04-28 17:55:40,118 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 17:55:40,118 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 17:55:40,738 
+INFO 
+Call started...sid: CAbfac6c562a28934d6d80ad577ac3afef 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 17:56:26,224 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 83, in handle_successful_call
+
+2024-04-28 17:58:03,659 
+INFO 
+Forced shutdown requested. Exiting the program now... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 31, in <module>
+
+2024-04-28 17:58:06,289 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 17:58:06,289 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 17:58:06,726 
+INFO 
+Call started...sid: CAd3b20e3f8be4afc7b5131a3e9902fb11 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 17:58:27,831 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 83, in handle_successful_call
+
+2024-04-28 17:59:46,974 
+INFO 
+Forced shutdown requested. Exiting the program now... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 31, in <module>
+
+2024-04-28 18:01:51,888 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:01:51,889 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:01:52,664 
+INFO 
+Call started...sid: CA5232a23ac9571a96b70c1bc7372c9b73 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:02:12,456 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 83, in handle_successful_call
+
+2024-04-28 18:04:32,881 
+INFO 
+Forced shutdown requested. Exiting the program now... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 31, in <module>
+
+2024-04-28 18:04:34,883 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:04:34,884 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:04:35,513 
+INFO 
+Call started...sid: CA99acd5684b6cd910447404da6d4ee893 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:04:55,897 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 83, in handle_successful_call
+
+2024-04-28 18:10:19,015 
+INFO 
+Forced shutdown requested. Exiting the program now... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 31, in <module>
+
+2024-04-28 18:10:21,087 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:10:21,088 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:10:21,669 
+INFO 
+Call started...sid: CA10b217ad14fa7d8b9e3a9de0bc187132 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:10:50,179 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 83, in handle_successful_call
+
+2024-04-28 18:12:30,776 
+INFO 
+Forced shutdown requested. Exiting the program now... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 31, in <module>
+
+2024-04-28 18:15:54,473 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:15:54,474 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:15:54,882 
+INFO 
+Call started...sid: CA7bc9a9b2fd65ecc97c33b82d1a919d19 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:16:25,239 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 83, in handle_successful_call
+
+2024-04-28 18:16:31,676 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:16:32,188 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:25:26,186 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:25:26,186 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:25:26,604 
+INFO 
+Call started...sid: CAe34d02fd8f1330b966f4bfa9d1c84c86 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:26:07,856 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:26:08,376 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:27:48,993 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:27:48,993 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:27:49,521 
+INFO 
+Call started...sid: CA45bf83edfd393aff0f09020f8addb645 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:28:12,221 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 81, in handle_successful_call
+
+2024-04-28 18:28:15,875 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:28:16,045 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:28:30,968 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:28:30,968 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:28:31,325 
+INFO 
+Call started...sid: CA3dbc1d89e1673db17ae9fc7a525f9725 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:28:51,292 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 81, in handle_successful_call
+
+2024-04-28 18:28:57,110 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:28:57,249 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:31:59,377 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:31:59,377 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:31:59,721 
+INFO 
+Call started...sid: CA3066b2e894119a128f1083b308344c73 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:32:30,252 
+INFO 
+call was a success, male docs: 3, female docs: 3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 81, in handle_successful_call
+
+2024-04-28 18:32:30,563 
+INFO 
+clinic id: 54. new clinic data in db: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': 3, 'available_female_docs': 3, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': True} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 96, in handle_successful_call
+
+2024-04-28 18:32:35,863 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:32:36,041 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:33:23,220 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:33:23,220 
+INFO 
+Received phone number: (314) 940-2059. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:36:31,451 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:36:31,451 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:39:19,551 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:39:19,551 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:39:20,155 
+INFO 
+Call started...sid: CA8f16053ad25167af87647c19ac74e99a 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:39:51,015 
+INFO 
+final call status is: 'no-answer' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:39:51,320 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:40:18,576 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:40:18,577 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:40:18,918 
+INFO 
+Call started...sid: CA6d08a663a43aa9c65389df3eaf14ab95 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:40:49,917 
+INFO 
+final call status is: 'no-answer' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:40:50,139 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:41:03,787 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:41:03,787 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:41:04,561 
+INFO 
+Call started...sid: CA514b19142a46592f3f6c7107f9f0fc5c 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:41:35,523 
+INFO 
+final call status is: 'no-answer' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:41:35,801 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:41:56,787 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:41:56,787 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:41:57,119 
+INFO 
+Call started...sid: CAb911c844183831ddf73a190cc1412d4c 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:42:28,218 
+INFO 
+final call status is: 'no-answer' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:42:28,435 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:43:19,648 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:43:19,648 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:43:20,319 
+INFO 
+Call started...sid: CAcca4e30e6c7045c89e4fc6cc4b1473e8 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:43:56,899 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:43:57,418 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 18:46:51,779 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 18:46:51,780 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 18:46:52,373 
+INFO 
+Call started...sid: CA608652e49936c3b3b61f966b184f873d 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 18:47:13,142 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 44, in check_call_status
+
+2024-04-28 18:47:13,424 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 91, in call_all_clinics
+
+2024-04-28 19:03:38,669 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:03:38,670 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:03:39,130 
+INFO 
+Call started...sid: CA43c5af840c0ebc9fddc6c8823a4a852e 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 74, in call_all_clinics
+
+2024-04-28 19:03:59,761 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:04:00,164 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 98, in call_all_clinics
+
+2024-04-28 19:06:11,754 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:06:11,754 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:06:12,279 
+INFO 
+Call started...sid: CAe73a232bd74500129fc3f280616c5a27 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 74, in call_all_clinics
+
+2024-04-28 19:06:33,016 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:06:33,318 
+INFO 
+Forced shutdown requested. Exiting the program now... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 31, in <module>
+
+2024-04-28 19:06:41,661 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:06:41,663 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:06:42,118 
+INFO 
+Call started...sid: CA6a33a23429e7da31b08547c1bead9677 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 74, in call_all_clinics
+
+2024-04-28 19:07:08,351 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:07:08,641 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 101, in call_all_clinics
+
+2024-04-28 19:15:16,602 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:15:16,602 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:15:17,041 
+INFO 
+Call started...sid: CAc964d0088a7be27bebdd00dcfaed2823 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 74, in call_all_clinics
+
+2024-04-28 19:15:38,111 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:15:39,525 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': 3, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:15:39,526 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 101, in call_all_clinics
+
+2024-04-28 19:17:45,207 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:17:45,207 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:17:45,934 
+INFO 
+Call started...sid: CAc9b9ab4e999206e8f231e25e3ab7a86f 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 74, in call_all_clinics
+
+2024-04-28 19:18:07,050 
+INFO 
+
+response not understood on path: call/handle_intro_message_response/54?prompt_retry_count=0&timeouts_count=0&invalid_input_count=2
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 25, in handle_unrecognizable_response
+
+2024-04-28 19:18:16,809 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:18:17,399 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:18:17,400 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 101, in call_all_clinics
+
+2024-04-28 19:18:26,981 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:18:26,981 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:18:27,314 
+INFO 
+Call started...sid: CA0a099465eb87bf436af6a925515b3095 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 74, in call_all_clinics
+
+2024-04-28 19:19:03,183 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:19:13,945 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:19:14,280 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:19:14,280 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 101, in call_all_clinics
+
+2024-04-28 19:25:33,567 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:25:33,568 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:25:33,971 
+INFO 
+Call started...sid: CA811106a3ff50f6e9fa8efce974cb178a 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 19:25:56,246 
+INFO 
+type error exception thrown. error message: invalid literal for int() with base 10: '*' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 148, in handle_number_male_doctors_response
+
+2024-04-28 19:25:56,250 
+INFO 
+
+response not understood on path: /call/handle_number_male_doctors_response/54?invalid_input_count=2
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 25, in handle_unrecognizable_response
+
+2024-04-28 19:25:59,727 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:26:00,342 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:26:00,343 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 100, in call_all_clinics
+
+2024-04-28 19:26:02,936 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:26:02,938 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:26:03,576 
+INFO 
+Call started...sid: CA9880123cca7bf196413b22f68ef9e072 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 19:26:40,094 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:26:49,960 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:26:50,316 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:26:50,316 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 100, in call_all_clinics
+
+2024-04-28 19:31:51,246 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:31:51,246 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:31:51,729 
+INFO 
+Call started...sid: CAaf3c4f372e5f83dfba791175d08c13fb 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-04-28 19:32:11,857 
+INFO 
+call was a success, male docs: 3, female docs: 5 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 80, in handle_successful_call
+
+2024-04-28 19:32:12,327 
+INFO 
+clinic id: 54. new clinic data in db: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': 3, 'available_female_docs': 5, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': True} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 96, in handle_successful_call
+
+2024-04-28 19:32:22,768 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 45, in check_call_status
+
+2024-04-28 19:32:23,212 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 100, in call_all_clinics
+
+2024-04-28 19:38:26,171 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:38:26,171 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:38:26,617 
+INFO 
+Call started...sid: CA50ebc1849ba4fbc4e40db4631d6bc218 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 85, in call_all_clinics
+
+2024-04-28 19:38:52,448 
+INFO 
+call was a success, male docs: 2, female docs: 6 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 80, in handle_successful_call
+
+2024-04-28 19:38:53,048 
+INFO 
+clinic id: 54. new clinic data in db: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': 2, 'available_female_docs': 6, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': True} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 96, in handle_successful_call
+
+2024-04-28 19:39:02,781 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 46, in check_call_status
+
+2024-04-28 19:39:04,622 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 55 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:39:04,915 
+INFO 
+Call started...sid: CA8723d3ee7c83d61acd2ada4c7a8e4548 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 85, in call_all_clinics
+
+2024-04-28 19:39:30,385 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 46, in check_call_status
+
+2024-04-28 19:39:30,713 
+INFO 
+partial db update: {'name': "yohance's clinic 2", 'address': '2323 dele st', 'phone_number': '(314) 940-2059', 'rating': 4.2, 'available_male_docs': 5, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 55, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:40:30,591 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 56 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:40:31,148 
+INFO 
+Call started...sid: CA1df3fc9ae9fd45fc2b76477bc60cdf15 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 85, in call_all_clinics
+
+2024-04-28 19:42:03,181 
+INFO 
+partial db update: {'name': "yohance's clinic 3", 'address': '1212 apple st', 'phone_number': '(314) 940-2059', 'rating': 2.3, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 56, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:42:08,806 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 46, in check_call_status
+
+2024-04-28 19:42:09,189 
+INFO 
+partial db update: {'name': "yohance's clinic 3", 'address': '1212 apple st', 'phone_number': '(314) 940-2059', 'rating': 2.3, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 56, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:42:09,190 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 112, in call_all_clinics
+
+2024-04-28 19:42:14,157 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 54 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:42:14,157 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-04-28 19:42:14,514 
+INFO 
+Call started...sid: CAa053df932faf9b32d6662f7f75663b38 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 85, in call_all_clinics
+
+2024-04-28 19:43:12,277 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': 1, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:43:21,463 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 46, in check_call_status
+
+2024-04-28 19:43:22,083 
+INFO 
+partial db update: {'name': 'yohance 123', 'address': '4545 Tampa Ave', 'phone_number': '(314) 940-2059', 'rating': 4.4, 'available_male_docs': 1, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 54, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:43:46,345 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 55 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:43:46,759 
+INFO 
+Call started...sid: CA203333d3ba9223b97d15320f9d7aef35 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 85, in call_all_clinics
+
+2024-04-28 19:44:36,843 
+INFO 
+partial db update: {'name': "yohance's clinic 2", 'address': '2323 dele st', 'phone_number': '(314) 940-2059', 'rating': 4.2, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 55, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:44:49,412 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 46, in check_call_status
+
+2024-04-28 19:44:49,938 
+INFO 
+partial db update: {'name': "yohance's clinic 2", 'address': '2323 dele st', 'phone_number': '(314) 940-2059', 'rating': 4.2, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 55, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:45:12,672 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 56 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 18, in make_call
+
+2024-04-28 19:45:12,967 
+INFO 
+Call started...sid: CA45c0bc61582fb0f22fe4b775c8628491 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 85, in call_all_clinics
+
+2024-04-28 19:45:53,970 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 46, in check_call_status
+
+2024-04-28 19:45:54,922 
+INFO 
+partial db update: {'name': "yohance's clinic 3", 'address': '1212 apple st', 'phone_number': '(314) 940-2059', 'rating': 2.3, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-04-28', 'id': 56, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 111, in handle_failed_call
+
+2024-04-28 19:45:54,923 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 112, in call_all_clinics
+

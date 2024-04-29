@@ -1,9 +1,9 @@
 import re, os, time
 from dotenv import load_dotenv
-from urllib.parse import urlparse, urlencode, parse_qs
 from util.logger import logger
 
 from twilio.twiml.voice_response import VoiceResponse, Gather
+from twilio.rest import Client
 from services.db.database_manager import update_db_on_successful_call, update_db_on_failed_call
 
 from config.active_call_values import timeout
@@ -13,6 +13,10 @@ import services.calls.active_call_methods as call_methods
 load_dotenv(override=True)
 
 public_url = os.environ.get("NGROK_URL")
+TWILIO_ACCOUNT_SID: str = os.environ.get("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
+
+client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 def outro_message():
   response = VoiceResponse()
@@ -76,30 +80,48 @@ def handle_endpoint_limits(clinic_id: int):
    return str(response)
 
 def handle_successful_call(clinic_id):
-   import config.active_call_values as call_values
+
+   logger.debug(f"call was a success, male docs: {call_values.male_docs_number}, female docs: {call_values.female_docs_number}")
+
+   #If by any chance either value is not selected, fire failed call handler
+   if call_values.male_docs_number is None or call_values.female_docs_number is None:
+      return handle_failed_call(clinic_id)
 
    call_values.intro_message_iterations = 0
 
-   available_female_docs = call_values.num_female_docs
-   available_male_docs = call_values.num_male_docs
+   updated_clinic_data = update_db_on_successful_call(clinic_id, call_values.male_docs_number, call_values.female_docs_number)
 
-   logger.debug(f"call was a success, male docs: {call_values.num_male_docs}, female docs: {call_values.num_female_docs}")
+   call_data = get_latest_call_data()
 
-   response = update_db_on_successful_call(clinic_id, available_male_docs, available_female_docs)
+   logger.completed_call_info(call_data, clinic_name=updated_clinic_data['name'], clinic_id=clinic_id, male_docs_number=call_values.male_docs_number, female_docs_number=call_values.female_docs_number, success="true")
 
-   logger.debug(f"clinic id: {clinic_id}. new clinic data in db: {response}")
-
-   call_values.reset_call_values()
+   logger.debug(f"clinic id: {clinic_id}. new clinic data in db: {updated_clinic_data}")
 
    return outro_message()
 
 def handle_failed_call(clinic_id: int):
 
-  male_doctors_available = call_values.num_male_docs
-  female_doctors_available = call_values.num_female_docs
+  logger.debug(f"failed call values: male: {call_values.male_docs_number} female: {call_values.female_docs_number}")
 
-  response = update_db_on_failed_call(clinic_id, male_doctors_available, female_doctors_available)
+  updated_clinic_data = update_db_on_failed_call(clinic_id, call_values.male_docs_number, call_values.female_docs_number)
 
-  call_values.reset_call_values()
+  call_data = get_latest_call_data()
 
-  logger.debug(f"partial db update: {response}")   
+  logger.completed_call_info(call_data, clinic_name=updated_clinic_data['name'], clinic_id=clinic_id, male_docs_number=call_values.male_docs_number, female_docs_number=call_values.female_docs_number, success="true")
+
+  logger.debug(f"partial db update data: {updated_clinic_data}")   
+
+def get_call_data(call_sid):
+
+  #This Twilio client method retrieves call data by SID
+  #https://www.twilio.com/docs/voice/tutorials/how-to-retrieve-call-logs/python#retrieve-call-by-id-example
+  client_data = client.calls(call_sid).fetch()
+
+  return client_data.__dict__
+
+def get_latest_call_data():
+   
+  client_data = client.calls.list(limit=1)[0]
+
+  return client_data.__dict__
+   

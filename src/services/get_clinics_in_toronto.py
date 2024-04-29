@@ -1,7 +1,7 @@
-import requests, json, os
-from dotenv import load_dotenv
-
 from supabase import create_client, Client
+
+from dotenv import load_dotenv
+import requests, json, os
 
 # This script gets the details of all the medical clinics in Toronto using Google Maps API and stores it in supabase.
 
