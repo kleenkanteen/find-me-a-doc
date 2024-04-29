@@ -2,26 +2,29 @@ import logging, datetime
 
 from .source_context import get_filename, get_function_name, get_linenumber
 
-formatter = logging.Formatter('%(asctime)s \n%(levelname)s \n%(message)s\n')
+formatter = logging.Formatter("%(asctime)s \n%(levelname)s \n%(message)s\n")
+
 
 class logger_class:
 
     def __init__(self):
-        self.logger = self.__setup_logger('twilio_info', 'twilio_info.log')
-        self.twilio_logger = self.__setup_logger('raw_responses', 'raw_responses.log')
-        self.completed_call_info_logger = self.__setup_logger('completed_call_info', 'completed_call_info.log')
+        self.logger = self.__setup_logger("twilio_info", "twilio_info.log")
+        self.twilio_logger = self.__setup_logger("raw_responses", "raw_responses.log")
+        self.completed_call_info_logger = self.__setup_logger(
+            "completed_call_info", "completed_call_info.log"
+        )
 
     def __setup_logger(self, name, log_file, level=logging.INFO):
-      """To setup as many loggers as you want"""
+        """To setup as many loggers as you want"""
 
-      handler = logging.FileHandler(log_file)        
-      handler.setFormatter(formatter)
+        handler = logging.FileHandler(log_file)
+        handler.setFormatter(formatter)
 
-      logger = logging.getLogger(name)
-      logger.setLevel(level)
-      logger.addHandler(handler)
+        logger = logging.getLogger(name)
+        logger.setLevel(level)
+        logger.addHandler(handler)
 
-      return logger
+        return logger
 
     def __log(self, level: str, message: str):
 
@@ -65,7 +68,7 @@ class logger_class:
 
     def completed_call_info(self, data: dict, **extra_values):
 
-        # # Array of keys to include in the new dictionary, possible keys: 
+        # # Array of keys to include in the new dictionary, possible keys:
         # ['_version', 'sid', 'date_created', 'date_updated', 'parent_call_sid', 'account_sid', 'to', 'to_formatted', '_from', 'from_formatted', 'phone_number_sid', 'status', 'start_time', 'end_time', 'duration', 'price', 'price_unit', 'direction', 'answered_by', 'api_version', 'forwarded_from', 'group_sid', 'caller_name', 'queue_time', 'trunk_sid', 'uri', 'subresource_uris', '_solution', '_context']
 
         keys_array = [
@@ -96,7 +99,6 @@ class logger_class:
 
         with open("completed_call_info.log", "a") as f:
             f.write(log_str + "\n")
-
 
 
 logger = logger_class()
