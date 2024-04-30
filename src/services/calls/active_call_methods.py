@@ -91,33 +91,30 @@ def handle_endpoint_limits(clinic_id: int):
 
 def handle_successful_call(clinic_id):
 
-    logger.debug(
-        f"call was a success, male docs: {call_values.male_docs_number}, female docs: {call_values.female_docs_number}"
-    )
-
     # If by any chance either value is not selected, fire failed call handler
     if call_values.male_docs_number is None or call_values.female_docs_number is None:
         return handle_failed_call(clinic_id)
 
     call_values.intro_message_iterations = 0
 
-    updated_clinic_data = update_db_on_successful_call(
-        clinic_id, call_values.male_docs_number, call_values.female_docs_number
+    update_db_on_successful_call(clinic_id, 
+                                 call_values.male_docs_number, 
+                                 call_values.female_docs_number
     )
 
     call_data = get_latest_call_data()
 
     logger.completed_call_info(
         call_data,
-        clinic_name=updated_clinic_data["name"],
         clinic_id=clinic_id,
         male_docs_number=call_values.male_docs_number,
         female_docs_number=call_values.female_docs_number,
         success="true",
     )
 
-    logger.debug(
-        f"clinic id: {clinic_id}. new clinic data in db: {updated_clinic_data}"
+    logger.info(
+        f'''call was a success for {clinic_id}: +
+        male docs: {call_values.male_docs_number}, female docs: {call_values.female_docs_number}'''
     )
 
     return outro_message()
@@ -125,26 +122,26 @@ def handle_successful_call(clinic_id):
 
 def handle_failed_call(clinic_id: int):
 
-    logger.debug(
-        f"failed call values: male: {call_values.male_docs_number} female: {call_values.female_docs_number}"
-    )
-
-    updated_clinic_data = update_db_on_failed_call(
-        clinic_id, call_values.male_docs_number, call_values.female_docs_number
+    update_db_on_failed_call(
+        clinic_id, 
+        call_values.male_docs_number, 
+        call_values.female_docs_number
     )
 
     call_data = get_latest_call_data()
 
     logger.completed_call_info(
         call_data,
-        clinic_name=updated_clinic_data["name"],
         clinic_id=clinic_id,
         male_docs_number=call_values.male_docs_number,
         female_docs_number=call_values.female_docs_number,
         success="true",
     )
 
-    logger.debug(f"partial db update data: {updated_clinic_data}")
+    logger.debug(
+        f'''failed call for {clinic_id}:
+        male: {call_values.male_docs_number} female: {call_values.female_docs_number}'''
+    )
 
 
 def get_call_data(call_sid):

@@ -48,7 +48,7 @@ class logger_class:
 
     def info(self, message: str):
 
-        print(message)
+        self.__log("INFO", message)
 
     def warning(self, message: str):
 

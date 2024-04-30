@@ -1,0 +1,28 @@
+clinic_id: 0
+male_docs_number: 5
+female_docs_number: 7
+success: true
+sid: CAfd3b00c7195b5e9a5a3454bad6be197a
+to_formatted: (289) 400-7562
+from_formatted: (437) 291-8071
+start_time: Tuesday, April 30 2024, 23:44
+end_time: None
+account_sid: ACea117aecf23c9f2b46b7b8f49c651e19
+duration: 0
+price: None
+price_unit: USD
+
+clinic_id: 60
+male_docs_number: 3
+female_docs_number: 4
+success: true
+sid: CAf3f9e7b0120906884f8f7ce17fe34527
+to_formatted: (289) 400-7562
+from_formatted: (437) 291-8071
+start_time: Tuesday, April 30 2024, 23:53
+end_time: None
+account_sid: ACea117aecf23c9f2b46b7b8f49c651e19
+duration: 0
+price: None
+price_unit: USD
+
