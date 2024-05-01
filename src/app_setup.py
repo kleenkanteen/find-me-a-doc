@@ -20,6 +20,3 @@ os.environ["NGROK_URL"] = public_url
 from controller.call_flow_manager import call_flow_manager
 
 app.register_blueprint(call_flow_manager)
-
-
-

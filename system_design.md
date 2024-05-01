@@ -19,5 +19,5 @@ Both the Frontend and Backend workflows are explained by diagrams (located in th
 | phone_number | string |
 | rating | number |
 | called | boolean |
-| num_male_docs | number |
-| num_female_docs| number |
+| male_docs_number | number |
+| female_docs_number| number |

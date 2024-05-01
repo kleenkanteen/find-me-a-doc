@@ -5,3 +5,4 @@ flask
 twilio
 python-dotenv
 inquirer
+black
