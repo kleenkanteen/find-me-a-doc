@@ -1,6 +1,7 @@
 import os
 from util.logger import logger
 from dotenv import load_dotenv
+import config.active_call_values as call_values
 
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
@@ -31,20 +32,33 @@ def make_call(phone_number: str, clinic_id: int):
 
     client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
-    response = VoiceResponse()
     print("NGROK URL: ", ngrok_url)
-    response.redirect(f"{ngrok_url}/call/intro_message/{clinic_id}", method="GET")
 
     if MODE == "DEV":
         number_called = PERSONAL_NUMBER
     else:
         number_called = phone_number
 
+    logger.debug(f"phone number: {phone_number}")
+
+    response = VoiceResponse()
+
+    gather = Gather(
+        input="speech",
+        speech_model="phone_call",
+        enhanced="true",
+        action=f"{ngrok_url}/call/machine_detection/{clinic_id}",
+        speechTimeout=call_values.timeout,
+    )
+
+    response.append(gather)
+
     call = client.calls.create(
         to=f"+1{number_called}",
         from_=f"+1{TWILIO_NUMBER}",
         timeout=30,
+        machine_detection="Enable",
         twiml=str(response),
+        record=True,
     )
-
     return call.sid

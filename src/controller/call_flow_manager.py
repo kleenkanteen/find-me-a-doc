@@ -1,19 +1,136 @@
 from flask import request, Blueprint
-from twilio.twiml.voice_response import VoiceResponse, Gather
+from twilio.twiml.voice_response import VoiceResponse, Gather, Redirect
 
 from util.logger import logger
+from src.util.ai.ai_nav_menu_navigator import find_next_nav_menu_key
 import services.calls.active_call_methods as call_methods
 import config.active_call_values as call_values
 
+from typing import Union
 import os
 
 call_flow_manager = Blueprint("call_flow_manager", __name__, url_prefix="/call")
 
 public_url = os.environ.get("NGROK_URL")
 
+# consider adding gpt to identify if human or robot:
+# sometimes we may have a bot saying "the expected time to speak to someone is of 3 minutes"
+# which would trigger /intro_message.
+@call_flow_manager.route("/handle_on_hold/<int:clinic_id>", methods=["GET", "POST"])
+def handle_on_hold(clinic_id: int):
+
+    print("HERE: ", request.form.to_dict())
+
+    print("ARGS: ", request.args.to_dict())
+
+    logger.debug(f"\n--now in handle on hold--\n")
+
+    speech_result = request.args.get("transcript", "")
+
+    if "hello" in speech_result.lower():
+        response.redirect(f"{public_url}/call/initial_message/{clinic_id}")
+        return str(response)
+
+    repetition_count = int(request.args.get("repetition_count", 0))
+    logger.loud(f"repetition_count: {repetition_count}")
+
+    if repetition_count > 13:
+        hangup = VoiceResponse().hangup()
+        return str(hangup)
+
+    print("on hold data: ", request.form.to_dict())
+
+    response = VoiceResponse()
+
+    gather = Gather(
+        input="speech",
+        speech_model="phone_call",
+        enhanced="true",
+        action=f"{public_url}/call/intro_message/{clinic_id}",
+        speechTimeout="auto",
+    )
+    response.append(gather)
+
+    new_repetition_count = repetition_count + 1
+    response.redirect(
+        f"{public_url}/call/handle_on_hold/{clinic_id}?repetition_count={new_repetition_count}",
+        method="POST",
+    )
+    return str(response)
+
+
+@call_flow_manager.route("/machine_detection/<int:clinic_id>", methods=["GET", "POST"])
+def handle_machine_detection(clinic_id: int):
+
+    logger.debug("machine detection endpoint form: ", request.form.to_dict())
+    answeredBy = request.form.get("AnsweredBy", "")
+    logger.debug(f"answeredBy: {answeredBy}")
+
+    response = VoiceResponse()
+
+    # answeredBy can be: human, machine_start, fax or unknown.
+    if "human" in answeredBy:
+        response.redirect(f"{public_url}/call/intro_message/{clinic_id}")
+        return str(response)
+    if "fax" in answeredBy or "unknown" in answeredBy:
+        logger.error(f"answered by is either fax or unknown. answeredBy: {answeredBy} ")
+        logger.info(f"finishing call...")
+        hangup = VoiceResponse().hangup()
+        return str(hangup)
+
+    speech_result = request.form.get("SpeechResult", "")
+    logger.debug(f"speech result: {speech_result}")
+
+    if speech_result != "":
+
+        try:
+            next_nav_menu_data = find_next_nav_menu_key(speech_result)
+            digits = next_nav_menu_data["digit"]
+            human_reached = next_nav_menu_data["human_reached"]
+        except TypeError as e:
+            logger.error(f"chatgpt returned an invalid response. full error log: {e}")
+
+        if human_reached == True and isinstance(digits, int):
+
+            response.play("", digits=str(digits))
+            logger.debug(f"typing digit {digits} and then redirecting to on hold...")
+            response.redirect(
+                f"{public_url}/call/handle_on_hold/{clinic_id}", method="POST"
+            )
+            return str(response)
+
+        if human_reached == True and digits is None:
+
+            logger.debug("redirecting to on hold...")
+
+            redirect = VoiceResponse()
+            redirect.redirect(
+                f"{public_url}/call/handle_on_hold/{clinic_id}", method="POST"
+            )
+            return str(redirect)
+
+        else:
+            logger.debug(f"played digits: {digits}")
+            response.play("", digits=str(digits))
+
+    logger.debug("\ngather has been triggered\n")
+    gather = Gather(
+        input="speech",
+        speech_model="phone_call",
+        enhanced="true",
+        action=f"{public_url}/call/machine_detection/{clinic_id}",
+        speech_timeout='auto',
+    )
+
+    response.append(gather)
+    return str(response)
+
 
 @call_flow_manager.route("/intro_message/<int:clinic_id>", methods=["GET", "POST"])
 def intro_message(clinic_id: int):
+
+    logger.info(f"\nintro message request form: {request.form.to_dict()}")
+    logger.info(f"intro message request args: {request.args.to_dict()}\n")
 
     prompt_retry_count = int(request.args.get("prompt_retry_count", 0))
     # Invalid_value_count is always 1 behind when attaching it to a Gather action, so it's set to 1 instead of 0
@@ -50,7 +167,8 @@ def intro_message(clinic_id: int):
     # Redirect user in a loop if no option is selected
     new_timeouts_count = timeouts_count + 1
     response.redirect(
-        f"{public_url}/call/intro_message/{clinic_id}?prompt_retry_count={prompt_retry_count}&timeouts_count={new_timeouts_count}&invalid_input_count={invalid_input_count}"
+        f"{public_url}/call/intro_message/{clinic_id}?prompt_retry_count={prompt_retry_count}&timeouts_count={new_timeouts_count}&invalid_input_count={invalid_input_count}",
+        method="GET",
     )
 
     return str(response)
