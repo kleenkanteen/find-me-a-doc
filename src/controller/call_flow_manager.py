@@ -2,11 +2,11 @@ from flask import request, Blueprint
 from twilio.twiml.voice_response import VoiceResponse, Gather, Redirect
 
 from util.logger import logger
-from src.util.ai.ai_nav_menu_navigator import find_next_nav_menu_key
+from util.ai.nav_menu_navigator import find_next_nav_menu_key
 import services.calls.active_call_methods as call_methods
 import config.active_call_values as call_values
+from util.ai.pregenerated_transcript_detector import detect_pregenerated_transcript
 
-from typing import Union
 import os
 
 call_flow_manager = Blueprint("call_flow_manager", __name__, url_prefix="/call")
@@ -19,22 +19,38 @@ public_url = os.environ.get("NGROK_URL")
 @call_flow_manager.route("/handle_on_hold/<int:clinic_id>", methods=["GET", "POST"])
 def handle_on_hold(clinic_id: int):
 
-    print("HERE: ", request.form.to_dict())
-
-    print("ARGS: ", request.args.to_dict())
+    print("handle on hold form data: ", request.form.to_dict())
 
     logger.debug(f"\n--now in handle on hold--\n")
 
-    speech_result = request.args.get("transcript", "")
+    speech_result = request.form.get("SpeechResult", "")
 
-    if "hello" in speech_result.lower():
-        response.redirect(f"{public_url}/call/initial_message/{clinic_id}")
-        return str(response)
+    if speech_result != "":
+        logger.debug(f"\ntranscript: {speech_result}\n")
+        is_robot = detect_pregenerated_transcript(speech_result)
+        logger.debug(f"\is human or robot ai response: {is_robot}\n")
+
+        if is_robot:
+            robot_response = VoiceResponse()
+            gather = Gather(
+                input="speech",
+                speech_model="phone_call",
+                enhanced="true",
+                action=f"{public_url}/call/machine_detection/{clinic_id}",
+                speechTimeout='5',
+                hints="$OPERAND, press $OPERAND"
+            )
+            robot_response.append(gather)
+            return str(robot_response)
+        
+        else:
+            redirect_response = VoiceResponse()
+            redirect_response.redirect(f"{public_url}/call/handle_on_hold/{clinic_id}")
 
     repetition_count = int(request.args.get("repetition_count", 0))
     logger.loud(f"repetition_count: {repetition_count}")
 
-    if repetition_count > 13:
+    if repetition_count > 15:
         hangup = VoiceResponse().hangup()
         return str(hangup)
 
@@ -42,12 +58,17 @@ def handle_on_hold(clinic_id: int):
 
     response = VoiceResponse()
 
+    #Try making the action be this same url, however, the speech result will be
+    # deemed as either human or robotic using gpt. if robot, keep waiting, if human
+    # redirect to intro message
+
     gather = Gather(
         input="speech",
         speech_model="phone_call",
         enhanced="true",
-        action=f"{public_url}/call/intro_message/{clinic_id}",
-        speechTimeout="auto",
+        action=f"{public_url}/call/handle_on_hold/{clinic_id}",
+        speechTimeout='auto',
+        hints="$OPERAND, press $OPERAND"
     )
     response.append(gather)
 
@@ -62,7 +83,7 @@ def handle_on_hold(clinic_id: int):
 @call_flow_manager.route("/machine_detection/<int:clinic_id>", methods=["GET", "POST"])
 def handle_machine_detection(clinic_id: int):
 
-    logger.debug("machine detection endpoint form: ", request.form.to_dict())
+    logger.debug(f"machine detection endpoint form:  {request.form.to_dict()}")
     answeredBy = request.form.get("AnsweredBy", "")
     logger.debug(f"answeredBy: {answeredBy}")
 
@@ -73,7 +94,7 @@ def handle_machine_detection(clinic_id: int):
         response.redirect(f"{public_url}/call/intro_message/{clinic_id}")
         return str(response)
     if "fax" in answeredBy or "unknown" in answeredBy:
-        logger.error(f"answered by is either fax or unknown. answeredBy: {answeredBy} ")
+        logger.error(f"answeredBy is either fax or unknown. answeredBy: {answeredBy} ")
         logger.info(f"finishing call...")
         hangup = VoiceResponse().hangup()
         return str(hangup)
@@ -85,21 +106,21 @@ def handle_machine_detection(clinic_id: int):
 
         try:
             next_nav_menu_data = find_next_nav_menu_key(speech_result)
-            digits = next_nav_menu_data["digit"]
+            digit = next_nav_menu_data["digit"]
             human_reached = next_nav_menu_data["human_reached"]
         except TypeError as e:
             logger.error(f"chatgpt returned an invalid response. full error log: {e}")
 
-        if human_reached == True and isinstance(digits, int):
+        if human_reached == True and isinstance(digit, int):
 
-            response.play("", digits=str(digits))
-            logger.debug(f"typing digit {digits} and then redirecting to on hold...")
+            response.play("", digits=str(digit))
+            logger.debug(f"typing digit {digit} and then redirecting to on hold...")
             response.redirect(
                 f"{public_url}/call/handle_on_hold/{clinic_id}", method="POST"
             )
             return str(response)
 
-        if human_reached == True and digits is None:
+        if human_reached == True and digit is None:
 
             logger.debug("redirecting to on hold...")
 
@@ -110,8 +131,8 @@ def handle_machine_detection(clinic_id: int):
             return str(redirect)
 
         else:
-            logger.debug(f"played digits: {digits}")
-            response.play("", digits=str(digits))
+            logger.debug(f"played digit: {digit}")
+            response.play("", digits=str(digit))
 
     logger.debug("\ngather has been triggered\n")
     gather = Gather(
@@ -119,7 +140,8 @@ def handle_machine_detection(clinic_id: int):
         speech_model="phone_call",
         enhanced="true",
         action=f"{public_url}/call/machine_detection/{clinic_id}",
-        speech_timeout='auto',
+        speech_timeout=6,
+        hints="$OPERAND, press $OPERAND"
     )
 
     response.append(gather)
@@ -154,14 +176,12 @@ def intro_message(clinic_id: int):
     response = VoiceResponse()
 
     if prompt_retry_count >= call_values.ENDPOINT_HIT_LIMIT:
-        gather.say(
-            "Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Press 1 for yes or 2 for no"
-        )
+
+        response.play("https://findadoc-7179.twil.io/intro_message_2_options.mp3")
 
     else:
-        gather.say(
-            "Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Press 1 for yes, 2 for no, or 3 to repeat this message"
-        )
+        response.play("https://findadoc-7179.twil.io/intro_message_3_options.mp3")
+
     response.append(gather)
 
     # Redirect user in a loop if no option is selected
@@ -191,6 +211,8 @@ def handle_intro_message_response(clinic_id: int):
         choice = request.values["Digits"]
         if choice == "1":
 
+            logger.loud("User chose to answer both questions...continuing to the next question now")
+
             redirect_response = VoiceResponse()
             redirect_response.redirect(
                 f"{public_url}/call/ask_male_doctors_number/{clinic_id}", method="GET"
@@ -198,6 +220,7 @@ def handle_intro_message_response(clinic_id: int):
             return str(redirect_response)
 
         if choice == "2":
+            logger.loud("User chose not to answer questions...ending call now")
             return call_methods.outro_message()
 
         if choice == "3":
@@ -210,13 +233,13 @@ def handle_intro_message_response(clinic_id: int):
             new_invalid_input_count = invalid_input_count + 1
 
             if prompt_retry_count >= 3:
-                message = "You can only enter 1 for yes, or 2 for no"
+                message_url = "https://findadoc-7179.twil.io/intro_error_input_2_options.mp3"
             else:
-                message = "You can only enter 1 for yes, 2 for no, or 3 to listen to the introduction again"
+                message_url = "https://findadoc-7179.twil.io/intro_error_input_3_options.mp3"
 
             return call_methods.handle_unrecognizable_response(
                 f"call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&invalid_input_count={new_invalid_input_count}",
-                message,
+                message_url,
                 num_digits=1,
             )
 
@@ -236,14 +259,12 @@ def ask_male_doctors_number(clinic_id: int):
         timeout=call_values.timeout,
         num_digits=2,
     )
+
     if timeouts_count == 0:
-        gather.say(
-            f"I see. How many of the available doctors are male? Please type the number on your keypad."
-        )
+        response.play("https://findadoc-7179.twil.io/male_doctors_question.mp3")
     else:
-        gather.say(
-            f"How many of the available doctors are male? Please type the number on your keypad."
-        )
+        response.play("https://findadoc-7179.twil.io/no_intro_male_doctors_question.mp3")
+
 
     response = VoiceResponse()
     response.append(gather)
@@ -286,23 +307,23 @@ def handle_number_male_doctors_response(clinic_id: int):
         except (ValueError, TypeError) as e:
             new_invalid_input_count = invalid_input_count + 1
             logger.error(f"type error exception thrown. error message: {e}")
-            message = "Please try again, enter numeric values only"
+            message_url = "https://findadoc-7179.twil.io/wrong_input.mp3"
             return call_methods.handle_unrecognizable_response(
                 f"/call/handle_number_male_doctors_response/{clinic_id}?invalid_input_count={new_invalid_input_count}",
-                message,
+                message_url,
                 num_digits=2,
             )
 
     else:
-        message = (
-            "I'm sorry, I didn't get that. Could you type the number on your keypad?"
+        message_url = (
+            "https://findadoc-7179.twil.io/ask_again_to_type_input.mp3"
         )
         logger.critical("Attribute 'Digits' doesn't exist in request values")
 
         new_invalid_input_count = invalid_input_count + 1
         return call_methods.handle_unrecognizable_response(
             f"/call/handle_intro_response/{clinic_id}?invalid_input_count={new_invalid_input_count}",
-            message,
+            message_url,
             num_digits=2,
         )
 
@@ -326,13 +347,9 @@ def ask_female_doctors_number(clinic_id: int):
     )
 
     if timeouts_count == 0:
-        gather.say(
-            f"I see. How many of the available doctors are female? Please type the number on your keypad."
-        )
+        response.play("https://findadoc-7179.twil.io/female_doctors_question.mp3")
     else:
-        gather.say(
-            f"How many of the available doctors are female? Please type the number on your keypad."
-        )
+        response.play("https://findadoc-7179.twil.io/no_intro_female_doctors_question.mp3")
 
     response = VoiceResponse()
     response.append(gather)
@@ -368,21 +385,21 @@ def handle_number_female_doctors_response(clinic_id: int):
         except (ValueError, TypeError) as e:
             new_invalid_input_count = invalid_input_count + 1
             logger.error(f"type error exception thrown. error message: {e}")
-            message = "Please try again, enter numeric values only"
+            message_url = "https://findadoc-7179.twil.io/wrong_input.mp3"
             return call_methods.handle_unrecognizable_response(
                 f"/call/handle_female_doctors_number/{clinic_id}?invalid_input_count={new_invalid_input_count}",
-                message,
+                message_url,
                 num_digits=2,
             )
 
     else:
-        message = (
-            "I'm sorry, I didn't get that. Could you type the number on your keypad?"
+        message_url = (
+            "https://findadoc-7179.twil.io/wrong_input.mp3"
         )
         logger.critical("Attribute 'Digits' doesn't exist in request.values")
         return call_methods.handle_unrecognizable_response(
             f"/call/ask_female_doctors_number/{clinic_id}?invalid_input_count={invalid_input_count}",
-            message,
+            message_url,
             num_digits=2,
         )
 

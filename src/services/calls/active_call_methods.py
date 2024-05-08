@@ -30,7 +30,7 @@ def outro_message():
     return str(response)
 
 
-def handle_unrecognizable_response(path: str, message: str, num_digits: int):
+def handle_unrecognizable_response(path: str, message_url: str, num_digits: int):
     response = VoiceResponse()
 
     logger.warning(f"\nresponse not understood on path: {path}\n")
@@ -39,7 +39,7 @@ def handle_unrecognizable_response(path: str, message: str, num_digits: int):
         action=f"{public_url}/{path}", timeout=timeout, num_digits=num_digits
     )
 
-    gather.say(message)
+    response.play(message_url)
     response.append(gather)
 
     return str(response)

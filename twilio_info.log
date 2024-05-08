@@ -1,0 +1,855 @@
+2024-05-07 11:20:36,499 
+INFO 
+Received phone number: (416) 599-6000. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 11:20:36,500 
+INFO 
+phone number: (416) 599-6000 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 11:20:36,501 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 11:20:36,925 
+INFO 
+Call started...sid: CA21601f4ddf559ce9626d0f7422c23200 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 11:21:33,367 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 11:21:34,491 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+
+2024-05-07 11:23:56,441 
+INFO 
+Received phone number: (416) 599-6000. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 11:23:56,442 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 11:23:56,444 
+INFO 
+phone number: (416) 599-6000 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 11:23:56,914 
+INFO 
+Call started...sid: CA20db668a42691ceb9f2f8587778bfe1d 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 11:24:43,964 
+INFO 
+machine detection endpoint form:  {'Called': '+14165996000', 'ToState': 'ON', 'CallerCountry': 'CA', 'Direction': 'outbound-api', 'SpeechResult': '16 please hang up and call 911. Our Clinic is located at 901 King Street West with the entrance on strong unit 105. Phone number is 416-509-9731. Please select one of the following options for walk-in clinic, press 1 a family medicine, press two for sports medicine, press 3. And for pain clinic, press 4.', 'CallerState': 'Alberta', 'Language': 'en-US', 'ToZip': 'M5B 2H3', 'Confidence': '0.871448', 'CallSid': 'CA20db668a42691ceb9f2f8587778bfe1d', 'To': '+14165996000', 'CallerZip': '', 'ToCountry': 'CA', 'CalledZip': 'M5B 2H3', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5881', 'CalledCity': 'TORONTO', 'CallStatus': 'in-progress', 'From': '+15873242269', 'AccountSid': 'AC6eb74d248ace0c243a8ef6772acd0eea', 'CalledCountry': 'CA', 'CallerCity': 'Calgary', 'ToCity': 'TORONTO', 'FromCountry': 'CA', 'Caller': '+15873242269', 'FromCity': 'Calgary', 'CalledState': 'ON', 'FromZip': '', 'AnsweredBy': 'machine_start', 'FromState': 'Alberta'} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 76, in handle_machine_detection
+
+2024-05-07 11:24:43,967 
+INFO 
+answeredBy: machine_start 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 78, in handle_machine_detection
+
+2024-05-07 11:24:43,970 
+INFO 
+speech result: 16 please hang up and call 911. Our Clinic is located at 901 King Street West with the entrance on strong unit 105. Phone number is 416-509-9731. Please select one of the following options for walk-in clinic, press 1 a family medicine, press two for sports medicine, press 3. And for pain clinic, press 4. 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 93, in handle_machine_detection
+
+2024-05-07 11:24:49,356 
+INFO 
+played digit: 1 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 124, in handle_machine_detection
+
+2024-05-07 11:24:49,360 
+INFO 
+
+gather has been triggered
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 127, in handle_machine_detection
+
+2024-05-07 11:24:55,556 
+INFO 
+machine detection endpoint form:  {'Called': '+14165996000', 'ToState': 'ON', 'CallerCountry': 'CA', 'Direction': 'outbound-api', 'SpeechResult': 'thank you for calling', 'CallerState': 'Alberta', 'Language': 'en-US', 'ToZip': 'M5B 2H3', 'Confidence': '0.9128386', 'CallSid': 'CA20db668a42691ceb9f2f8587778bfe1d', 'To': '+14165996000', 'CallerZip': '', 'ToCountry': 'CA', 'CalledZip': 'M5B 2H3', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5881', 'CalledCity': 'TORONTO', 'CallStatus': 'in-progress', 'From': '+15873242269', 'AccountSid': 'AC6eb74d248ace0c243a8ef6772acd0eea', 'CalledCountry': 'CA', 'CallerCity': 'Calgary', 'ToCity': 'TORONTO', 'FromCountry': 'CA', 'Caller': '+15873242269', 'FromCity': 'Calgary', 'CalledState': 'ON', 'FromZip': '', 'AnsweredBy': 'machine_start', 'FromState': 'Alberta'} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 76, in handle_machine_detection
+
+2024-05-07 11:24:55,559 
+INFO 
+answeredBy: machine_start 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 78, in handle_machine_detection
+
+2024-05-07 11:24:55,562 
+INFO 
+speech result: thank you for calling 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 93, in handle_machine_detection
+
+2024-05-07 11:24:59,493 
+INFO 
+GPT could not find a reasonable answer. 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/util/ai/nav_menu_navigator.py", line 126, in is_valid_response
+
+2024-05-07 11:24:59,505 
+INFO 
+error: chatgpt returned an invalid response. gpt response: {'digit': None, 'human_reached': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/util/ai/nav_menu_navigator.py", line 109, in find_next_nav_menu_key
+
+2024-05-07 11:24:59,507 
+INFO 
+chatgpt returned an invalid response. full error log: 'NoneType' object is not subscriptable 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 102, in handle_machine_detection
+
+2024-05-07 11:25:03,821 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 11:25:04,264 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+
+2024-05-07 11:33:08,644 
+INFO 
+Received phone number: (416) 599-6000. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 11:33:08,645 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 11:33:08,647 
+INFO 
+phone number: (416) 599-6000 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 11:33:09,143 
+INFO 
+Call started...sid: CA75cbe8b93466cdb3316739dec3c591a3 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 11:33:57,837 
+INFO 
+machine detection endpoint form:  {'Called': '+14165996000', 'ToState': 'ON', 'CallerCountry': 'CA', 'Direction': 'outbound-api', 'SpeechResult': 'See, please hang up and call 911.  Our Clinic is located at 901 King Street West with the entrance on Strawn unit 105. Our fax number is 416-599-9731.  Please select one of the following options.  for walk-in clinic, press 1  for Family Medicine, press 2.  For sports medicine, press 3 and for pain clinic, press 4.', 'CallerState': 'Alberta', 'Language': 'en-US', 'ToZip': 'M5B 2H3', 'Confidence': '0.78930795', 'CallSid': 'CA75cbe8b93466cdb3316739dec3c591a3', 'To': '+14165996000', 'CallerZip': '', 'ToCountry': 'CA', 'CalledZip': 'M5B 2H3', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5900', 'CalledCity': 'TORONTO', 'CallStatus': 'in-progress', 'From': '+15873242269', 'AccountSid': 'AC6eb74d248ace0c243a8ef6772acd0eea', 'CalledCountry': 'CA', 'CallerCity': 'Calgary', 'ToCity': 'TORONTO', 'FromCountry': 'CA', 'Caller': '+15873242269', 'FromCity': 'Calgary', 'CalledState': 'ON', 'FromZip': '', 'AnsweredBy': 'machine_start', 'FromState': 'Alberta'} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 76, in handle_machine_detection
+
+2024-05-07 11:33:57,841 
+INFO 
+answeredBy: machine_start 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 78, in handle_machine_detection
+
+2024-05-07 11:33:57,843 
+INFO 
+speech result: See, please hang up and call 911.  Our Clinic is located at 901 King Street West with the entrance on Strawn unit 105. Our fax number is 416-599-9731.  Please select one of the following options.  for walk-in clinic, press 1  for Family Medicine, press 2.  For sports medicine, press 3 and for pain clinic, press 4. 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 93, in handle_machine_detection
+
+2024-05-07 11:34:06,241 
+INFO 
+played digit: 1 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 124, in handle_machine_detection
+
+2024-05-07 11:34:06,246 
+INFO 
+
+gather has been triggered
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 127, in handle_machine_detection
+
+2024-05-07 11:34:44,719 
+INFO 
+machine detection endpoint form:  {'Called': '+14165996000', 'ToState': 'ON', 'CallerCountry': 'CA', 'Direction': 'outbound-api', 'SpeechResult': "Thank you for calling walk-in clinic. If this is an emergency. Please hang up and call 911 you must bring your physical health card to either walk in business and are walk-in clinic will close once we've reach patient capacity for the day any rude or aggressive behavior can lead to your dismissal from the club. Please hold and an attendant will be with you as soon as possible.", 'CallerState': 'Alberta', 'Language': 'en-US', 'ToZip': 'M5B 2H3', 'Confidence': '0.0', 'CallSid': 'CA75cbe8b93466cdb3316739dec3c591a3', 'To': '+14165996000', 'CallerZip': '', 'ToCountry': 'CA', 'CalledZip': 'M5B 2H3', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5900', 'CalledCity': 'TORONTO', 'CallStatus': 'in-progress', 'From': '+15873242269', 'AccountSid': 'AC6eb74d248ace0c243a8ef6772acd0eea', 'CalledCountry': 'CA', 'CallerCity': 'Calgary', 'ToCity': 'TORONTO', 'FromCountry': 'CA', 'Caller': '+15873242269', 'FromCity': 'Calgary', 'CalledState': 'ON', 'FromZip': '', 'AnsweredBy': 'machine_start', 'FromState': 'Alberta'} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 76, in handle_machine_detection
+
+2024-05-07 11:34:44,723 
+INFO 
+answeredBy: machine_start 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 78, in handle_machine_detection
+
+2024-05-07 11:34:44,726 
+INFO 
+speech result: Thank you for calling walk-in clinic. If this is an emergency. Please hang up and call 911 you must bring your physical health card to either walk in business and are walk-in clinic will close once we've reach patient capacity for the day any rude or aggressive behavior can lead to your dismissal from the club. Please hold and an attendant will be with you as soon as possible. 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 93, in handle_machine_detection
+
+2024-05-07 11:34:51,592 
+INFO 
+redirecting to on hold... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 115, in handle_machine_detection
+
+2024-05-07 11:34:51,692 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 11:34:51,695 
+INFO 
+
+transcript: 
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 30, in handle_on_hold
+
+2024-05-07 11:34:53,264 
+INFO 
+\is human or robot ai response: ChatCompletionMessage(content='{"pregenerated": false}', role='assistant', function_call=None, tool_calls=None)
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 34, in handle_on_hold
+
+2024-05-07 11:34:59,422 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 11:34:59,427 
+INFO 
+
+transcript: 
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 30, in handle_on_hold
+
+2024-05-07 11:35:00,731 
+INFO 
+\is human or robot ai response: ChatCompletionMessage(content='{"pregenerated": false}', role='assistant', function_call=None, tool_calls=None)
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 34, in handle_on_hold
+
+2024-05-07 11:35:07,018 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 11:35:07,021 
+INFO 
+
+transcript: 
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 30, in handle_on_hold
+
+2024-05-07 11:35:08,314 
+INFO 
+\is human or robot ai response: ChatCompletionMessage(content='{"pregenerated": false}', role='assistant', function_call=None, tool_calls=None)
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 34, in handle_on_hold
+
+2024-05-07 11:35:14,517 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 11:35:14,519 
+INFO 
+
+transcript: 
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 30, in handle_on_hold
+
+2024-05-07 11:35:19,580 
+INFO 
+\is human or robot ai response: ChatCompletionMessage(content='{"pregenerated": false}', role='assistant', function_call=None, tool_calls=None)
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 34, in handle_on_hold
+
+2024-05-07 11:35:25,722 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 11:35:25,726 
+INFO 
+
+transcript: 
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 30, in handle_on_hold
+
+2024-05-07 11:35:27,161 
+INFO 
+\is human or robot ai response: ChatCompletionMessage(content='{"pregenerated": true}', role='assistant', function_call=None, tool_calls=None)
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 34, in handle_on_hold
+
+2024-05-07 11:35:33,307 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 11:35:33,311 
+INFO 
+
+transcript: 
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 30, in handle_on_hold
+
+2024-05-07 11:35:34,761 
+INFO 
+\is human or robot ai response: ChatCompletionMessage(content='{"pregenerated": false}', role='assistant', function_call=None, tool_calls=None)
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 34, in handle_on_hold
+
+2024-05-07 11:35:40,936 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 11:35:40,939 
+INFO 
+
+transcript: 
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 30, in handle_on_hold
+
+2024-05-07 11:35:44,913 
+INFO 
+\is human or robot ai response: ChatCompletionMessage(content='{"pregenerated": false}', role='assistant', function_call=None, tool_calls=None)
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 34, in handle_on_hold
+
+2024-05-07 11:36:23,787 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 11:36:24,238 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+
+2024-05-07 11:59:36,908 
+INFO 
+Received phone number: (416) 515-0590. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 11:59:36,909 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 11:59:36,912 
+INFO 
+phone number: (416) 515-0590 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 11:59:37,406 
+INFO 
+Call started...sid: CAe7ee3324f47d9edbb6ab7f01e39ae004 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 12:00:18,556 
+INFO 
+machine detection endpoint form:  {'Called': '+14165150590', 'ToState': 'ON', 'CallerCountry': 'CA', 'Direction': 'outbound-api', 'SpeechResult': 'We are located one house block west of Sherburne subway station inside the Greenland Square Plaza.  For walk-in hours, please press 1.  for prescription renewals, press 2  For test results, please. Press 3. To speak with perception, please. Press 0.', 'CallerState': 'Alberta', 'Language': 'en-US', 'ToZip': 'M4Y 1H5', 'Confidence': '0.8365525', 'CallSid': 'CAe7ee3324f47d9edbb6ab7f01e39ae004', 'To': '+14165150590', 'CallerZip': '', 'ToCountry': 'CA', 'CalledZip': 'M4Y 1H5', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5259', 'CalledCity': 'TORONTO', 'CallStatus': 'in-progress', 'From': '+15873242269', 'AccountSid': 'AC6eb74d248ace0c243a8ef6772acd0eea', 'CalledCountry': 'CA', 'CallerCity': 'Calgary', 'ToCity': 'TORONTO', 'FromCountry': 'CA', 'Caller': '+15873242269', 'FromCity': 'Calgary', 'CalledState': 'ON', 'FromZip': '', 'AnsweredBy': 'machine_start', 'FromState': 'Alberta'} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 87, in handle_machine_detection
+
+2024-05-07 12:00:18,559 
+INFO 
+answeredBy: machine_start 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 89, in handle_machine_detection
+
+2024-05-07 12:00:18,563 
+INFO 
+speech result: We are located one house block west of Sherburne subway station inside the Greenland Square Plaza.  For walk-in hours, please press 1.  for prescription renewals, press 2  For test results, please. Press 3. To speak with perception, please. Press 0. 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 104, in handle_machine_detection
+
+2024-05-07 12:00:24,810 
+INFO 
+typing digit 0 and then redirecting to on hold... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 118, in handle_machine_detection
+
+2024-05-07 12:00:25,416 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 12:00:54,602 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 12:00:55,017 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+
+2024-05-07 18:09:33,536 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 18:09:33,536 
+INFO 
+Received phone number: (416) 515-0590. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 18:09:33,539 
+INFO 
+phone number: (416) 515-0590 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 18:09:34,017 
+INFO 
+Twilio error, message: 
+[31m[49mHTTP Error[0m [37m[49mYour request was:[0m
+
+[36m[49mPOST /Accounts/ACf926bd20c3b79ccedfb9683ac2b49ec9/Calls.json[0m
+
+[37m[49mTwilio returned the following information:[0m
+
+[34m[49mUnable to create record: The number +14165150590 is unverified. Trial accounts may only make calls to verified numbers.[0m
+
+[37m[49mMore information may be available here:[0m
+
+[34m[49mhttps://www.twilio.com/docs/errors/21219[0m
+
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 73, in call_all_clinics
+
+2024-05-07 18:09:50,224 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 18:09:50,225 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 18:09:50,227 
+INFO 
+phone number: (314) 690-8960 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 18:09:50,747 
+INFO 
+Call started...sid: CA5654325b405a4f966a8b1f6d937f114e 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 18:10:27,968 
+INFO 
+machine detection endpoint form:  {'Called': '+13146908960', 'ToState': 'MO', 'CallerCountry': 'US', 'Direction': 'outbound-api', 'SpeechResult': 'Hello, thank you for contacting our Clinic. Press 2 to contact a robot or press 1 to the contact a representative.', 'CallerState': '', 'Language': 'en-US', 'ToZip': '63132', 'Confidence': '0.9241983', 'CallSid': 'CA5654325b405a4f966a8b1f6d937f114e', 'To': '+13146908960', 'CallerZip': '', 'ToCountry': 'US', 'CalledZip': '63132', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5278', 'CalledCity': 'SAINT LOUIS', 'CallStatus': 'in-progress', 'From': '+18889974384', 'AccountSid': 'ACf926bd20c3b79ccedfb9683ac2b49ec9', 'CalledCountry': 'US', 'CallerCity': '', 'ToCity': 'SAINT LOUIS', 'FromCountry': 'US', 'Caller': '+18889974384', 'FromCity': '', 'CalledState': 'MO', 'FromZip': '', 'AnsweredBy': 'unknown', 'FromState': ''} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 88, in handle_machine_detection
+
+2024-05-07 18:10:27,970 
+INFO 
+answeredBy: unknown 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 90, in handle_machine_detection
+
+2024-05-07 18:10:27,972 
+INFO 
+answeredBy is either fax or unknown. answeredBy: unknown  
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 99, in handle_machine_detection
+
+2024-05-07 18:10:31,818 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 18:10:32,337 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+
+2024-05-07 18:13:05,376 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 18:13:05,376 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 18:13:05,379 
+INFO 
+phone number: (314) 690-8960 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 18:13:05,764 
+INFO 
+Call started...sid: CA67233d0d2bbf1ff94fc338cd6d270203 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 18:13:44,810 
+INFO 
+machine detection endpoint form:  {'Called': '+13146908960', 'ToState': 'MO', 'CallerCountry': 'US', 'Direction': 'outbound-api', 'SpeechResult': 'Hello. Thank you for contacting our Clinic. Press 2 to contact a robot or press 1 to 2 contact a representative.', 'CallerState': '', 'Language': 'en-US', 'ToZip': '63132', 'Confidence': '0.87895083', 'CallSid': 'CA67233d0d2bbf1ff94fc338cd6d270203', 'To': '+13146908960', 'CallerZip': '', 'ToCountry': 'US', 'CalledZip': '63132', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '7192', 'CalledCity': 'SAINT LOUIS', 'CallStatus': 'in-progress', 'From': '+18889974384', 'AccountSid': 'ACf926bd20c3b79ccedfb9683ac2b49ec9', 'CalledCountry': 'US', 'CallerCity': '', 'ToCity': 'SAINT LOUIS', 'FromCountry': 'US', 'Caller': '+18889974384', 'FromCity': '', 'CalledState': 'MO', 'FromZip': '', 'AnsweredBy': 'machine_start', 'FromState': ''} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 88, in handle_machine_detection
+
+2024-05-07 18:13:44,814 
+INFO 
+answeredBy: machine_start 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 90, in handle_machine_detection
+
+2024-05-07 18:13:44,817 
+INFO 
+speech result: Hello. Thank you for contacting our Clinic. Press 2 to contact a robot or press 1 to 2 contact a representative. 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 105, in handle_machine_detection
+
+2024-05-07 18:13:47,407 
+INFO 
+typing digit 1 and then redirecting to on hold... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 119, in handle_machine_detection
+
+2024-05-07 18:13:47,979 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:14:02,178 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 18:14:02,910 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+
+2024-05-07 18:20:52,285 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 18:20:52,285 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 18:20:52,290 
+INFO 
+phone number: (314) 690-8960 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 18:20:53,095 
+INFO 
+Call started...sid: CA254050cbf5d71f7ea247e626efeaeadc 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 18:21:18,798 
+INFO 
+machine detection endpoint form:  {'Called': '+13146908960', 'ToState': 'MO', 'CallerCountry': 'US', 'Direction': 'outbound-api', 'SpeechResult': '', 'CallerState': '', 'Language': 'en-US', 'ToZip': '63132', 'Confidence': '0.0', 'CallSid': 'CA254050cbf5d71f7ea247e626efeaeadc', 'To': '+13146908960', 'CallerZip': '', 'ToCountry': 'US', 'CalledZip': '63132', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5262', 'CalledCity': 'SAINT LOUIS', 'CallStatus': 'in-progress', 'From': '+18889974384', 'AccountSid': 'ACf926bd20c3b79ccedfb9683ac2b49ec9', 'CalledCountry': 'US', 'CallerCity': '', 'ToCity': 'SAINT LOUIS', 'FromCountry': 'US', 'Caller': '+18889974384', 'FromCity': '', 'CalledState': 'MO', 'FromZip': '', 'AnsweredBy': 'unknown', 'FromState': ''} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 84, in handle_machine_detection
+
+2024-05-07 18:21:18,803 
+INFO 
+answeredBy: unknown 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 86, in handle_machine_detection
+
+2024-05-07 18:21:18,805 
+INFO 
+answeredBy is either fax or unknown. answeredBy: unknown  
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 95, in handle_machine_detection
+
+2024-05-07 18:21:24,012 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 18:21:24,492 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+
+2024-05-07 18:21:26,999 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 18:21:27,000 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 18:21:27,002 
+INFO 
+phone number: (314) 690-8960 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 18:21:27,438 
+INFO 
+Call started...sid: CA8a23429b72e54e45f6b91759b0e06c1e 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 18:21:58,819 
+INFO 
+machine detection endpoint form:  {'Called': '+13146908960', 'ToState': 'MO', 'CallerCountry': 'US', 'Direction': 'outbound-api', 'SpeechResult': 'together  Oh, no, thank you for contacting our Clinic, press 2 to contact a robot or press 1 to 2 contact a representative.', 'CallerState': '', 'Language': 'en-US', 'ToZip': '63132', 'Confidence': '0.8928293', 'CallSid': 'CA8a23429b72e54e45f6b91759b0e06c1e', 'To': '+13146908960', 'CallerZip': '', 'ToCountry': 'US', 'CalledZip': '63132', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5290', 'CalledCity': 'SAINT LOUIS', 'CallStatus': 'in-progress', 'From': '+18889974384', 'AccountSid': 'ACf926bd20c3b79ccedfb9683ac2b49ec9', 'CalledCountry': 'US', 'CallerCity': '', 'ToCity': 'SAINT LOUIS', 'FromCountry': 'US', 'Caller': '+18889974384', 'FromCity': '', 'CalledState': 'MO', 'FromZip': '', 'AnsweredBy': 'unknown', 'FromState': ''} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 84, in handle_machine_detection
+
+2024-05-07 18:21:58,823 
+INFO 
+answeredBy: unknown 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 86, in handle_machine_detection
+
+2024-05-07 18:21:58,825 
+INFO 
+answeredBy is either fax or unknown. answeredBy: unknown  
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 95, in handle_machine_detection
+
+2024-05-07 18:22:03,431 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 18:22:03,646 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+
+2024-05-07 18:24:06,646 
+INFO 
+Received phone number: (314) 690-8960. Received clinic id: 0 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-07 18:24:06,647 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-07 18:24:06,651 
+INFO 
+phone number: (314) 690-8960 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-07 18:24:07,047 
+INFO 
+Call started...sid: CAcdba1eb8646b4c602f38ee34e0e8663f 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 75, in call_all_clinics
+
+2024-05-07 18:24:54,800 
+INFO 
+machine detection endpoint form:  {'Called': '+13146908960', 'ToState': 'MO', 'CallerCountry': 'US', 'Direction': 'outbound-api', 'SpeechResult': 'Questions. Hi. My name is Kendra. I will read any.  Hello. Thank you for contacting our Saint Louis Missouri clinic located in the United States of America next to Canada and above Mexico here. You have your options. Please choose carefully. You can press two to contact the robot or press 1 to 2 contact a representative.', 'CallerState': '', 'Language': 'en-US', 'ToZip': '63132', 'Confidence': '0.9455017', 'CallSid': 'CAcdba1eb8646b4c602f38ee34e0e8663f', 'To': '+13146908960', 'CallerZip': '', 'ToCountry': 'US', 'CalledZip': '63132', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '8584', 'CalledCity': 'SAINT LOUIS', 'CallStatus': 'in-progress', 'From': '+18889974384', 'AccountSid': 'ACf926bd20c3b79ccedfb9683ac2b49ec9', 'CalledCountry': 'US', 'CallerCity': '', 'ToCity': 'SAINT LOUIS', 'FromCountry': 'US', 'Caller': '+18889974384', 'FromCity': '', 'CalledState': 'MO', 'FromZip': '', 'AnsweredBy': 'machine_start', 'FromState': ''} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 84, in handle_machine_detection
+
+2024-05-07 18:24:54,803 
+INFO 
+answeredBy: machine_start 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 86, in handle_machine_detection
+
+2024-05-07 18:24:54,806 
+INFO 
+speech result: Questions. Hi. My name is Kendra. I will read any.  Hello. Thank you for contacting our Saint Louis Missouri clinic located in the United States of America next to Canada and above Mexico here. You have your options. Please choose carefully. You can press two to contact the robot or press 1 to 2 contact a representative. 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 101, in handle_machine_detection
+
+2024-05-07 18:24:57,663 
+INFO 
+typing digit 1 and then redirecting to on hold... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 115, in handle_machine_detection
+
+2024-05-07 18:24:58,241 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:04,983 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:04,985 
+INFO 
+
+transcript: You will be connected to a representative shortly. Please hold while we try to connect you.
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 31, in handle_on_hold
+
+2024-05-07 18:25:05,974 
+INFO 
+\is human or robot ai response: False
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 33, in handle_on_hold
+
+2024-05-07 18:25:12,140 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:18,311 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:24,527 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:29,995 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:29,998 
+INFO 
+
+transcript: Hello.
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 31, in handle_on_hold
+
+2024-05-07 18:25:32,881 
+INFO 
+\is human or robot ai response: False
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 33, in handle_on_hold
+
+2024-05-07 18:25:39,123 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:42,990 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:42,994 
+INFO 
+
+transcript: Hello.
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 31, in handle_on_hold
+
+2024-05-07 18:25:44,007 
+INFO 
+\is human or robot ai response: False
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 33, in handle_on_hold
+
+2024-05-07 18:25:50,798 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:50,801 
+INFO 
+
+transcript: Hello.
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 31, in handle_on_hold
+
+2024-05-07 18:25:51,822 
+INFO 
+\is human or robot ai response: False
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 33, in handle_on_hold
+
+2024-05-07 18:25:57,380 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:25:57,383 
+INFO 
+
+transcript: Hello.
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 31, in handle_on_hold
+
+2024-05-07 18:25:58,304 
+INFO 
+\is human or robot ai response: False
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 33, in handle_on_hold
+
+2024-05-07 18:26:04,604 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:26:04,607 
+INFO 
+
+transcript: Hello.
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 31, in handle_on_hold
+
+2024-05-07 18:26:05,724 
+INFO 
+\is human or robot ai response: False
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 33, in handle_on_hold
+
+2024-05-07 18:26:11,911 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:26:14,107 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:26:14,109 
+INFO 
+
+transcript: Hello.
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 31, in handle_on_hold
+
+2024-05-07 18:26:15,086 
+INFO 
+\is human or robot ai response: False
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 33, in handle_on_hold
+
+2024-05-07 18:26:15,238 
+INFO 
+
+--now in handle on hold--
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 26, in handle_on_hold
+
+2024-05-07 18:26:20,591 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-07 18:26:20,968 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 128, in handle_failed_call
+

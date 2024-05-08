@@ -54,13 +54,14 @@ def call_all_clinics():
     PERSONAL_NUMBER = os.environ.get("PERSONAL_NUMBER")
 
     if mode == "PROD":
-        data = get_clinics_info()
-        raw_clinics = data[1]
-        due_clinics = filter(is_due_for_call, raw_clinics)
+        due_clinics = [{"id": 0, "phone_number": "(416) 515-0590"}]
+        # data = get_clinics_info()
+        # raw_clinics = data[1]
+        # due_clinics = filter(is_due_for_call, raw_clinics)
 
     # mock list of clinics you can call for testing, i.e. yourself
     if mode == "DEV":
-        due_clinics = [{"id": 0, "phone_number": PERSONAL_NUMBER}]
+        due_clinics = [{"id": 56, "phone_number": PERSONAL_NUMBER}]
 
     for clinic in due_clinics:
 

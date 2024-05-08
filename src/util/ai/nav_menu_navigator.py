@@ -1,6 +1,7 @@
 import os, json
 from ..util import remove_dots_and_commas
 from ..logger import logger
+from .util import prompt
 
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -17,7 +18,7 @@ def clean_transcript(transcript):
     client = OpenAI(api_key=OPENAI_KEY)
 
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo-16k",
+        model="gpt-4-turbo",
         messages=[
             {
                 "role": "system",
@@ -64,7 +65,7 @@ def find_next_nav_menu_key(transcript: str):
     completion_messages = [
         {
             "role": "system",
-            "content": "You're an indispensable ally in navigating automated phone systems. PRIORITIZE when a human has been reached over when you can return digits, AND ALWAYS PRIORITIZE HOLDING IF AN ATTENDANT OR AGENT WILL BE WITH YOU SHORTLY RATHER THAN CHOOSING A DIGIT. DO NOT HANGUP IF YOUR ARE ASKED TO, SOMETIME THE BEGINNING OF THE TRANSCRIPT IS CUT OFF. Your mission is clear: take your time to analyze the given call transcript, and decide if a human has been reached or not, if so, you will return '{\"digit\": null, \"human_reached\": true}'. You will know if a human has been reached if any of the following is met: the transcript mentions that 1) you will be waiting for a booking agent, representative, etc. 2) You will be immediately connected to a person. 3) An attendant will be with you soon. 4) A booking agent will be with you shortly 5) Hold and a booking agent will be with you shortly 6) Hold for (any text that mentions a person) So as long as you read that a person of any role will be with you shortly, it means a human has been reached.If a human has not been reached, choose which digit leads to a real person, or one that at least will get you closer to one. You may return null for digits and human_reached ONLY if you don't find any appropriate options. You don't want to schedule appointments, check the status of an appointment, cancel an appointment, use a callback option, etc. If you find that the transcript says 'wait on hold for a booking agent' or something similar, it means a human has been reached! You will then return {\"digit\": null, \"human_reached\": true}. Remember you will not always have to return a digit, sometimes you will be asked to just wait to be attended. Also remember to make sure if you have reached a human or not.  You'll be returning a JSON response. Here's an example of the JSON response format: '{\"digit\": 2, \"human_reached\": false}'. Regarding the format, always make sure you return keys inside double quotation marks, and values without double quotation marks. Take into account that the transcript's grammar and punctuation may not be the best, so feel free to infer meanings from the context and your own knowledge if parts of the transcript seem unclear. Some keywords for when to return a digit: When you find \"general information. walk-in clinic, clinic details, front-desk\". Some keywords for when to return human_reached as true: When you find 'booking representative, person, agent, attendant'. REMEMBER YOUR PRIORITIES, FIRST IDENTIFYING A HUMAN, AND SECOND CHOOSING A DIGIT THAT GETS YOU CLOSER TO CONNECTING TO ONE. YOUR PRIORITIES ARE THE MOST IMPORTANT THING YOU MUST UNDERSTAND AND ABIDE BY. ALWAYS READ CAREFULLY, THINK OF YOURSELF AS A LAWYER WHO READS THE SMALL PRINT FOR A LIVING",
+            "content": prompt,
         },
         {
             "role": "user",
@@ -91,11 +92,13 @@ def find_next_nav_menu_key(transcript: str):
             "content": "To have an agent call you back to the phone number one 587-324-2269: Press 1. To check a different callback number: Press 2. To listen again: Press 3. To return to the queue on hold: Press 0",
         },
         {"role": "assistant", "content": '{"digit": 0, "human_reached": true}'},
+        {"role": "user", "content": "To speak to a representative, please press 3"},
+        {"role": "assistant", "content": '{"digit": 3, "human_reached": true}'},
         {"role": "user", "content": transcript},
     ]
 
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo-16k", messages=completion_messages
+        model="gpt-4-turbo", messages=completion_messages
     )
 
     response = completion.choices[0].message.content

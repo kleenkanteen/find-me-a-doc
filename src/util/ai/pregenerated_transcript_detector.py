@@ -1,6 +1,4 @@
 import os, json
-from ..util import remove_dots_and_commas
-from ..logger import logger
 
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -11,14 +9,13 @@ OPENAI_KEY = os.environ.get("OPENAI_KEY")
 
 client = OpenAI(api_key=OPENAI_KEY)
 
-
 def detect_pregenerated_transcript(transcript: str):
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo-0125",
+        model="gpt-4-turbo",
         messages=[
             {
                 "role": "system",
-                "content": "You are a powerful and wise assistant that is able to distinguish between pre generated dialogues and in real time dialogues. Given a transcript, you will determine whether it is pre generated or a natural transcript. You will respond with this format: '{\"pregenerated\": --boolean--}'",
+                "content": "You are a powerful and wise assistant that is able to distinguish between pre generated dialogues and in real time dialogues. Given a transcript, you will determine whether it is pre generated or a natural transcript. Consider a natural transcript to be one where the content seems shorter and there is some form of salutation like: 'hello', or 'hey there', it could also contain a form of introduction like '[clinic name], how can i help you?'. You will respond with this format: '{\"pregenerated\": --boolean--}'",
             },
             {
                 "role": "user",
@@ -39,6 +36,14 @@ def detect_pregenerated_transcript(transcript: str):
             {"role": "assistant", "content": '{"pregenerated": false}'},
             {
                 "role": "user",
+                "content": "SH medical, how can I help?  Hello.  Hi. Hello.  Catfish medical, how can I help?  Sorry, I can't hear you."
+            },
+            {
+                "role": "assistant",
+                "content": '{"pregenerated": false}'
+            },
+            {
+                "role": "user",
                 "content": "Hello, Asian. Centro, how can I help you?  Hello. Hello. Can you hear me?",
             },
             {"role": "assistant", "content": '{"pregenerated": false}'},
@@ -54,6 +59,8 @@ def detect_pregenerated_transcript(transcript: str):
         presence_penalty=0,
     )
 
-    response = completion.choices[0].message
+    response = completion.choices[0].message.content
 
-    return response
+    json_response = json.loads(response)
+
+    return json_response['pregenerated']

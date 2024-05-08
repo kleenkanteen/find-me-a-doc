@@ -38,8 +38,8 @@ def update_db_on_failed_call(
     data, count = (
         supabase.table("clinics").update(update_data).eq("id", clinic_id).execute()
     )
-    
-    return data[1][0]
+    logger.info(f"\nupdated data: {data}\n")
+
 
 
 def update_db_on_successful_call(
@@ -60,7 +60,7 @@ def update_db_on_successful_call(
         .execute()
     )
 
-    return data[1][0]
+    logger.info(f"\nupdated data: {data}\n")
 
 
 def update_call_final_status(clinic_id: int, call_status: str):

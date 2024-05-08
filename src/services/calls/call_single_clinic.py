@@ -45,10 +45,10 @@ def make_call(phone_number: str, clinic_id: int):
 
     gather = Gather(
         input="speech",
-        speech_model="phone_call",
-        enhanced="true",
+        speech_model="experimental_conversations",
         action=f"{ngrok_url}/call/machine_detection/{clinic_id}",
-        speechTimeout=call_values.timeout,
+        speechTimeout=6,
+        hints="$OPERAND, press $OPERAND"
     )
 
     response.append(gather)
@@ -56,9 +56,10 @@ def make_call(phone_number: str, clinic_id: int):
     call = client.calls.create(
         to=f"+1{number_called}",
         from_=f"+1{TWILIO_NUMBER}",
-        timeout=30,
+        timeout=60,
         machine_detection="Enable",
         twiml=str(response),
         record=True,
+        machine_detection_speech_threshold=5000
     )
     return call.sid
