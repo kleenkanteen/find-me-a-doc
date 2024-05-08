@@ -27,9 +27,8 @@ def get_clinics_info():
 def update_db_on_failed_call(
     clinic_id: int, available_male_docs=None, available_female_docs=None
 ):
-    
+
     logger.info(f"clinicID on failed call: {clinic_id}")
-    
 
     update_data = {
         "last_call_date": current_time(),
@@ -46,11 +45,12 @@ def update_db_on_failed_call(
 
     logger.info(f"\nupdated data: {data}\n")
 
-    #check if there are any data values returned
+    # check if there are any data values returned
     if data and len(data) > 1 and data[1] and len(data[1]) > 0:
         return data[1][0]
     else:
         return "No data updated"
+
 
 def update_db_on_successful_call(
     clinic_id: int, available_male_docs: int, available_female_docs: int
