@@ -10,7 +10,6 @@ load_dotenv(override=True)
 
 OPENAI_KEY = os.environ.get("OPENAI_KEY")
 
-
 def clean_transcript(transcript):
 
     transcript = remove_dots_and_commas(transcript)
@@ -18,7 +17,7 @@ def clean_transcript(transcript):
     client = OpenAI(api_key=OPENAI_KEY)
 
     completion = client.chat.completions.create(
-        model="gpt-4-turbo",
+        model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "system",
@@ -30,7 +29,7 @@ def clean_transcript(transcript):
             },
             {
                 "role": "assistant",
-                "content": "If you are calling with critical results: Call the ordering physician.\nIf you have an upcoming appointment you wish to cancel: Press 6\nIf you are calling from a hospital or doctors office and need urgent assistance: Press 5 now\nTo book an appointment with your family doctor or specialist: Press 1\nTo book an appointment or get information about our walk-in clinic: Press 2\nTo book or get information on diagnostic tests off for a ultrasound mammogram echocardiograms: Press 3\nTo book an appointment with our physiotherapy department: Press 4\nTo reach LifeLabs: Please hang up\nDial 416 462 8700 for general information including our address, fax number and hours of operation.",
+                "content": "If you are calling with critical results: Call the ordering physician.\nIf you have an upcoming appointment you wish to cancel: Press 6\nIf you are calling from a hospital or doctors office and need urgent assistance: Press 5\nTo book an appointment with your family doctor or specialist: Press 1\nTo book an appointment or get information about our walk-in clinic: Press 2\nTo book or get information on diagnostic tests off for a ultrasound mammogram echocardiograms: Press 3\nTo book an appointment with our physiotherapy department: Press 4\nTo reach LifeLabs: Please hang up\nDial 416 462 8700 for general information including our address, fax number and hours of operation.",
             },
             {
                 "role": "user",
@@ -38,7 +37,7 @@ def clean_transcript(transcript):
             },
             {
                 "role": "assistant",
-                "content": "For general information including our address fax number and hours of operation: No answer provided\nIf you wish to keep your place in queue and use our callback option: Press 1 now\nPlease hold and one of our booking agents will be with you shortly",
+                "content": "For general information including our address fax number and hours of operation: No answer provided\nIf you wish to keep your place in queue and use our callback option: Press 1\nPlease hold and one of our booking agents will be with you shortly",
             },
             {"role": "user", "content": transcript},
         ],
@@ -51,7 +50,7 @@ def clean_transcript(transcript):
 
     response = completion.choices[0].message.content
 
-    print(f"\ntranscript to be evaluated: {response}\n")
+    logger.info(f"\ntranscript to be evaluated: {response}\n")
 
     return response
 
@@ -62,7 +61,8 @@ def find_next_nav_menu_key(transcript: str):
 
     client = OpenAI(api_key=OPENAI_KEY)
 
-    completion_messages = [
+    completion = client.chat.completions.create(
+        model="gpt-4-turbo", messages=[
         {
             "role": "system",
             "content": prompt,
@@ -94,11 +94,15 @@ def find_next_nav_menu_key(transcript: str):
         {"role": "assistant", "content": '{"digit": 0, "human_reached": true}'},
         {"role": "user", "content": "To speak to a representative, please press 3"},
         {"role": "assistant", "content": '{"digit": 3, "human_reached": true}'},
+        {"role": "user",
+         "content": "This call may be recorded: No options to list"
+        },
+        {
+            "role": "assistant",
+            "content": '{"digit": null, "human_reached": true}'
+        },
         {"role": "user", "content": transcript},
     ]
-
-    completion = client.chat.completions.create(
-        model="gpt-4-turbo", messages=completion_messages
     )
 
     response = completion.choices[0].message.content
@@ -114,8 +118,8 @@ def find_next_nav_menu_key(transcript: str):
     logger.info(f"\nGPT response: {json_response}\n")
     return json_response
 
-
 def is_valid_response(obj):
+
     if not isinstance(obj, dict):
         return False
 

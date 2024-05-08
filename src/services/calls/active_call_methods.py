@@ -24,9 +24,7 @@ client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 def outro_message():
     response = VoiceResponse()
-    response.say(
-        f"Thank you for your time. Feel free to explore our mission at find me a doc dot c a. Goodbye!"
-    )
+    response.play("https://findadoc-7179.twil.io/outro_message.mp3")
     return str(response)
 
 
@@ -79,9 +77,7 @@ def check_elapsed_time():
 
 def handle_endpoint_limits(clinic_id: int):
     response = VoiceResponse()
-    response.say(
-        "The maximum amount of retries has been reached. Feel free to explore our mission at find me a doc dot c a. Goodbye!"
-    )
+    response.play("https://findadoc-7179.twil.io/maximum_retries_reached.mp3")
     response.hangup()
 
     handle_failed_call(clinic_id)

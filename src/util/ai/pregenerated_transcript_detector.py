@@ -10,12 +10,13 @@ OPENAI_KEY = os.environ.get("OPENAI_KEY")
 client = OpenAI(api_key=OPENAI_KEY)
 
 def detect_pregenerated_transcript(transcript: str):
+    print("generating if human or robot just spoke now...")
     completion = client.chat.completions.create(
         model="gpt-4-turbo",
         messages=[
             {
                 "role": "system",
-                "content": "You are a powerful and wise assistant that is able to distinguish between pre generated dialogues and in real time dialogues. Given a transcript, you will determine whether it is pre generated or a natural transcript. Consider a natural transcript to be one where the content seems shorter and there is some form of salutation like: 'hello', or 'hey there', it could also contain a form of introduction like '[clinic name], how can i help you?'. You will respond with this format: '{\"pregenerated\": --boolean--}'",
+                "content": "You are a powerful and wise assistant that is able to distinguish between pre generated dialogues and in real time dialogues. Given a transcript, you will determine whether it is pre generated or a natural transcript. Consider a natural transcript to be one where the content seems shorter and there is a text that starts with a form of salutation/greeting like: 'hello...['rest of the greeting']', or 'hey there...['rest of the greeting']', it could also contain a form of introduction like '[clinic name], how can i help you?', consider anything else non natural (pregenerated). You will respond with this JSON format: '{\"pregenerated\": --boolean--}'",
             },
             {
                 "role": "user",
@@ -36,12 +37,9 @@ def detect_pregenerated_transcript(transcript: str):
             {"role": "assistant", "content": '{"pregenerated": false}'},
             {
                 "role": "user",
-                "content": "SH medical, how can I help?  Hello.  Hi. Hello.  Catfish medical, how can I help?  Sorry, I can't hear you."
+                "content": "SH medical, how can I help?  Hello.  Hi. Hello.  Catfish medical, how can I help?  Sorry, I can't hear you.",
             },
-            {
-                "role": "assistant",
-                "content": '{"pregenerated": false}'
-            },
+            {"role": "assistant", "content": '{"pregenerated": false}'},
             {
                 "role": "user",
                 "content": "Hello, Asian. Centro, how can I help you?  Hello. Hello. Can you hear me?",
@@ -51,6 +49,18 @@ def detect_pregenerated_transcript(transcript: str):
                 "role": "user",
                 "content": "Hello, Urgent Care center. How can I help you?",
             },
+            {"role": "assistant", "content": '{"pregenerated": false}'},
+            {
+                "role": "user",
+                "content": "Your call will be answered by the next available operator.",
+            },
+            {"role": "assistant", "content": '{"pregenerated": true}'},
+            {
+                "role": "user",
+                "content": "You're estimate time until reaching an operator is of 3 minutes 45 seconds",
+            },
+            {"role": "assistant", "content": '{"pregenerated": true}'},
+            {"role": "user", "content": transcript},
         ],
         temperature=1,
         max_tokens=256,
@@ -63,4 +73,4 @@ def detect_pregenerated_transcript(transcript: str):
 
     json_response = json.loads(response)
 
-    return json_response['pregenerated']
+    return json_response["pregenerated"]

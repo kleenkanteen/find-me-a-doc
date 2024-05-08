@@ -47,7 +47,7 @@ def make_call(phone_number: str, clinic_id: int):
         input="speech",
         speech_model="experimental_conversations",
         action=f"{ngrok_url}/call/machine_detection/{clinic_id}",
-        speechTimeout=6,
+        speechTimeout=4,
         hints="$OPERAND, press $OPERAND"
     )
 
@@ -59,7 +59,6 @@ def make_call(phone_number: str, clinic_id: int):
         timeout=60,
         machine_detection="Enable",
         twiml=str(response),
-        record=True,
-        machine_detection_speech_threshold=5000
+        record=True
     )
     return call.sid

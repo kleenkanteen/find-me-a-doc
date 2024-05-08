@@ -54,10 +54,9 @@ def call_all_clinics():
     PERSONAL_NUMBER = os.environ.get("PERSONAL_NUMBER")
 
     if mode == "PROD":
-        due_clinics = [{"id": 0, "phone_number": "(416) 515-0590"}]
-        # data = get_clinics_info()
-        # raw_clinics = data[1]
-        # due_clinics = filter(is_due_for_call, raw_clinics)
+        data = get_clinics_info()
+        raw_clinics = data[1]
+        due_clinics = list(filter(is_due_for_call, raw_clinics))
 
     # mock list of clinics you can call for testing, i.e. yourself
     if mode == "DEV":
@@ -88,7 +87,7 @@ def call_all_clinics():
 
         update_call_final_status(clinic["id"], call_status)
 
-        # If user hangs up, call status is marked as completed without any http response.
+        # If user hangs up, call status is marked as completed without any http response status or body.
         # Hence the check for None in either value
         if call_status == "completed" and (
             call_values.male_docs_number is None

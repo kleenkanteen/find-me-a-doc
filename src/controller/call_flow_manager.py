@@ -26,26 +26,29 @@ def handle_on_hold(clinic_id: int):
     speech_result = request.form.get("SpeechResult", "")
 
     if speech_result != "":
-        logger.debug(f"\ntranscript: {speech_result}\n")
-        is_robot = detect_pregenerated_transcript(speech_result)
-        logger.debug(f"\is human or robot ai response: {is_robot}\n")
 
-        if is_robot:
-            robot_response = VoiceResponse()
-            gather = Gather(
-                input="speech",
-                speech_model="phone_call",
-                enhanced="true",
-                action=f"{public_url}/call/machine_detection/{clinic_id}",
-                speechTimeout='5',
-                hints="$OPERAND, press $OPERAND"
+        logger.debug(f"\ntranscript: {speech_result}\n")
+
+        if "hello" in speech_result:
+
+            redirect = VoiceResponse()
+            redirect.redirect(
+                f"{public_url}/call/intro_message/{clinic_id}", method="POST"
             )
-            robot_response.append(gather)
-            return str(robot_response)
-        
-        else:
+            return str(redirect)
+
+        is_robot = detect_pregenerated_transcript(speech_result)
+        logger.debug(f"\is robot? : {is_robot}\n")
+
+        if is_robot == False:
+
+        # Consider adding another gpt task that identifies if a digit should be returned
+        #   if yes, then redirect to machine detection with the transcript attached,
+        #   otherwise just ignore it and keep waiting
+            
             redirect_response = VoiceResponse()
-            redirect_response.redirect(f"{public_url}/call/handle_on_hold/{clinic_id}")
+            redirect_response.redirect(f"{public_url}/call/intro_message/{clinic_id}")
+            return str(redirect_response)
 
     repetition_count = int(request.args.get("repetition_count", 0))
     logger.loud(f"repetition_count: {repetition_count}")
@@ -58,16 +61,12 @@ def handle_on_hold(clinic_id: int):
 
     response = VoiceResponse()
 
-    #Try making the action be this same url, however, the speech result will be
-    # deemed as either human or robotic using gpt. if robot, keep waiting, if human
-    # redirect to intro message
-
     gather = Gather(
         input="speech",
         speech_model="phone_call",
         enhanced="true",
         action=f"{public_url}/call/handle_on_hold/{clinic_id}",
-        speechTimeout='auto',
+        speechTimeout=1,
         hints="$OPERAND, press $OPERAND"
     )
     response.append(gather)
@@ -91,9 +90,10 @@ def handle_machine_detection(clinic_id: int):
 
     # answeredBy can be: human, machine_start, fax or unknown.
     if "human" in answeredBy:
-        response.redirect(f"{public_url}/call/intro_message/{clinic_id}")
+        response.redirect(f"{public_url}/call/intro_message/{clinic_id}", method="POST")
         return str(response)
-    if "fax" in answeredBy or "unknown" in answeredBy:
+    
+    if "fax" in answeredBy:
         logger.error(f"answeredBy is either fax or unknown. answeredBy: {answeredBy} ")
         logger.info(f"finishing call...")
         hangup = VoiceResponse().hangup()
@@ -114,7 +114,7 @@ def handle_machine_detection(clinic_id: int):
         if human_reached == True and isinstance(digit, int):
 
             response.play("", digits=str(digit))
-            logger.debug(f"typing digit {digit} and then redirecting to on hold...")
+            logger.info(f"typing digit {digit} and then redirecting to on hold...")
             response.redirect(
                 f"{public_url}/call/handle_on_hold/{clinic_id}", method="POST"
             )
@@ -122,13 +122,12 @@ def handle_machine_detection(clinic_id: int):
 
         if human_reached == True and digit is None:
 
-            logger.debug("redirecting to on hold...")
+            logger.info("human was reached and no digits need to be played. Redirecting to on hold...")
 
-            redirect = VoiceResponse()
-            redirect.redirect(
+            response.redirect(
                 f"{public_url}/call/handle_on_hold/{clinic_id}", method="POST"
             )
-            return str(redirect)
+            return str(response)
 
         else:
             logger.debug(f"played digit: {digit}")
@@ -140,10 +139,9 @@ def handle_machine_detection(clinic_id: int):
         speech_model="phone_call",
         enhanced="true",
         action=f"{public_url}/call/machine_detection/{clinic_id}",
-        speech_timeout=6,
+        speech_timeout=1,
         hints="$OPERAND, press $OPERAND"
     )
-
     response.append(gather)
     return str(response)
 
@@ -169,10 +167,6 @@ def intro_message(clinic_id: int):
 
     print("Intro Message")
 
-    action_url = f"{public_url}/call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&invalid_input_count={invalid_input_count}"
-
-    gather = Gather(action=action_url, timeout=call_values.timeout, num_digits=1)
-
     response = VoiceResponse()
 
     if prompt_retry_count >= call_values.ENDPOINT_HIT_LIMIT:
@@ -182,6 +176,10 @@ def intro_message(clinic_id: int):
     else:
         response.play("https://findadoc-7179.twil.io/intro_message_3_options.mp3")
 
+    action_url = f"{public_url}/call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&invalid_input_count={invalid_input_count}"
+
+    gather = Gather(action=action_url, timeout=call_values.timeout, num_digits=1)
+
     response.append(gather)
 
     # Redirect user in a loop if no option is selected
@@ -190,6 +188,8 @@ def intro_message(clinic_id: int):
         f"{public_url}/call/intro_message/{clinic_id}?prompt_retry_count={prompt_retry_count}&timeouts_count={new_timeouts_count}&invalid_input_count={invalid_input_count}",
         method="GET",
     )
+
+    logger.loud(f"HERE IS THE TWIML: {response}")
 
     return str(response)
 
@@ -243,7 +243,6 @@ def handle_intro_message_response(clinic_id: int):
                 num_digits=1,
             )
 
-
 @call_flow_manager.get("/ask_male_doctors_number/<int:clinic_id>")
 def ask_male_doctors_number(clinic_id: int):
 
@@ -253,6 +252,8 @@ def ask_male_doctors_number(clinic_id: int):
 
     if timeouts_count > call_values.ENDPOINT_HIT_LIMIT:
         return call_methods.handle_endpoint_limits(clinic_id)
+    
+    response = VoiceResponse()
 
     gather = Gather(
         action=f"{public_url}/call/handle_number_male_doctors_response/{clinic_id}",
@@ -266,7 +267,6 @@ def ask_male_doctors_number(clinic_id: int):
         response.play("https://findadoc-7179.twil.io/no_intro_male_doctors_question.mp3")
 
 
-    response = VoiceResponse()
     response.append(gather)
 
     new_timeouts_count = timeouts_count + 1
@@ -340,6 +340,8 @@ def ask_female_doctors_number(clinic_id: int):
     if timeouts_count > call_values.ENDPOINT_HIT_LIMIT:
         return call_methods.handle_endpoint_limits(clinic_id)
 
+    response = VoiceResponse()
+
     gather = Gather(
         action=f"{public_url}/call/handle_female_doctors_number/{clinic_id}",
         timeout=call_values.timeout,
@@ -351,7 +353,6 @@ def ask_female_doctors_number(clinic_id: int):
     else:
         response.play("https://findadoc-7179.twil.io/no_intro_female_doctors_question.mp3")
 
-    response = VoiceResponse()
     response.append(gather)
 
     new_timeouts_count = timeouts_count + 1
