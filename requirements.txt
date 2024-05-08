@@ -6,3 +6,4 @@ twilio
 python-dotenv
 inquirer
 black
+openai

@@ -7138,3 +7138,103 @@ INFO
 Forced shutdown requested. Exiting the program now... 
  	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 31, in <module>
 
+2024-05-08 18:44:35,546 
+INFO 
+Received phone number: 3146908960. Received clinic id: 56 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-08 18:44:35,546 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-08 18:44:35,548 
+INFO 
+phone number: 3146908960 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-08 18:44:35,900 
+INFO 
+Twilio error, message: 
+[31m[49mHTTP Error[0m [37m[49mYour request was:[0m
+
+[36m[49mPOST /Accounts/AC6eb74d248ace0c243a8ef6772acd0eea/Calls.json[0m
+
+[37m[49mTwilio returned the following information:[0m
+
+[34m[49mUnable to create record: From is not a valid phone number: +1+15873242269[0m
+
+[37m[49mMore information may be available here:[0m
+
+[34m[49mhttps://www.twilio.com/docs/errors/21212[0m
+
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 72, in call_all_clinics
+
+2024-05-08 18:44:53,647 
+INFO 
+Received phone number: 3146908960. Received clinic id: 56 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 20, in make_call
+
+2024-05-08 18:44:53,648 
+INFO 
+Starting flask server... 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/app.py", line 13, in start_server
+
+2024-05-08 18:44:53,648 
+INFO 
+phone number: 3146908960 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_single_clinic.py", line 42, in make_call
+
+2024-05-08 18:44:54,227 
+INFO 
+Call started...sid: CAd7ee6f812207b0177d3856dae54f593a 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 74, in call_all_clinics
+
+2024-05-08 18:45:09,559 
+INFO 
+machine detection endpoint form:  {'Called': '+13146908960', 'ToState': 'MO', 'CallerCountry': 'CA', 'Direction': 'outbound-api', 'SpeechResult': '', 'CallerState': 'Alberta', 'Language': 'en-US', 'ToZip': '63132', 'Confidence': '0.0', 'CallSid': 'CAd7ee6f812207b0177d3856dae54f593a', 'To': '+13146908960', 'CallerZip': '', 'ToCountry': 'US', 'CalledZip': '63132', 'ApiVersion': '2010-04-01', 'MachineDetectionDuration': '5230', 'CalledCity': 'SAINT LOUIS', 'CallStatus': 'in-progress', 'From': '+15873242269', 'AccountSid': 'AC6eb74d248ace0c243a8ef6772acd0eea', 'CalledCountry': 'US', 'CallerCity': 'Calgary', 'ToCity': 'SAINT LOUIS', 'FromCountry': 'CA', 'Caller': '+15873242269', 'FromCity': 'Calgary', 'CalledState': 'MO', 'FromZip': '', 'AnsweredBy': 'unknown', 'FromState': 'Alberta'} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 86, in handle_machine_detection
+
+2024-05-08 18:45:09,562 
+INFO 
+answeredBy: unknown 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 88, in handle_machine_detection
+
+2024-05-08 18:45:09,565 
+INFO 
+speech result:  
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 104, in handle_machine_detection
+
+2024-05-08 18:45:09,568 
+INFO 
+
+gather has been triggered
+ 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/controller/call_flow_manager.py", line 139, in handle_machine_detection
+
+2024-05-08 18:45:19,968 
+INFO 
+final call status is: 'completed' 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 47, in check_call_status
+
+2024-05-08 18:45:20,428 
+INFO 
+failed call values: male: None female: None 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 124, in handle_failed_call
+
+2024-05-08 18:45:20,430 
+INFO 
+data to update: {'last_call_date': '2024-05-08', 'last_call_success': False, 'available_female_docs': None, 'available_male_docs': None} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/db/database_manager.py", line 40, in update_db_on_failed_call
+
+2024-05-08 18:45:20,769 
+INFO 
+partial db update data: {'name': "yohance's clinic 3", 'address': '1212 apple st', 'phone_number': '(314) 940-2059', 'rating': 2.3, 'available_male_docs': None, 'available_female_docs': None, 'last_call_date': '2024-05-08', 'id': 56, 'last_call_success': False} 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/active_call_methods.py", line 143, in handle_failed_call
+
+2024-05-08 18:45:20,769 
+INFO 
+Round of calls done 
+ 	from File "/Users/yohance/Documents/find-me-a-doc/src/services/calls/call_all_clinics.py", line 102, in call_all_clinics
+

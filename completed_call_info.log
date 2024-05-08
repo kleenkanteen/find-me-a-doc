@@ -703,3 +703,18 @@ duration: 173
 price: None
 price_unit: USD
 
+clinic_name: yohance's clinic 3
+clinic_id: 56
+male_docs_number: None
+female_docs_number: None
+success: true
+sid: CAd7ee6f812207b0177d3856dae54f593a
+to_formatted: (314) 690-8960
+from_formatted: (587) 324-2269
+start_time: Wednesday, May 08 2024, 23:44
+end_time: Wednesday, May 08 2024, 23:45
+account_sid: AC6eb74d248ace0c243a8ef6772acd0eea
+duration: 17
+price: None
+price_unit: USD
+
