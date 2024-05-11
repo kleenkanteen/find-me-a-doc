@@ -88,7 +88,7 @@ def handle_endpoint_limits(clinic_id: int):
 def handle_successful_call(clinic_id):
 
     logger.debug(
-        f"call was a success, male docs: {call_values.male_docs_number}, female docs: {call_values.female_docs_number}"
+        f"call was a success, male docs: {call_values.male_docs_number} | female docs: {call_values.female_docs_number}"
     )
 
     # If by any chance either value is not selected, fire failed call handler
@@ -103,7 +103,7 @@ def handle_successful_call(clinic_id):
 
     call_data = get_latest_call_data()
 
-    logger.completed_call_info(
+    logger.end_of_call_info(
         call_data,
         clinic_name=updated_clinic_data["name"],
         clinic_id=clinic_id,
@@ -112,9 +112,7 @@ def handle_successful_call(clinic_id):
         success="true",
     )
 
-    logger.debug(
-        f"clinic id: {clinic_id}. new clinic data in db: {updated_clinic_data}"
-    )
+    logger.debug(f"successful call, updated full db data: {updated_clinic_data}")
 
     return outro_message()
 
@@ -122,7 +120,7 @@ def handle_successful_call(clinic_id):
 def handle_failed_call(clinic_id: int):
 
     logger.debug(
-        f"failed call values: male: {call_values.male_docs_number} female: {call_values.female_docs_number}"
+        f"failed call values: male: {call_values.male_docs_number} | female: {call_values.female_docs_number}"
     )
 
     updated_clinic_data = update_db_on_failed_call(
@@ -131,16 +129,16 @@ def handle_failed_call(clinic_id: int):
 
     call_data = get_latest_call_data()
 
-    logger.completed_call_info(
+    logger.end_of_call_info(
         call_data,
         clinic_name=updated_clinic_data["name"],
         clinic_id=clinic_id,
         male_docs_number=call_values.male_docs_number,
         female_docs_number=call_values.female_docs_number,
-        success="true",
+        success="false",
     )
 
-    logger.debug(f"partial db update data: {updated_clinic_data}")
+    logger.debug(f"failed call, db update of doc nums with whatever was gathered: {updated_clinic_data}")
 
 
 def get_call_data(call_sid):

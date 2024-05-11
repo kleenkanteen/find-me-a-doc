@@ -8,10 +8,11 @@ formatter = logging.Formatter("%(asctime)s \n%(levelname)s \n%(message)s\n")
 class logger_class:
 
     def __init__(self):
+        logging.basicConfig(filemode='w', force=True)
         self.logger = self.__setup_logger("twilio_info", "twilio_info.log")
         self.twilio_logger = self.__setup_logger("raw_responses", "raw_responses.log")
         self.completed_call_info_logger = self.__setup_logger(
-            "completed_call_info", "completed_call_info.log"
+            "end_of_call_info", "end_of_call_info.log"
         )
 
     def __setup_logger(self, name, log_file, level=logging.INFO):
@@ -97,7 +98,7 @@ class logger_class:
                 value_str = str(value)
             log_str += f"{key}: {value_str}\n"
 
-        with open("completed_call_info.log", "a") as f:
+        with open("end_of_call_info.log", "w") as f:
             f.write(log_str + "\n")
 
 

@@ -52,6 +52,7 @@ def call_all_clinics():
 
     mode: str = os.environ.get("MODE")
     PERSONAL_NUMBER = os.environ.get("PERSONAL_NUMBER")
+    MOCK_CLINIC_ID = os.environ.get("MOCK_CLINIC_ID")
 
     if mode == "PROD":
         data = get_clinics_info()
@@ -60,7 +61,7 @@ def call_all_clinics():
 
     # mock list of clinics you can call for testing, i.e. yourself
     if mode == "DEV":
-        due_clinics = [{"id": 56, "phone_number": PERSONAL_NUMBER}]
+        due_clinics = [{"id": MOCK_CLINIC_ID, "phone_number": PERSONAL_NUMBER}]
 
     for clinic in due_clinics:
 

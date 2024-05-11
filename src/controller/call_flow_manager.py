@@ -109,6 +109,7 @@ def handle_machine_detection(clinic_id: int):
             next_nav_menu_data = find_next_nav_menu_key(speech_result)
             digit = next_nav_menu_data["digit"]
             human_reached = next_nav_menu_data["human_reached"]
+            print("NAV MNEU DATA", next_nav_menu_data, '\n')
         except TypeError as e:
             logger.error(f"chatgpt returned an invalid response. full error log: {e}")
 
