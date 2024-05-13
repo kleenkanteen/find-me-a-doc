@@ -44,7 +44,11 @@ def check_call_status(queue, call_sid):
         # Possible values: queued, ringing, in-progress, busy, completed, failed, no-answer, canceled
         if call_status in ["completed", "failed", "no-answer", "canceled", "busy"]:
             queue.put({"call_status": call_status, "call_data": call_data})
+<<<<<<< HEAD
             logger.info(f"Call was finished. Final call status is: '{call_status}'")
+=======
+            logger.info(f"final call status is: '{call_status}'")
+>>>>>>> master
             break
 
 
@@ -57,15 +61,31 @@ def call_all_clinics():
     if mode == "PROD":
         data = get_clinics_info()
         raw_clinics = data[1]
+<<<<<<< HEAD
         due_clinics = list(filter(is_due_for_call, raw_clinics))
 
     # mock list of clinics you can call for testing, i.e. yourself
     if mode == "DEV":
         due_clinics = [{"id": 60, "phone_number": PERSONAL_NUMBER}]
+=======
+        due_clinics = filter(is_due_for_call, raw_clinics)
+
+    # mock list of clinics you can call for testing, i.e. yourself
+    if mode == "DEV":
+        due_clinics = [{"id": MOCK_CLINIC_ID, "phone_number": PERSONAL_NUMBER}]
+>>>>>>> master
 
     for clinic in due_clinics:
 
         clinic_id = clinic["id"]
+<<<<<<< HEAD
+=======
+
+        try:
+            clinic_sid = make_call(clinic["phone_number"], clinic_id)
+        except TwilioRestException as e:
+            logger.error(f"Twilio error, message: {e}")
+>>>>>>> master
 
         try:
             clinic_sid = make_call(clinic["phone_number"], clinic_id)
@@ -83,13 +103,22 @@ def call_all_clinics():
         call_status_poller.join()
 
         result = q.get()
+<<<<<<< HEAD
+=======
+
+        call_status = result["call_status"]
+>>>>>>> master
 
         call_status = result["call_status"]
 
         logger.info('Now updating the call final status in the db')
         update_call_final_status(clinic["id"], call_status)
 
+<<<<<<< HEAD
         # If user hangs up, call status is marked as completed without any http response status or body.
+=======
+        # If user hangs up, call status is marked as completed without any http response.
+>>>>>>> master
         # Hence the check for None in either value
         if call_status == "completed" and (
             call_values.male_docs_number is None

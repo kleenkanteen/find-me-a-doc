@@ -24,11 +24,21 @@ client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 def outro_message():
     response = VoiceResponse()
+<<<<<<< HEAD
     response.play("https://findadoc-7179.twil.io/outro_message.mp3")
     return str(response)
 
 
 def handle_unrecognizable_response(path: str, message_url: str, num_digits: int):
+=======
+    response.say(
+        f"Thank you for your time. Feel free to explore our mission at find me a doc dot c a. Goodbye!"
+    )
+    return str(response)
+
+
+def handle_unrecognizable_response(path: str, message: str, num_digits: int):
+>>>>>>> master
     response = VoiceResponse()
 
     logger.warning(f"\nresponse not understood on path: {path}\n")
@@ -37,7 +47,11 @@ def handle_unrecognizable_response(path: str, message_url: str, num_digits: int)
         action=f"{public_url}/{path}", timeout=timeout, num_digits=num_digits
     )
 
+<<<<<<< HEAD
     response.play(message_url)
+=======
+    gather.say(message)
+>>>>>>> master
     response.append(gather)
 
     return str(response)
@@ -77,7 +91,13 @@ def check_elapsed_time():
 
 def handle_endpoint_limits(clinic_id: int):
     response = VoiceResponse()
+<<<<<<< HEAD
     response.play("https://findadoc-7179.twil.io/maximum_retries_reached.mp3")
+=======
+    response.say(
+        "The maximum amount of retries has been reached. Feel free to explore our mission at find me a doc dot c a. Goodbye!"
+    )
+>>>>>>> master
     response.hangup()
 
     handle_failed_call(clinic_id)
@@ -87,6 +107,7 @@ def handle_endpoint_limits(clinic_id: int):
 
 def handle_successful_call(clinic_id):
 
+<<<<<<< HEAD
     logger.info(
         f"call was a success, male docs: {call_values.male_docs_number} | female docs: {call_values.female_docs_number}"
     )
@@ -106,19 +127,44 @@ def handle_successful_call(clinic_id):
     logger.end_of_call_info(
         call_data,
         clinic_name=updated_clinic_data["name"],
+=======
+    # If by any chance either value is not selected, fire failed call handler
+    if call_values.male_docs_number is None or call_values.female_docs_number is None:
+        return handle_failed_call(clinic_id)
+
+    call_values.intro_message_iterations = 0
+
+    update_db_on_successful_call(clinic_id, 
+                                 call_values.male_docs_number, 
+                                 call_values.female_docs_number
+    )
+
+    call_data = get_latest_call_data()
+
+    logger.completed_call_info(
+        call_data,
+>>>>>>> master
         clinic_id=clinic_id,
         male_docs_number=call_values.male_docs_number,
         female_docs_number=call_values.female_docs_number,
         success="true",
     )
 
+<<<<<<< HEAD
     logger.info(f"successful call, updated full db data: {updated_clinic_data}")
+=======
+    logger.info(
+        f'''call was a success for {clinic_id}: +
+        male docs: {call_values.male_docs_number}, female docs: {call_values.female_docs_number}'''
+    )
+>>>>>>> master
 
     return outro_message()
 
 
 def handle_failed_call(clinic_id: int):
 
+<<<<<<< HEAD
     logger.info(
         f"failed call values: male: {call_values.male_docs_number} | female: {call_values.female_docs_number}"
     )
@@ -139,6 +185,28 @@ def handle_failed_call(clinic_id: int):
     )
 
     logger.info(f"failed call, db update of doc nums with whatever was gathered: {updated_clinic_data}")
+=======
+    update_db_on_failed_call(
+        clinic_id, 
+        call_values.male_docs_number, 
+        call_values.female_docs_number
+    )
+
+    call_data = get_latest_call_data()
+
+    logger.completed_call_info(
+        call_data,
+        clinic_id=clinic_id,
+        male_docs_number=call_values.male_docs_number,
+        female_docs_number=call_values.female_docs_number,
+        success="true",
+    )
+
+    logger.debug(
+        f'''failed call for {clinic_id}:
+        male: {call_values.male_docs_number} female: {call_values.female_docs_number}'''
+    )
+>>>>>>> master
 
 
 def get_call_data(call_sid):

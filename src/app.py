@@ -10,7 +10,11 @@ port = os.environ.get("PORT")
 
 
 def start_server():
+<<<<<<< HEAD
     logger.info("Starting flask server...")
+=======
+    logger.debug("Starting flask server...")
+>>>>>>> master
     app.run(port=port)
 
 

@@ -1,5 +1,9 @@
 from flask import request, Blueprint
+<<<<<<< HEAD
 from twilio.twiml.voice_response import VoiceResponse, Gather, Redirect
+=======
+from twilio.twiml.voice_response import VoiceResponse, Gather
+>>>>>>> master
 
 from util.logger import logger
 from util.ai.nav_menu_navigator import find_next_nav_menu_key
@@ -14,10 +18,13 @@ load_dotenv(override=True)
 
 MODE = os.environ.get("MODE")
 
+import os
+
 call_flow_manager = Blueprint("call_flow_manager", __name__, url_prefix="/call")
 
 public_url = os.environ.get("NGROK_URL")
 
+<<<<<<< HEAD
 @call_flow_manager.route("/machine_detection/<int:clinic_id>", methods=["GET", "POST"])
 def handle_machine_detection(clinic_id: int):
 
@@ -96,10 +103,54 @@ def handle_machine_detection(clinic_id: int):
         speech_timeout=1,
         hints="$OPERAND, press $OPERAND",
     )
+=======
+
+@call_flow_manager.route("/intro_message/<int:clinic_id>", methods=["GET", "POST"])
+def intro_message(clinic_id: int):
+
+    prompt_retry_count = int(request.args.get("prompt_retry_count", 0))
+    # Invalid_value_count is always 1 behind when attaching it to a Gather action, so it's set to 1 instead of 0
+    invalid_input_count = int(request.args.get("invalid_value_count", 1))
+    timeouts_count = int(request.args.get("timeouts_count", 0))
+
+    logger.info(f"intro message retrys count: {prompt_retry_count}")
+    logger.info(f"intro message invalid key count: {invalid_input_count}")
+    logger.info(f"intro message timeouts count: {timeouts_count}")
+
+    max_count = max(prompt_retry_count, timeouts_count, invalid_input_count)
+    if max_count > call_values.ENDPOINT_HIT_LIMIT:
+        return call_methods.handle_endpoint_limits(clinic_id)
+
+    print("Intro Message")
+
+    action_url = f"{public_url}/call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&invalid_input_count={invalid_input_count}"
+
+    gather = Gather(action=action_url, timeout=call_values.timeout, num_digits=1)
+
+    response = VoiceResponse()
+
+    if prompt_retry_count >= call_values.ENDPOINT_HIT_LIMIT:
+        gather.say(
+            "Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Press 1 for yes or 2 for no"
+        )
+
+    else:
+        gather.say(
+            "Hello, I am a robocaller created to gather data on family doctor's accepting patients for public use. I only have 2 questions. The first is, are any family doctors accepting patients? Press 1 for yes, 2 for no, or 3 to repeat this message"
+        )
+>>>>>>> master
     response.append(gather)
+
+    # Redirect user in a loop if no option is selected
+    new_timeouts_count = timeouts_count + 1
+    response.redirect(
+        f"{public_url}/call/intro_message/{clinic_id}?prompt_retry_count={prompt_retry_count}&timeouts_count={new_timeouts_count}&invalid_input_count={invalid_input_count}"
+    )
+
     return str(response)
 
 
+<<<<<<< HEAD
 # consider adding gpt to identify if human or robot:
 # sometimes we may have a bot saying "the expected time to speak to someone is of 3 minutes"
 # which would trigger /intro_message.
@@ -211,6 +262,8 @@ def intro_message(clinic_id: int):
     return str(response)
 
 
+=======
+>>>>>>> master
 @call_flow_manager.route(
     "/handle_intro_message_response/<int:clinic_id>", methods=["POST", "GET"]
 )
@@ -228,10 +281,13 @@ def handle_intro_message_response(clinic_id: int):
         choice = request.values["Digits"]
         if choice == "1":
 
+<<<<<<< HEAD
             logger.info(
                 "\nUser chose to answer both questions...continuing to the next question now"
             )
 
+=======
+>>>>>>> master
             redirect_response = VoiceResponse()
             redirect_response.redirect(
                 f"{public_url}/call/ask_male_doctors_number/{clinic_id}", method="GET"
@@ -239,7 +295,10 @@ def handle_intro_message_response(clinic_id: int):
             return str(redirect_response)
 
         if choice == "2":
+<<<<<<< HEAD
             logger.info("\nUser chose not to answer questions...ending call now")
+=======
+>>>>>>> master
             return call_methods.outro_message()
 
         if choice == "3":
@@ -252,6 +311,7 @@ def handle_intro_message_response(clinic_id: int):
             new_invalid_input_count = invalid_input_count + 1
 
             if prompt_retry_count >= 3:
+<<<<<<< HEAD
                 message_url = (
                     "https://findadoc-7179.twil.io/intro_error_input_2_options.mp3"
                 )
@@ -263,6 +323,15 @@ def handle_intro_message_response(clinic_id: int):
             return call_methods.handle_unrecognizable_response(
                 f"call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&invalid_input_count={new_invalid_input_count}",
                 message_url,
+=======
+                message = "You can only enter 1 for yes, or 2 for no"
+            else:
+                message = "You can only enter 1 for yes, 2 for no, or 3 to listen to the introduction again"
+
+            return call_methods.handle_unrecognizable_response(
+                f"call/handle_intro_message_response/{clinic_id}?prompt_retry_count={prompt_retry_count}&invalid_input_count={new_invalid_input_count}",
+                message,
+>>>>>>> master
                 num_digits=1,
             )
 
@@ -277,13 +346,17 @@ def ask_male_doctors_number(clinic_id: int):
     if timeouts_count > call_values.ENDPOINT_HIT_LIMIT:
         return call_methods.handle_endpoint_limits(clinic_id)
 
+<<<<<<< HEAD
     response = VoiceResponse()
 
+=======
+>>>>>>> master
     gather = Gather(
         action=f"{public_url}/call/handle_number_male_doctors_response/{clinic_id}",
         timeout=call_values.timeout,
         num_digits=2,
     )
+<<<<<<< HEAD
 
     if timeouts_count == 0:
         response.play("https://findadoc-7179.twil.io/male_doctors_question.mp3")
@@ -292,6 +365,18 @@ def ask_male_doctors_number(clinic_id: int):
             "https://findadoc-7179.twil.io/no_intro_male_doctors_question.mp3"
         )
 
+=======
+    if timeouts_count == 0:
+        gather.say(
+            f"I see. How many of the available doctors are male? Please type the number on your keypad."
+        )
+    else:
+        gather.say(
+            f"How many of the available doctors are male? Please type the number on your keypad."
+        )
+
+    response = VoiceResponse()
+>>>>>>> master
     response.append(gather)
 
     new_timeouts_count = timeouts_count + 1
@@ -332,21 +417,38 @@ def handle_number_male_doctors_response(clinic_id: int):
         except (ValueError, TypeError) as e:
             new_invalid_input_count = invalid_input_count + 1
             logger.error(f"type error exception thrown. error message: {e}")
+<<<<<<< HEAD
             message_url = "https://findadoc-7179.twil.io/wrong_input.mp3"
             return call_methods.handle_unrecognizable_response(
                 f"/call/handle_number_male_doctors_response/{clinic_id}?invalid_input_count={new_invalid_input_count}",
                 message_url,
+=======
+            message = "Please try again, enter numeric values only"
+            return call_methods.handle_unrecognizable_response(
+                f"/call/handle_number_male_doctors_response/{clinic_id}?invalid_input_count={new_invalid_input_count}",
+                message,
+>>>>>>> master
                 num_digits=2,
             )
 
     else:
+<<<<<<< HEAD
         message_url = "https://findadoc-7179.twil.io/ask_again_to_type_input.mp3"
+=======
+        message = (
+            "I'm sorry, I didn't get that. Could you type the number on your keypad?"
+        )
+>>>>>>> master
         logger.critical("Attribute 'Digits' doesn't exist in request values")
 
         new_invalid_input_count = invalid_input_count + 1
         return call_methods.handle_unrecognizable_response(
             f"/call/handle_intro_response/{clinic_id}?invalid_input_count={new_invalid_input_count}",
+<<<<<<< HEAD
             message_url,
+=======
+            message,
+>>>>>>> master
             num_digits=2,
         )
 
@@ -363,8 +465,11 @@ def ask_female_doctors_number(clinic_id: int):
     if timeouts_count > call_values.ENDPOINT_HIT_LIMIT:
         return call_methods.handle_endpoint_limits(clinic_id)
 
+<<<<<<< HEAD
     response = VoiceResponse()
 
+=======
+>>>>>>> master
     gather = Gather(
         action=f"{public_url}/call/handle_female_doctors_number/{clinic_id}",
         timeout=call_values.timeout,
@@ -372,12 +477,24 @@ def ask_female_doctors_number(clinic_id: int):
     )
 
     if timeouts_count == 0:
+<<<<<<< HEAD
         response.play("https://findadoc-7179.twil.io/female_doctors_question.mp3")
     else:
         response.play(
             "https://findadoc-7179.twil.io/no_intro_female_doctors_question.mp3"
         )
 
+=======
+        gather.say(
+            f"I see. How many of the available doctors are female? Please type the number on your keypad."
+        )
+    else:
+        gather.say(
+            f"How many of the available doctors are female? Please type the number on your keypad."
+        )
+
+    response = VoiceResponse()
+>>>>>>> master
     response.append(gather)
 
     new_timeouts_count = timeouts_count + 1
@@ -411,19 +528,36 @@ def handle_number_female_doctors_response(clinic_id: int):
         except (ValueError, TypeError) as e:
             new_invalid_input_count = invalid_input_count + 1
             logger.error(f"type error exception thrown. error message: {e}")
+<<<<<<< HEAD
             message_url = "https://findadoc-7179.twil.io/wrong_input.mp3"
             return call_methods.handle_unrecognizable_response(
                 f"/call/handle_female_doctors_number/{clinic_id}?invalid_input_count={new_invalid_input_count}",
                 message_url,
+=======
+            message = "Please try again, enter numeric values only"
+            return call_methods.handle_unrecognizable_response(
+                f"/call/handle_female_doctors_number/{clinic_id}?invalid_input_count={new_invalid_input_count}",
+                message,
+>>>>>>> master
                 num_digits=2,
             )
 
     else:
+<<<<<<< HEAD
         message_url = "https://findadoc-7179.twil.io/wrong_input.mp3"
         logger.error("Attribute 'Digits' doesn't exist in request.values")
         return call_methods.handle_unrecognizable_response(
             f"/call/ask_female_doctors_number/{clinic_id}?invalid_input_count={invalid_input_count}",
             message_url,
+=======
+        message = (
+            "I'm sorry, I didn't get that. Could you type the number on your keypad?"
+        )
+        logger.critical("Attribute 'Digits' doesn't exist in request.values")
+        return call_methods.handle_unrecognizable_response(
+            f"/call/ask_female_doctors_number/{clinic_id}?invalid_input_count={invalid_input_count}",
+            message,
+>>>>>>> master
             num_digits=2,
         )
 
