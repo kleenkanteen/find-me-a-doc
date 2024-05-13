@@ -1,14 +1,12 @@
 import logging, datetime
-
 from .source_context import get_filename, get_function_name, get_linenumber
 
 formatter = logging.Formatter("%(asctime)s \n%(levelname)s \n%(message)s\n")
-
+logging.basicConfig(filemode='w', force=True)
 
 class logger_class:
 
     def __init__(self):
-        logging.basicConfig(filemode='w', force=True)
         self.logger = self.__setup_logger("twilio_info", "twilio_info.log")
         self.twilio_logger = self.__setup_logger("raw_responses", "raw_responses.log")
         self.completed_call_info_logger = self.__setup_logger(
@@ -67,7 +65,7 @@ class logger_class:
         upper_message = message.upper()
         print(f"\n{upper_message}\n")
 
-    def completed_call_info(self, data: dict, **extra_values):
+    def end_of_call_info(self, data: dict, **extra_values):
 
         # # Array of keys to include in the new dictionary, possible keys:
         # ['_version', 'sid', 'date_created', 'date_updated', 'parent_call_sid', 'account_sid', 'to', 'to_formatted', '_from', 'from_formatted', 'phone_number_sid', 'status', 'start_time', 'end_time', 'duration', 'price', 'price_unit', 'direction', 'answered_by', 'api_version', 'forwarded_from', 'group_sid', 'caller_name', 'queue_time', 'trunk_sid', 'uri', 'subresource_uris', '_solution', '_context']
