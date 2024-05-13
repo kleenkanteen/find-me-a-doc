@@ -17,7 +17,7 @@ ngrok_url = os.environ.get("NGROK_URL")
 
 def make_call(phone_number: str, clinic_id: int):
 
-    logger.info("NGROK URL: ", ngrok_url)
+    logger.info(f"NGROK URL: {ngrok_url}")
 
     logger.debug(
         f"Received phone number: {phone_number}. Received clinic id: {clinic_id}"
@@ -55,6 +55,8 @@ def make_call(phone_number: str, clinic_id: int):
         speechTimeout=4,
         hints="$OPERAND, press $OPERAND"
     )
+
+    gather.say("waiting for voice input. you may speak now")
 
     response.append(gather)
 

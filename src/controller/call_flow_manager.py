@@ -8,6 +8,11 @@ import config.active_call_values as call_values
 from util.ai.pregenerated_transcript_detector import detect_pregenerated_transcript
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
+
+MODE = os.environ.get("MODE")
 
 call_flow_manager = Blueprint("call_flow_manager", __name__, url_prefix="/call")
 
@@ -15,6 +20,8 @@ public_url = os.environ.get("NGROK_URL")
 
 @call_flow_manager.route("/machine_detection/<int:clinic_id>", methods=["GET", "POST"])
 def handle_machine_detection(clinic_id: int):
+
+        
 
     logger.info(f"\n--now in machine_detection enpoint--\n")
 
@@ -25,21 +32,30 @@ def handle_machine_detection(clinic_id: int):
     response = VoiceResponse()
 
     # answeredBy can be: human, machine_start, fax or unknown.
-    if "human" in answeredBy:
-        response.redirect(f"{public_url}/call/intro_message/{clinic_id}", method="POST")
-        return str(response)
+    if MODE == "PROD":
+        if "human" in answeredBy:
+            response.redirect(f"{public_url}/call/intro_message/{clinic_id}", method="POST")
+            return str(response)
 
-    if "fax" in answeredBy:
-        logger.info(f"call was answered by fax. finishing the call now...")
-        hangup = VoiceResponse().hangup()
-        return str(hangup)
+        elif "fax" in answeredBy:
+            logger.info(f"call was answered by fax. finishing the call now...")
+            hangup = VoiceResponse().hangup()
+            return str(hangup)
 
     speech_result = request.form.get("SpeechResult", "")
     logger.info(f"speech result: {speech_result}")
 
     if speech_result != "":
 
+        if "hello" in speech_result.lower():
+            redirect = VoiceResponse()
+            redirect.redirect(
+                f"{public_url}/call/intro_message/{clinic_id}", method="POST"
+            )
+            return str(redirect)
+
         try:
+            #find what digit needs to be pressed next (if any)
             next_nav_menu_data = find_next_nav_menu_key(speech_result)
             digit = next_nav_menu_data["digit"]
             human_reached = next_nav_menu_data["human_reached"]
@@ -91,7 +107,7 @@ def handle_machine_detection(clinic_id: int):
 def handle_on_hold(clinic_id: int):
 
     logger.info(f"\n--now in handle_on_hold enpoint--\n")
-    logger.info("handle on hold form data: ", request.form.to_dict())
+    logger.info(f"handle on hold form data: {request.form.to_dict()}")
 
     speech_result = request.form.get("SpeechResult", "")
 
@@ -128,6 +144,8 @@ def handle_on_hold(clinic_id: int):
         return str(hangup)
 
     response = VoiceResponse()
+
+    response.say("you are in handle on hold now. you may speak now")
 
     # If repetition count is not greater than 15, listen for voice input again
     #   and send it to this same endpoint, it will check if the voice input belongs

@@ -61,7 +61,7 @@ def call_all_clinics():
 
     # mock list of clinics you can call for testing, i.e. yourself
     if mode == "DEV":
-        due_clinics = [{"id": MOCK_CLINIC_ID, "phone_number": PERSONAL_NUMBER}]
+        due_clinics = [{"id": 60, "phone_number": PERSONAL_NUMBER}]
 
     for clinic in due_clinics:
 
