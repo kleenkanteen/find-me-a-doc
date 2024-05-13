@@ -87,7 +87,7 @@ def handle_endpoint_limits(clinic_id: int):
 
 def handle_successful_call(clinic_id):
 
-    logger.debug(
+    logger.info(
         f"call was a success, male docs: {call_values.male_docs_number} | female docs: {call_values.female_docs_number}"
     )
 
@@ -112,14 +112,14 @@ def handle_successful_call(clinic_id):
         success="true",
     )
 
-    logger.debug(f"successful call, updated full db data: {updated_clinic_data}")
+    logger.info(f"successful call, updated full db data: {updated_clinic_data}")
 
     return outro_message()
 
 
 def handle_failed_call(clinic_id: int):
 
-    logger.debug(
+    logger.info(
         f"failed call values: male: {call_values.male_docs_number} | female: {call_values.female_docs_number}"
     )
 
@@ -138,7 +138,7 @@ def handle_failed_call(clinic_id: int):
         success="false",
     )
 
-    logger.debug(f"failed call, db update of doc nums with whatever was gathered: {updated_clinic_data}")
+    logger.info(f"failed call, db update of doc nums with whatever was gathered: {updated_clinic_data}")
 
 
 def get_call_data(call_sid):

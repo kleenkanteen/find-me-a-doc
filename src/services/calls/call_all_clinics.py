@@ -44,7 +44,7 @@ def check_call_status(queue, call_sid):
         # Possible values: queued, ringing, in-progress, busy, completed, failed, no-answer, canceled
         if call_status in ["completed", "failed", "no-answer", "canceled", "busy"]:
             queue.put({"call_status": call_status, "call_data": call_data})
-            logger.debug(f"final call status is: '{call_status}'")
+            logger.info(f"Call was finished. Final call status is: '{call_status}'")
             break
 
 
@@ -72,7 +72,7 @@ def call_all_clinics():
         except TwilioRestException as e:
             logger.error(f"Twilio error, message: {e}")
 
-        logger.debug(f"Call started...sid: {clinic_sid}")
+        logger.info(f"Call started...sid: {clinic_sid}")
 
         q = queue.Queue()
 
@@ -86,6 +86,7 @@ def call_all_clinics():
 
         call_status = result["call_status"]
 
+        logger.info('Now updating the call final status in the db')
         update_call_final_status(clinic["id"], call_status)
 
         # If user hangs up, call status is marked as completed without any http response status or body.
@@ -100,7 +101,7 @@ def call_all_clinics():
         call_values.reset_call_values()
 
         if clinic["id"] == due_clinics[-1]["id"]:
-            logger.debug("Round of calls done")
+            logger.info("Round of calls done")
             exit()
 
         questions = [

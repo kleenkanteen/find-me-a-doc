@@ -17,11 +17,16 @@ ngrok_url = os.environ.get("NGROK_URL")
 
 def make_call(phone_number: str, clinic_id: int):
 
+    logger.info("NGROK URL: ", ngrok_url)
+
     logger.debug(
         f"Received phone number: {phone_number}. Received clinic id: {clinic_id}"
     )
+    
+    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
     if MODE == "DEV":
+        logger.info("MODE: DEV")
         if phone_number != PERSONAL_NUMBER:
             logger.critical(
                 "PERSONAL_NUMBER does not equal given phone_number from args"
@@ -29,17 +34,17 @@ def make_call(phone_number: str, clinic_id: int):
             raise ValueError(
                 "PERSONAL_NUMBER does not equal given phone_number from args"
             )
-
-    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-
-    print("NGROK URL: ", ngrok_url)
-
-    if MODE == "DEV":
         number_called = PERSONAL_NUMBER
-    else:
+
+    elif MODE == "PROD":
+        logger.info("MODE: PROD")
         number_called = phone_number
 
-    logger.debug(f"phone number: {phone_number}")
+    else:
+        logger.error(f"Mode of type {MODE} is not valid.")
+        raise ValueError(f"Mode of type {MODE} is not valid.")
+
+    logger.info(f"calling to phone number: {phone_number}")
 
     response = VoiceResponse()
 

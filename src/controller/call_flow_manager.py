@@ -13,79 +13,14 @@ call_flow_manager = Blueprint("call_flow_manager", __name__, url_prefix="/call")
 
 public_url = os.environ.get("NGROK_URL")
 
-
-# consider adding gpt to identify if human or robot:
-# sometimes we may have a bot saying "the expected time to speak to someone is of 3 minutes"
-# which would trigger /intro_message.
-@call_flow_manager.route("/handle_on_hold/<int:clinic_id>", methods=["GET", "POST"])
-def handle_on_hold(clinic_id: int):
-
-    print("handle on hold form data: ", request.form.to_dict())
-
-    logger.debug(f"\n--now in handle on hold--\n")
-
-    speech_result = request.form.get("SpeechResult", "")
-
-    if speech_result != "":
-
-        logger.debug(f"\ntranscript: {speech_result}\n")
-
-        if "hello" in speech_result:
-
-            redirect = VoiceResponse()
-            redirect.redirect(
-                f"{public_url}/call/intro_message/{clinic_id}", method="POST"
-            )
-            return str(redirect)
-
-        is_robot = detect_pregenerated_transcript(speech_result)
-        logger.debug(f"\is robot? : {is_robot}\n")
-
-        if is_robot == False:
-
-            # Consider adding another gpt task that identifies if a digit should be returned
-            #   if yes, then redirect to machine detection with the transcript attached,
-            #   otherwise just ignore it and keep waiting
-
-            redirect_response = VoiceResponse()
-            redirect_response.redirect(f"{public_url}/call/intro_message/{clinic_id}")
-            return str(redirect_response)
-
-    repetition_count = int(request.args.get("repetition_count", 0))
-    logger.loud(f"on hold repetition_count: {repetition_count}")
-
-    if repetition_count > 15:
-        hangup = VoiceResponse().hangup()
-        return str(hangup)
-
-    print("on hold data: ", request.form.to_dict())
-
-    response = VoiceResponse()
-
-    gather = Gather(
-        input="speech",
-        speech_model="phone_call",
-        enhanced="true",
-        action=f"{public_url}/call/handle_on_hold/{clinic_id}",
-        speechTimeout=1,
-        hints="$OPERAND, press $OPERAND",
-    )
-    response.append(gather)
-
-    new_repetition_count = repetition_count + 1
-    response.redirect(
-        f"{public_url}/call/handle_on_hold/{clinic_id}?repetition_count={new_repetition_count}",
-        method="POST",
-    )
-    return str(response)
-
-
 @call_flow_manager.route("/machine_detection/<int:clinic_id>", methods=["GET", "POST"])
 def handle_machine_detection(clinic_id: int):
 
-    logger.debug(f"machine detection endpoint form:  {request.form.to_dict()}")
+    logger.info(f"\n--now in machine_detection enpoint--\n")
+
+    logger.info(f"machine detection endpoint form:  {request.form.to_dict()}")
     answeredBy = request.form.get("AnsweredBy", "")
-    logger.debug(f"answeredBy: {answeredBy}")
+    logger.info(f"call was answered by: {answeredBy}")
 
     response = VoiceResponse()
 
@@ -95,13 +30,12 @@ def handle_machine_detection(clinic_id: int):
         return str(response)
 
     if "fax" in answeredBy:
-        logger.error(f"answeredBy is either fax or unknown. answeredBy: {answeredBy} ")
-        logger.info(f"finishing call...")
+        logger.info(f"call was answered by fax. finishing the call now...")
         hangup = VoiceResponse().hangup()
         return str(hangup)
 
     speech_result = request.form.get("SpeechResult", "")
-    logger.debug(f"speech result: {speech_result}")
+    logger.info(f"speech result: {speech_result}")
 
     if speech_result != "":
 
@@ -109,7 +43,7 @@ def handle_machine_detection(clinic_id: int):
             next_nav_menu_data = find_next_nav_menu_key(speech_result)
             digit = next_nav_menu_data["digit"]
             human_reached = next_nav_menu_data["human_reached"]
-            print("NAV MNEU DATA", next_nav_menu_data, '\n')
+            logger.info("navigation menu data: ", next_nav_menu_data, '\n')
         except TypeError as e:
             logger.error(f"chatgpt returned an invalid response. full error log: {e}")
 
@@ -134,10 +68,10 @@ def handle_machine_detection(clinic_id: int):
             return str(response)
 
         else:
-            logger.debug(f"played digit: {digit}")
+            logger.info(f"played digit: {digit}")
             response.play("", digits=str(digit))
 
-    logger.debug("\ngather has been triggered\n")
+    logger.info("\nlistening for voice input in machine detection...\n")
     gather = Gather(
         input="speech",
         speech_model="phone_call",
@@ -150,26 +84,89 @@ def handle_machine_detection(clinic_id: int):
     return str(response)
 
 
+# consider adding gpt to identify if human or robot:
+# sometimes we may have a bot saying "the expected time to speak to someone is of 3 minutes"
+# which would trigger /intro_message.
+@call_flow_manager.route("/handle_on_hold/<int:clinic_id>", methods=["GET", "POST"])
+def handle_on_hold(clinic_id: int):
+
+    logger.info(f"\n--now in handle_on_hold enpoint--\n")
+    logger.info("handle on hold form data: ", request.form.to_dict())
+
+    speech_result = request.form.get("SpeechResult", "")
+
+    if speech_result != "":
+
+        logger.info(f"\speech result: {speech_result}\n")
+
+        if "hello" in speech_result:
+
+            redirect = VoiceResponse()
+            redirect.redirect(
+                f"{public_url}/call/intro_message/{clinic_id}", method="POST"
+            )
+            return str(redirect)
+
+        is_robot = detect_pregenerated_transcript(speech_result)
+        logger.info(f"is robot? : {is_robot}\n")
+
+        if is_robot == False:
+
+            # Consider adding another gpt task that identifies if a digit should be returned
+            #   if yes, then redirect to machine detection with the transcript attached,
+            #   otherwise just ignore it and keep waiting
+
+            redirect_response = VoiceResponse()
+            redirect_response.redirect(f"{public_url}/call/intro_message/{clinic_id}")
+            return str(redirect_response)
+
+    repetition_count = int(request.args.get("repetition_count", 0))
+    logger.info(f"on hold repetition_count: {repetition_count}")
+
+    if repetition_count > 15:
+        hangup = VoiceResponse().hangup()
+        return str(hangup)
+
+    response = VoiceResponse()
+
+    # If repetition count is not greater than 15, listen for voice input again
+    #   and send it to this same endpoint, it will check if the voice input belongs
+    #   to a human or a robot. Don't increase the repetition count if there's voice input.
+    gather = Gather(
+        input="speech",
+        speech_model="phone_call",
+        enhanced="true",
+        action=f"{public_url}/call/handle_on_hold/{clinic_id}?repetition_count={repetition_count}",
+        speechTimeout=1,
+        hints="$OPERAND, press $OPERAND",
+    )
+    response.append(gather)
+
+    new_repetition_count = repetition_count + 1
+    response.redirect(
+        f"{public_url}/call/handle_on_hold/{clinic_id}?repetition_count={new_repetition_count}",
+        method="POST",
+    )
+    return str(response)
+
 @call_flow_manager.route("/intro_message/<int:clinic_id>", methods=["GET", "POST"])
 def intro_message(clinic_id: int):
 
     logger.info(f"\nintro message request form: {request.form.to_dict()}")
-    logger.info(f"intro message request args: {request.args.to_dict()}\n")
+    logger.info(f"intro message request args: {request.args.to_dict()}")
 
     prompt_retry_count = int(request.args.get("prompt_retry_count", 0))
     # Invalid_value_count is always 1 behind when attaching it to a Gather action, so it's set to 1 instead of 0
     invalid_input_count = int(request.args.get("invalid_value_count", 1))
     timeouts_count = int(request.args.get("timeouts_count", 0))
 
-    logger.info(f"intro message retrys count: {prompt_retry_count}")
+    logger.info(f"\nintro message retrys count: {prompt_retry_count}")
     logger.info(f"intro message invalid key count: {invalid_input_count}")
     logger.info(f"intro message timeouts count: {timeouts_count}")
 
     max_count = max(prompt_retry_count, timeouts_count, invalid_input_count)
     if max_count > call_values.ENDPOINT_HIT_LIMIT:
         return call_methods.handle_endpoint_limits(clinic_id)
-
-    print("Intro Message")
 
     response = VoiceResponse()
 
@@ -193,8 +190,6 @@ def intro_message(clinic_id: int):
         method="GET",
     )
 
-    logger.loud(f"HERE IS THE TWIML: {response}")
-
     return str(response)
 
 
@@ -215,8 +210,8 @@ def handle_intro_message_response(clinic_id: int):
         choice = request.values["Digits"]
         if choice == "1":
 
-            logger.loud(
-                "User chose to answer both questions...continuing to the next question now"
+            logger.info(
+                "\nUser chose to answer both questions...continuing to the next question now"
             )
 
             redirect_response = VoiceResponse()
@@ -226,7 +221,7 @@ def handle_intro_message_response(clinic_id: int):
             return str(redirect_response)
 
         if choice == "2":
-            logger.loud("User chose not to answer questions...ending call now")
+            logger.info("\nUser chose not to answer questions...ending call now")
             return call_methods.outro_message()
 
         if choice == "3":
@@ -407,7 +402,7 @@ def handle_number_female_doctors_response(clinic_id: int):
 
     else:
         message_url = "https://findadoc-7179.twil.io/wrong_input.mp3"
-        logger.critical("Attribute 'Digits' doesn't exist in request.values")
+        logger.error("Attribute 'Digits' doesn't exist in request.values")
         return call_methods.handle_unrecognizable_response(
             f"/call/ask_female_doctors_number/{clinic_id}?invalid_input_count={invalid_input_count}",
             message_url,
