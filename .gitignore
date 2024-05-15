@@ -7,9 +7,7 @@ venv
 
 **/__pycache__
 
-<<<<<<< HEAD
+
 **/*.log
 
-=======
-*.log
->>>>>>> master
+

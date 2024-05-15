@@ -6,7 +6,5 @@ twilio
 python-dotenv
 inquirer
 black
-<<<<<<< HEAD
 openai
-=======
->>>>>>> master
+
