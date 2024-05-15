@@ -5,13 +5,16 @@ from dotenv import load_dotenv
 from app_setup import app
 from services.calls.call_all_clinics import call_all_clinics
 
-
 load_dotenv(override=True)
 port = os.environ.get("PORT")
 
 
 def start_server():
+<<<<<<< HEAD
+    logger.info("Starting flask server...")
+=======
     logger.debug("Starting flask server...")
+>>>>>>> master
     app.run(port=port)
 
 
@@ -21,6 +24,8 @@ if __name__ == "__main__":
 
         server_thread = threading.Thread(target=start_server, daemon=True)
         server_thread.start()
+
+        logger.loud(f'url: {os.environ.get("NGROK_URL")}')
 
         call_all_clinics()
 

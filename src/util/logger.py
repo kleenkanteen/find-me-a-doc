@@ -1,9 +1,16 @@
 import logging, datetime
+<<<<<<< HEAD
+from .source_context import get_filename, get_function_name, get_linenumber
+
+formatter = logging.Formatter("%(asctime)s \n%(levelname)s \n%(message)s\n")
+logging.basicConfig(filemode='w', force=True)
+=======
 
 from .source_context import get_filename, get_function_name, get_linenumber
 
 formatter = logging.Formatter("%(asctime)s \n%(levelname)s \n%(message)s\n")
 
+>>>>>>> master
 
 class logger_class:
 
@@ -11,7 +18,11 @@ class logger_class:
         self.logger = self.__setup_logger("twilio_info", "twilio_info.log")
         self.twilio_logger = self.__setup_logger("raw_responses", "raw_responses.log")
         self.completed_call_info_logger = self.__setup_logger(
+<<<<<<< HEAD
+            "end_of_call_info", "end_of_call_info.log"
+=======
             "completed_call_info", "completed_call_info.log"
+>>>>>>> master
         )
 
     def __setup_logger(self, name, log_file, level=logging.INFO):
@@ -66,7 +77,11 @@ class logger_class:
         upper_message = message.upper()
         print(f"\n{upper_message}\n")
 
+<<<<<<< HEAD
+    def end_of_call_info(self, data: dict, **extra_values):
+=======
     def completed_call_info(self, data: dict, **extra_values):
+>>>>>>> master
 
         # # Array of keys to include in the new dictionary, possible keys:
         # ['_version', 'sid', 'date_created', 'date_updated', 'parent_call_sid', 'account_sid', 'to', 'to_formatted', '_from', 'from_formatted', 'phone_number_sid', 'status', 'start_time', 'end_time', 'duration', 'price', 'price_unit', 'direction', 'answered_by', 'api_version', 'forwarded_from', 'group_sid', 'caller_name', 'queue_time', 'trunk_sid', 'uri', 'subresource_uris', '_solution', '_context']
@@ -97,7 +112,11 @@ class logger_class:
                 value_str = str(value)
             log_str += f"{key}: {value_str}\n"
 
+<<<<<<< HEAD
+        with open("end_of_call_info.log", "w") as f:
+=======
         with open("completed_call_info.log", "a") as f:
+>>>>>>> master
             f.write(log_str + "\n")
 
 

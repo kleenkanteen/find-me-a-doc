@@ -9,7 +9,11 @@ last_call_time = time.time()
 text = ""
 male_docs_number = None
 female_docs_number = None
+<<<<<<< HEAD
+timeout = 3
+=======
 timeout = 4
+>>>>>>> master
 ENDPOINT_HIT_LIMIT = 3
 
 
