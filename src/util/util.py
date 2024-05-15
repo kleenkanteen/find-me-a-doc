@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import re
 
 def remove_dots_and_commas(text: str):
@@ -8,5 +7,3 @@ def remove_dots_and_commas(text: str):
     text_without_punctuation = re.sub(punctuation_pattern, '', text)
 
     return text_without_punctuation
-=======
->>>>>>> master
