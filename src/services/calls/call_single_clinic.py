@@ -17,7 +17,6 @@ ngrok_url = os.environ.get("NGROK_URL")
 
 def make_call(phone_number: str, clinic_id: int):
 
-<<<<<<< HEAD
     logger.info(f"NGROK URL: {ngrok_url}")
 
     logger.debug(
@@ -69,37 +68,4 @@ def make_call(phone_number: str, clinic_id: int):
         twiml=str(response),
         record=True
     )
-=======
-    logger.debug(
-        f"Received phone number: {phone_number}. Received clinic id: {clinic_id}"
-    )
-
-    if MODE == "DEV":
-        if phone_number != PERSONAL_NUMBER:
-            logger.critical(
-                "PERSONAL_NUMBER does not equal given phone_number from args"
-            )
-            raise ValueError(
-                "PERSONAL_NUMBER does not equal given phone_number from args"
-            )
-
-    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-
-    response = VoiceResponse()
-    print("NGROK URL: ", ngrok_url)
-    response.redirect(f"{ngrok_url}/call/intro_message/{clinic_id}", method="GET")
-
-    if MODE == "DEV":
-        number_called = PERSONAL_NUMBER
-    else:
-        number_called = phone_number
-
-    call = client.calls.create(
-        to=f"+1{number_called}",
-        from_=f"+1{TWILIO_NUMBER}",
-        timeout=30,
-        twiml=str(response),
-    )
-
->>>>>>> master
     return call.sid
