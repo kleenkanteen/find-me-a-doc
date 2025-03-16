@@ -85,3 +85,7 @@ Ontario System. Unattached patients can call or go online to [ontario.ca/health
 
 - Bloated way
 - Feb 2023: 7 people said they were on the list for 2-5 years: https://www.reddit.com/r/ottawa/comments/110f0y7/can_someone_help_me_with_this_health_care_connect/
+- 
+
+# Call flow (june 2024):
+<img width="1798" alt="image" src="https://github.com/user-attachments/assets/c823a653-0cc1-4c1b-8140-2c6dc7333b34" />
